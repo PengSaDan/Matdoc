@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Header = (props) => {
   const navigation = useNavigate();
-  
+
   return (
     <div className="relative w-screen p-3 overflow-hidden">
       <div
