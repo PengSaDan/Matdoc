@@ -1,5 +1,5 @@
 // import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Hospitalpart from "./Hospitalpart";
 import HospitalTime from "./HospitalTime";
@@ -25,7 +25,7 @@ const part = [
 const time = ["전체", "토요일", "일요일", "공휴일", "야간"];
 export const HospitalFilter = (props) => {
   return (
-    <div className="absolute top-[180px] h-[560px] w-[380px] bg-[#FFF5DA] left-[14px]  rounded-[10px]">
+    <div className="absolute top-[11em]  h-[35em]  w-11/12 bg-[#FFF5DA] left-4  rounded-[10px]">
       <p className=" relative top-3 left-3 mb-2 text-3xl font-semibold">
         진료과목
       </p>
