@@ -7,24 +7,26 @@ export const HospitalList = (props) => {
   const [color, setColor] = useState("");
   //props로 받은 영업중 여부가
   useEffect(() => {
-    // if (true) {
-    setStatus("진료중");
-    setColor(
-      "relative -top-7 left-72 h-[42px] w-[110px] rounded-[50px] bg-[#32EBBE] "
-    );
-    // } else {
-    // setState("휴진");
-    // setColor("relative -top-7 left-72 h-[42px] w-[110px] rounded-[50px] bg-[#BDD3CE] ");
-    // }
+    if (props.props.hospitalOpen) {
+      setStatus("진료중");
+      setColor(
+        "relative -top-7 left-72 h-[42px] w-[110px] rounded-[50px] bg-[#32EBBE] "
+      );
+    } else {
+      setStatus("휴진");
+      setColor(
+        "relative -top-7 left-72 h-[42px] w-[110px] rounded-[50px] bg-[#BDD3CE] "
+      );
+    }
   }, []);
   return (
     <div className="relative w-full  h-[160px] border-t-2 bg-[#ECF9F6]">
       <p className="relative top-3 left-3 mb-2 text-3xl font-semibold">
-        {props.props.name}
+        {props.props.hospitalName}
       </p>
       <p className="relative top-3 left-4 text-lg">{props.props.distance}</p>
       <p className="relative top-3 left-4 text-lg">{props.props.address}</p>
-      <p className="relative top-3 left-4 text-lg">{props.props.tel}</p>
+      <p className="relative top-3 left-4 text-lg">{props.props.hospitalTel}</p>
       <div className={color}>
         <p className="text-center leading-[42px] font-bold text-lg">{status}</p>
       </div>
