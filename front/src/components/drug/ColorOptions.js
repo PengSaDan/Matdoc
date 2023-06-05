@@ -99,7 +99,7 @@ export const ColorOptions = (props) => {
       name: "투명",
       code: "bg-[url('assets/images/transparent.jpg')] bg-cover h-1/3",
       selected:
-        "w-16 h-10 mt-3 overflow-hidden text-center rounded-xl bg-[#00C192] leading-8 text-white font-bold border-[#96DE83] border-4",
+        "w-16 h-10 mt-3 overflow-hidden text-center rounded-xl bg-transparent leading-8 text-[#303030] font-bold border-[#96DE83] border-4",
     },
   ];
 
