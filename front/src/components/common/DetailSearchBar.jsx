@@ -9,14 +9,18 @@ export const DetailSearchBar = (props) => {
   };
   useEffect(() => {
     setColor(
-      "absolute h-[60px] w-[290px] text-2xl leading-[60px] top-[100px] text-[#A1AFA9] left-[12px] rounded-[10px] " +
+      "absolute h-[60px] w-[290px] text-2xl leading-[60px] top-[100px] placeholder-[#A1AFA9] p-4 left-[12px] rounded-[10px] " +
         props.color
     );
   }, []);
 
   return (
     <div>
-      <div className={color}>ㅤ검색어를 입력해주세요</div>
+      <input
+        type="text"
+        className={color}
+        placeholder="검색어를 입력해주세요"
+      />
       <div
         className="absolute bg-[#00C192] h-[60px] w-[85px] text-2xl leading-[60px] top-[100px]
           text-[#ffffff] font-bold left-[311px] text-center rounded-[10px]"
