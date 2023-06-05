@@ -59,7 +59,7 @@ export const HospitalList = (prop) => {
         <p className="text-[#303030] text-xl ml-3 mt-1 font-semibold">
           {props.length} 건
         </p>
-        {isopen && (
+        {!isopen && (
           <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▼</p>
         )}
       </div>
@@ -68,14 +68,14 @@ export const HospitalList = (prop) => {
           return <List props={i} />;
         })}
       </div>
-      {!isopen && <HospitalFilter />}
+      {isopen && <HospitalFilter />}
       <div
         className="absolute top-44 right-5"
         onClick={() => {
           setIsOpen((e) => !e);
         }}
       >
-        {!isopen && (
+        {isopen && (
           <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▲</p>
         )}
       </div>

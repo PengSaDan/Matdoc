@@ -1,12 +1,19 @@
 import Header from "components/common/Header";
-import React from "react";
+import BasketDrug from "components/mypage/BasketDrug";
+import LikeHospital from "components/mypage/LikeHospital";
+import MyDrug from "components/mypage/MyDrug";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 export const MyPage = (props) => {
+  const [page, setPage] = useState(<LikeHospital />);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-hidden">
       <Header />
-      <div>마이페이지</div>
+      {page}
+      {/* <LikeHospital /> */}
+      {/* <MyDrug /> */}
+      {/* <BasketDrug /> */}
     </div>
   );
 };

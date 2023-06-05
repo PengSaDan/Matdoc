@@ -20,13 +20,19 @@ export const HospitalList = (props) => {
     }
   }, []);
   return (
-    <div className="relative w-full  h-[160px] border-t-2 bg-[#ECF9F6]">
-      <p className="relative top-3 left-3 mb-2 text-3xl font-semibold">
+    <div className=" w-[412px]  h-[160px] border-t-2">
+      <p className="relative w-[390px] top-3 left-3 mb-2 text-3xl font-semibold">
         {props.props.hospitalName}
       </p>
-      <p className="relative top-3 left-4 text-lg">{props.props.distance}</p>
-      <p className="relative top-3 left-4 text-lg">{props.props.address}</p>
-      <p className="relative top-3 left-4 text-lg">{props.props.hospitalTel}</p>
+      <p className="relative w-[390px] top-3 left-4 text-lg">
+        {props.props.distance}
+      </p>
+      <p className="relative w-[390px] top-3 left-4 text-lg">
+        {props.props.address}
+      </p>
+      <p className="relative w-[390px] top-3 left-4 text-lg">
+        {props.props.hospitalTel}
+      </p>
       <div className={color}>
         <p className="text-center leading-[42px] font-bold text-lg">{status}</p>
       </div>
