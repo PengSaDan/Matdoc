@@ -4,8 +4,11 @@ import DrugFilter from "components/drug/DrugFilter";
 import SelectModal from "components/drug/SelectModal";
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const Drug = (props) => {
+  const navigation = useNavigate();
+
   const [modal, setModal] = useState("");
   const [shape, setShape] = useState("모양");
   const [line, setLine] = useState("분할선");
@@ -28,6 +31,11 @@ export const Drug = (props) => {
     setModal("");
   };
 
+  const searchPills = () => {
+    // axios요청을 해서 결과를 redux에 넣고 페이지 이동
+    navigation("/drugList");
+  }
+
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-hidden mx-auto">
       <Header />
@@ -38,7 +46,8 @@ export const Drug = (props) => {
           shape={shape}
           line={line}
         />
-        <div className="absolute left-[16px] top-[760px] text-center leading-[80px] w-[380px] h-[80px] bg-[#00C192] rounded-[10px] text-3xl text-white font-bold placeholder-[#A1AFA9]">
+        <div className="absolute left-[16px] top-[760px] text-center leading-[80px] w-[380px] h-[80px] bg-[#00C192] rounded-[10px] text-3xl text-white font-bold placeholder-[#A1AFA9]"
+        onClick={() => searchPills()}>
           검색
         </div>
       </div>

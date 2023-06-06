@@ -63,7 +63,7 @@ export const HospitalList = (prop) => {
           <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▼</p>
         )}
       </div>
-      <div className="absolute w-full top-56">
+      <div className="absolute w-full overflow-scroll top-56 h-3/4">
         {props.map((i) => {
           return <List props={i} />;
         })}

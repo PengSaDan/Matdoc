@@ -4,13 +4,13 @@ import ColorOptions from "./ColorOptions";
 
 export const DrugFilter = (props) => {
   return (
-    <div className="absolute bg-[#D7F1FF] h-[560px] w-[390px] top-[180px] left-[12px] rounded-[10px] p-5 mx-auto">
+    <div className="absolute bg-[#D7F1FF] h-[35em] w-11/12 top-[11em] left-4 rounded-[10px] p-5 mx-auto">
       <div className="text-[#303030] text-2xl font-semibold">색상</div>
       <ColorOptions />
       <div className="grid grid-cols-2 mt-8 justify-items-center">
         {props.shape === "모양" && (
           <div
-            className="w-[140px] h-[100px] bg-[#D1F1C9] shadow-xl rounded-2xl leading-[100px] text-center text-3xl text-[#303030] font-semibold"
+            className="w-36 h-24 bg-[#D1F1C9] shadow-xl rounded-2xl leading-[6rem] text-center text-3xl text-[#303030] font-semibold"
             onClick={() => props.selectModalOpenHandler("shape")}
           >
             {props.shape}
@@ -18,7 +18,7 @@ export const DrugFilter = (props) => {
         )}
         {props.shape !== "모양" && (
           <div
-            className="w-[140px] h-[100px] bg-[#D1F1C9] rounded-2xl leading-[100px] text-center text-3xl text-[#303030] font-semibold border-[#96DE83] border-4"
+            className="w-36 h-24 bg-[#D1F1C9] rounded-2xl leading-[6rem] text-center text-3xl text-[#303030] font-semibold border-[#96DE83] border-4"
             onClick={() => props.selectModalOpenHandler("shape")}
           >
             {props.shape}
@@ -27,7 +27,7 @@ export const DrugFilter = (props) => {
 
         {props.line === "분할선" && (
           <div
-            className="w-[140px] h-[100px] bg-[#D1F1C9] shadow-xl rounded-2xl leading-[100px] text-center text-3xl text-[#303030] font-semibold"
+            className="w-36 h-24 bg-[#D1F1C9] shadow-xl rounded-2xl leading-[6rem] text-center text-3xl text-[#303030] font-semibold"
             onClick={() => props.selectModalOpenHandler("line")}
           >
             {props.line}
@@ -35,7 +35,7 @@ export const DrugFilter = (props) => {
         )}
         {props.line !== "분할선" && (
           <div
-            className="w-[140px] h-[100px] bg-[#D1F1C9] rounded-2xl leading-[100px] text-center text-3xl text-[#303030] font-semibold border-[#96DE83] border-4"
+            className="w-36 h-24 bg-[#D1F1C9] rounded-2xl leading-[6rem] text-center text-3xl text-[#303030] font-semibold border-[#96DE83] border-4"
             onClick={() => props.selectModalOpenHandler("line")}
           >
             {props.line}
@@ -44,9 +44,19 @@ export const DrugFilter = (props) => {
       </div>
       <div className="text-[#303030] text-2xl font-semibold mt-8">식별문자</div>
       <input
-        className="w-[350px] h-[60px] mt-3 p-5 rounded-xl text-xl"
+        className="p-5 mt-3 ml-2 text-xl h-14 w-80 rounded-xl"
         placeholder="약에 적힌 문자를 입력하세요"
       ></input>
+      {props.setDetail && (
+        <div
+          className="absolute top-0 right-0"
+          onClick={() => {
+            props.setDetail((e) => !e);
+          }}
+        >
+          <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▲</p>
+        </div>
+      )}
     </div>
   );
 };

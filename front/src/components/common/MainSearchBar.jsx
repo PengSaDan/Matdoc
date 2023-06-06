@@ -6,7 +6,7 @@ export const MainSearchBar = (props) => {
   const [color, setColor] = useState("");
   useEffect(() => {
     setColor(
-      " absolute bg-[#FFF5DA] h-[60px] w-[380px] items-center text-2xl leading-[60px] top-[100px] placeholder-[#A1AFA9] p-4 left-[14px]  rounded-[10px] " +
+      " absolute h-[60px] w-[380px] items-center text-2xl leading-[60px] top-[100px] placeholder-[#A1AFA9] p-4 left-[14px]  rounded-[10px] " +
         props.color
     );
   }, []);
