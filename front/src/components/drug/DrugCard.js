@@ -1,14 +1,25 @@
 // import PropTypes from 'prop-types'
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { FaPlusCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { basketActions } from "store/features/drugBasketSlice";
 
 export const DrugCard = (props) => {
   const navigation = useNavigate();
+  const dispatch = useDispatch();
 
   const goDetail = () => {
     navigation(`/drugDetail/${props.pill.drugId}`);
+  };
+
+  const pushBasket = (event) => {
+    dispatch(
+      basketActions.pushBasket({
+        drugId: props.pill.drugId,
+        name: props.pill.name,
+      })
+    );
   };
 
   return (
@@ -24,9 +35,10 @@ export const DrugCard = (props) => {
           <div>성분 : {props.pill.ingredient}</div>
           <div>모양 : {props.pill.shape}</div>
           <div
-            className="absolute rounded-full shadow-xl right-1 bottom-1"
-            onClick={() => {
-              console.log("바구니");
+            className="absolute z-50 rounded-full shadow-xl right-1 bottom-1"
+            onClick={(e) => {
+              e.stopPropagation();
+              pushBasket();
             }}
           >
             <FaPlusCircle className="text-4xl text-[#00C192]" />

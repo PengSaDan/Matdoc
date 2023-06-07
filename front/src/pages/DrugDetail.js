@@ -1,13 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import image from "assets/images/circle.jpg";
 import Header from "components/common/Header";
 import { FaPlusCircle } from "react-icons/fa";
+import { basketActions } from "store/features/drugBasketSlice";
 
 export const DrugDetail = (props) => {
   const params = useParams();
+  const dispatch = useDispatch();
+  const basket = useSelector((state) => state.drugBasket.basket);
 
+  console.log(basket);
+  
   const pillDetail = {
     drugId: params.drugId,
     name: "타이레놀정500밀리그람(아세트아미노펜)",
@@ -24,6 +29,18 @@ export const DrugDetail = (props) => {
   // console.log(params.drugId);
   // drugId로 상세정보를 요청하자
 
+  const pushBasket = () => {
+    dispatch(
+      basketActions.pushBasket({
+        drugId: pillDetail.drugId,
+        name: pillDetail.name,
+      },{
+        drugId: 2,
+        name: "asd",
+      })
+    );
+  };
+
   return (
     <div className="bg-[#ECF9F6] w-screen min-h-screen mx-auto overflow-scroll">
       <Header />
@@ -38,7 +55,7 @@ export const DrugDetail = (props) => {
           <div
             className="rounded-full shadow-xl w-9 h-9"
             onClick={() => {
-              console.log("바구니");
+              pushBasket();
             }}
           >
             <FaPlusCircle className="text-4xl text-[#00C192]" />

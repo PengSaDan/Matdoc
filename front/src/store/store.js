@@ -1,5 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import drugBasketSlice from "./features/drugBasketSlice";
 
 export const store = configureStore({
-    reducer:{}
-})
+  reducer: {
+    drugBasket: drugBasketSlice,
+  }
+});
