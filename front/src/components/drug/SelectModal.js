@@ -100,6 +100,7 @@ export const SelectModal = (props) => {
           <div className="grid w-full grid-cols-4 justify-items-center">
             {shapes.map((shape) => (
               <div
+                key={shape.name}
                 className={shape.image}
                 onClick={() => props.selectShapeHandler(shape.name)}
               >
@@ -122,6 +123,7 @@ export const SelectModal = (props) => {
           <div className="grid w-full grid-cols-3 justify-items-center">
             {lines.map((line) => (
               <div
+                key={line.name}
                 className={line.image}
                 onClick={() => props.selectLineHandler(line.name)}
               >

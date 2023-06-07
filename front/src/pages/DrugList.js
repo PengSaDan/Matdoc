@@ -9,42 +9,49 @@ import image from "assets/images/circle.jpg";
 
 const pills = [
   {
+    drugId: 1,
     name: "타이레놀정500밀리그람(아세트아미노펜)",
     ingredient: "아세트아미노펜",
     shape: "타원형, 하양, 회색",
     image: image,
   },
   {
+    drugId: 2,
     name: "타이레놀정500밀리그람(아세트아미노펜)",
     ingredient: "아세트아미노펜",
     shape: "타원형, 하양, 회색",
     image: image,
   },
   {
+    drugId: 3,
     name: "타이레놀정500밀리그람(아세트아미노펜)",
     ingredient: "아세트아미노펜",
     shape: "타원형, 하양, 회색",
     image: image,
   },
   {
+    drugId: 4,
     name: "타이레놀정500밀리그람(아세트아미노펜)",
     ingredient: "아세트아미노펜",
     shape: "타원형, 하양, 회색",
     image: image,
   },
   {
+    drugId: 5,
     name: "타이레놀정500밀리그람(아세트아미노펜)",
     ingredient: "아세트아미노펜",
     shape: "타원형, 하양, 회색",
     image: image,
   },
   {
+    drugId: 6,
     name: "타이레놀정500밀리그람(아세트아미노펜)",
     ingredient: "아세트아미노펜",
     shape: "타원형, 하양, 회색",
     image: image,
   },
   {
+    drugId: 7,
     name: "타이레놀정500밀리그람(아세트아미노펜)",
     ingredient: "아세트아미노펜",
     shape: "타원형, 하양, 회색",
@@ -96,7 +103,7 @@ export const DrugList = (props) => {
         )}
         <div className="absolute w-full overflow-scroll h-3/4 top-56">
           {pills.map((pill) => (
-            <DrugCard pill={pill} />
+            <DrugCard key={pill.drugId} pill={pill} />
           ))}
         </div>
         {detail && (

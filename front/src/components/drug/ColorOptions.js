@@ -127,7 +127,7 @@ export const ColorOptions = (props) => {
   return (
     <div className="grid w-full grid-cols-4 justify-items-center">
       {colors.map((color) => (
-        <>
+        <div key={color.name}>
           {!colorList.includes({ color }.color.name) && (
             <div
               className="w-16 h-10 mt-3 overflow-hidden text-center bg-white shadow-xl rounded-xl"
@@ -145,7 +145,7 @@ export const ColorOptions = (props) => {
               {color.name}
             </div>
           )}
-        </>
+        </div>
       ))}
     </div>
   );

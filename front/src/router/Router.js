@@ -1,5 +1,6 @@
 import App from "App";
 import Drug from "pages/Drug";
+import DrugDetail from "pages/DrugDetail";
 import DrugList from "pages/DrugList";
 import Hospital from "pages/Hospital";
 import HospitalList from "pages/HospitalList";
@@ -31,6 +32,10 @@ const route = createBrowserRouter([
       {
         path: `drugList`,
         element: <DrugList />
+      },
+      {
+        path:  `drugDetail/:drugId`,
+        element: <DrugDetail />
       },
       {
         path: `mypage`,
