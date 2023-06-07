@@ -11,7 +11,6 @@ const time = [
 ];
 export const HospitalTime = (props) => {
   const [pick, setPick] = useState([0]);
-  console.log(pick);
   const addPick = (props) => {
     if (props === 0 || pick.length === 3) {
       setPick([0]);
@@ -21,7 +20,6 @@ export const HospitalTime = (props) => {
       copy[copy.length] = props;
       setPick([...new Set(copy)]);
     }
-    console.log(pick.length);
   };
 
   const deletePick = (props) => {

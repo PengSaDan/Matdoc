@@ -22,7 +22,6 @@ const part = [
 ];
 export const Hospitalpart = (props) => {
   const [pick, setPick] = useState([0]);
-  console.log(pick);
   const addPick = (props) => {
     if (props === 0 || pick.length === 15) {
       setPick([0]);

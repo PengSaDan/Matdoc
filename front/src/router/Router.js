@@ -4,6 +4,7 @@ import DrugDetail from "pages/DrugDetail";
 import DrugList from "pages/DrugList";
 import Hospital from "pages/Hospital";
 import HospitalList from "pages/HospitalList";
+import HosptialDetail from "pages/HosptialDetail";
 import Main from "pages/Main";
 import MyPage from "pages/MyPage";
 import { createBrowserRouter } from "react-router-dom";
@@ -22,20 +23,24 @@ const route = createBrowserRouter([
         element: <Hospital />,
       },
       {
-        path: `hospitalList`,
+        path: `hospitallist`,
         element: <HospitalList />,
+      },
+      {
+        path: `hospitaldetail/:hospitalId`,
+        element: <HosptialDetail />,
       },
       {
         path: `drug`,
         element: <Drug />,
       },
       {
-        path: `drugList`,
-        element: <DrugList />
+        path: `druglist`,
+        element: <DrugList />,
       },
       {
-        path:  `drugDetail/:drugId`,
-        element: <DrugDetail />
+        path: `drugdetail/:drugId`,
+        element: <DrugDetail />,
       },
       {
         path: `mypage`,
