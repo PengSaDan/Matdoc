@@ -64,8 +64,8 @@ export const HospitalList = (prop) => {
         )}
       </div>
       <div className="absolute w-full overflow-scroll top-56 h-3/4">
-        {props.map((i) => {
-          return <List props={i} />;
+        {props.map((items, idx) => {
+          return <List props={items} />;
         })}
       </div>
       {isopen && <HospitalFilter />}
