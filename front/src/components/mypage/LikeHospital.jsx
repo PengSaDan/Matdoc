@@ -54,9 +54,9 @@ export const LikeHospital = (prop) => {
       </div>
       <div className=" absolute top-[160px] w-full h-full bg-[#FFE194]">
         <div className="relative overflow-x-scroll">
-          {props.map((i) => {
-            return <HospitalList props={i} />;
-          })}
+          {props.map((items) => (
+            <HospitalList props={items} />
+          ))}
         </div>
       </div>
     </div>
