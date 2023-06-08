@@ -46,7 +46,7 @@ export const Drug = (props) => {
           shape={shape}
           line={line}
         />
-        <div className="absolute left-[16px] top-[760px] text-center leading-[80px] w-[380px] h-[80px] bg-[#00C192] rounded-[10px] text-3xl text-white font-bold placeholder-[#A1AFA9]"
+        <div className="absolute left-[16px] top-[760px] text-center leading-[80px] w-[380px] h-[80px] bg-[#00C192] rounded-[10px] text-3xl text-white font-bold"
         onClick={() => searchPills()}>
           검색
         </div>

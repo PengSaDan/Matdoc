@@ -1,5 +1,5 @@
 import React from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import image from "assets/images/circle.jpg";
 import Header from "components/common/Header";
@@ -9,9 +9,6 @@ import { basketActions } from "store/features/drugBasketSlice";
 export const DrugDetail = (props) => {
   const params = useParams();
   const dispatch = useDispatch();
-  const basket = useSelector((state) => state.drugBasket.basket);
-
-  console.log(basket);
   
   const pillDetail = {
     drugId: params.drugId,

@@ -41,15 +41,24 @@ const props = [
 export const LikeHospital = (prop) => {
   return (
     <div>
-      <div className=" absolute rounded-t-xl top-[100px] h-[60px] w-[170px] bg-[#FFE194]">
+      <div
+        className=" absolute rounded-t-xl top-[100px] h-[60px] w-[170px] bg-[#FFE194]"
+        onClick={prop.linkLikeHospital}
+      >
         <p className="text-center leading-[60px] text-xl font-semibold">
           찜한 병원
         </p>
       </div>
-      <div className="absolute rounded-t-xl top-[100px]  left-[171px] h-[60px] w-[120px] bg-[#D4F0FF]">
+      <div
+        className="absolute rounded-t-xl top-[100px]  left-[171px] h-[60px] w-[120px] bg-[#D4F0FF]"
+        onClick={prop.linkMyDrug}
+      >
         <p className="text-center leading-[60px] text-xl ">나의 약봉지</p>
       </div>
-      <div className="absolute rounded-t-xl top-[100px]  left-[291px] h-[60px] w-[120px] bg-[#D1F1C9]">
+      <div
+        className="absolute rounded-t-xl top-[100px]  left-[291px] h-[60px] w-[120px] bg-[#D1F1C9]"
+        onClick={prop.linkBasketDrug}
+      >
         <p className="text-center leading-[60px] text-xl ">약 바구니</p>
       </div>
       <div className=" absolute top-[160px] w-full h-full bg-[#FFE194]">
