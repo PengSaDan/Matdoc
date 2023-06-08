@@ -1,8 +1,10 @@
 // import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router";
 
 export const HospitalList = (props) => {
+  const navigation = useNavigate();
   const [status, setStatus] = useState("");
   const [color, setColor] = useState("");
   //props로 받은 영업중 여부가
@@ -19,8 +21,14 @@ export const HospitalList = (props) => {
       );
     }
   }, []);
+  const goHospitalDetail = () => {
+    navigation(`/hospitaldetail/1`);
+  };
   return (
-    <div className=" w-[412px]  h-[160px] border-t-2">
+    <div
+      className=" w-[412px]  h-[160px] border-t-2"
+      onClick={goHospitalDetail}
+    >
       <p className="relative w-[390px] top-3 left-3 mb-2 text-3xl font-semibold">
         {props.props.hospitalName}
       </p>
