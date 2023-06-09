@@ -10,10 +10,22 @@ import { LuParkingSquare } from "react-icons/lu";
 import { LuParkingSquareOff } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
 
+const now = new Date();
 export const HosptialDetail = (props) => {
   const [parking, setParking] = useState(false);
   const [mark, setMark] = useState(false);
-  //마크, 주차바꿔주기
+  const days = [
+    "월요일",
+    "화요일",
+    "수요일",
+    "목요일",
+    "금요일",
+    "토요일",
+    "일요일",
+  ];
+  // console.log(now.getDay());
+
+  //마크 바꿔주기
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
@@ -40,7 +52,26 @@ export const HosptialDetail = (props) => {
         )}
       </div>
       <div className=" h-full w-[412px] ">
-        <div className="h-[280px] w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7"></div>
+        <div className="h-[280px] w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7">
+          {days.map((day, idx) => {
+            return (
+              <div>
+                {(idx + 1) % 7 === now.getDay() && (
+                  <div className="h-[40px] leading-[40px] flex col-span-2 bg-[#D1F1C9] text-lg">
+                    <p className="w-[130px] text-center">{day}</p>
+                    <p className="w-[250px] text-center">09:00~18:00</p>
+                  </div>
+                )}
+                {(idx + 1) % 7 !== now.getDay() && (
+                  <div className="h-[40px] leading-[40px] flex col-span-2 text-lg">
+                    <p className="w-[130px] text-center">{day}</p>
+                    <p className="w-[250px] text-center">09:00~18:00</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
         <div className=" w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7 text-xl font-semibold">
           <div className="relative w-[340px] ml-4 ">
             <div className="h-2"></div>
@@ -73,6 +104,15 @@ export const HosptialDetail = (props) => {
                 </div>
               )}
             </div>
+            <div className="h-4"></div>
+          </div>
+        </div>
+        <div className="overflow-hidden h-auto w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7">
+          <div className="relative h-auto w-[340px] ml-4 ">
+            <div className="h-4"></div>
+            <p className="text-xl">전문의</p>
+            <p className="ml-4 mt-3">내과 : 1명</p>
+            <p className="ml-4 mt-3">정형외과 : 10명</p>
             <div className="h-4"></div>
           </div>
         </div>
