@@ -29,9 +29,6 @@
 - 한 눈에 들어오는 **메디컬 서비스**
 <br>
 
-### 🎥[시연 영상](https://youtu.be/fO9pPNvh4Jg)
-<br>
-
 ![Untitled](DOCS/images/%EC%84%9C%EB%B9%84%EC%8A%A4%EC%86%8C%EA%B0%9C1.png)
 
 - 증상에 따른 병원을 **필터링**
@@ -40,6 +37,8 @@
 
 <br>
 
+## 🎥[시연 영상](https://youtu.be/fO9pPNvh4Jg)
+<br>
 
 # ✔ Information
 
@@ -52,22 +51,22 @@
 - 복용중인 **약 관리** 및 병원 **즐겨찾기**
 <br>
 
-<img src="DOCS/images/screenshots/main_main.png" width="412px" height="915px" />
+<img src="DOCS/images/screenshots/main_main.png" width="220px" height="488px" />
 <br/>
 
-<img src="DOCS/images/screenshots/hospital_search.png" width="412px" height="915px" />
-<img src="DOCS/images/screenshots/hospital_list.png" width="412px" height="915px" />
-<img src="DOCS/images/screenshots/hospital_detail.png" width="412px" height="915px" />  
+<img src="DOCS/images/screenshots/hospital_search.png" width="220px" height="488px" />
+<img src="DOCS/images/screenshots/hospital_list.png" width="220px" height="488px" />
+<img src="DOCS/images/screenshots/hospital_detail.png" width="220px" height="488px" />
 <br/>
 
-<img src="DOCS/images/screenshots/drug_search.png" width="412px" height="915px" />
-<img src="DOCS/images/screenshots/drug_list.png" width="412px" height="915px" />
-<img src="DOCS/images/screenshots/drug_detail.png" width="412px" height="915px" /> 
+<img src="DOCS/images/screenshots/drug_search.png" width="220px" height="488px" />
+<img src="DOCS/images/screenshots/drug_list.png" width="220px" height="488px" />
+<img src="DOCS/images/screenshots/drug_detail.png" width="220px" height="488px" />
 <br/>
 
-<img src="DOCS/images/screenshots/mypage_likehospital.png" width="412px" height="915px" />
-<img src="DOCS/images/screenshots/mypage_mydrug.png" width="412px" height="915px" />
-<img src="DOCS/images/screenshots/mypage_drugbasket.png" width="412px" height="915px" /> 
+<img src="DOCS/images/screenshots/mypage_likehospital.png" width="220px" height="488px" />
+<img src="DOCS/images/screenshots/mypage_mydrug.png" width="220px" height="488px" />
+<img src="DOCS/images/screenshots/mypage_drugbasket.png" width="220px" height="488px" />
 <br/>
 
 ## 기대효과
