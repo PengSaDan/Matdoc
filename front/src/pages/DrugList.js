@@ -5,57 +5,63 @@ import { connect } from "react-redux";
 import DrugFilter from "components/drug/DrugFilter";
 import SelectModal from "components/drug/SelectModal";
 import DrugCard from "components/drug/DrugCard";
-import image from "assets/images/circle.jpg";
+import tirenol from "assets/images/drug/tirenol.jpg"
+import glucophage from "assets/images/drug/glucophage.jpg"
+import myRept from "assets/images/drug/my-rept.jpg"
+import farlutal from "assets/images/drug/farlutal.jpg"
+import hycraduo from "assets/images/drug/hycraduo.jpg"
+import novamet from "assets/images/drug/novamet.jpg"
+import locol from "assets/images/drug/locol.jpg"
 
 const pills = [
   {
     drugId: 1,
-    name: "타이레놀정500밀리그람(아세트아미노펜)",
+    name: "타이레놀정500mg Tylenol Tab. 500mg",
     ingredient: "아세트아미노펜",
-    shape: "타원형, 하양, 회색",
-    image: image,
+    shape: "장방형, 하양",
+    image: tirenol,
   },
   {
     drugId: 2,
-    name: "타이레놀정500밀리그람(아세트아미노펜)",
-    ingredient: "아세트아미노펜",
-    shape: "타원형, 하양, 회색",
-    image: image,
+    name: "	글루코파지엑스알서방정 Glucophage XR Tab.",
+    ingredient: "메트포르민염산염",
+    shape: "장방형, 하양",
+    image: glucophage,
   },
   {
     drugId: 3,
-    name: "타이레놀정500밀리그람(아세트아미노펜)",
-    ingredient: "아세트아미노펜",
-    shape: "타원형, 하양, 회색",
-    image: image,
+    name: "마이렙트정500mg My-Rept Tab. 500mg",
+    ingredient: "미코페놀레이트모페틸",
+    shape: "장방형, 하양",
+    image: myRept,
   },
   {
     drugId: 4,
-    name: "타이레놀정500밀리그람(아세트아미노펜)",
-    ingredient: "아세트아미노펜",
-    shape: "타원형, 하양, 회색",
-    image: image,
+    name: "파루탈정 Farlutal Tab.",
+    ingredient: "메드록시프로게스테론아세테이트",
+    shape: "장방형, 하양",
+    image: farlutal,
   },
   {
     drugId: 5,
-    name: "타이레놀정500밀리그람(아세트아미노펜)",
-    ingredient: "아세트아미노펜",
-    shape: "타원형, 하양, 회색",
-    image: image,
+    name: "하이크라듀오정500mg Hycraduo Tab. 500mg",
+    ingredient: "아목시실린수화물, 묽은클라불란산칼륨",
+    shape: "장방형, 하양",
+    image: hycraduo,
   },
   {
     drugId: 6,
-    name: "타이레놀정500밀리그람(아세트아미노펜)",
-    ingredient: "아세트아미노펜",
-    shape: "타원형, 하양, 회색",
-    image: image,
+    name: "노바메트지알정500mg Novamet GR Tab. 500mg",
+    ingredient: "메트포르민염산염",
+    shape: "장방형, 하양",
+    image: novamet,
   },
   {
     drugId: 7,
-    name: "타이레놀정500밀리그람(아세트아미노펜)",
-    ingredient: "아세트아미노펜",
-    shape: "타원형, 하양, 회색",
-    image: image,
+    name: "로콜서방정500mg Locol SR Tab. 500mg",
+    ingredient: "니코틴산",
+    shape: "장방형, 하양",
+    image: locol,
   },
 ];
 

@@ -1,41 +1,58 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import image from "assets/images/circle.jpg";
+import { useNavigate, useParams } from "react-router-dom";
+import hycraduo from "assets/images/drug/hycraduo.jpg";
 import Header from "components/common/Header";
 import { FaPlusCircle } from "react-icons/fa";
 import { basketActions } from "store/features/drugBasketSlice";
+import { useState } from "react";
 
 export const DrugDetail = (props) => {
   const params = useParams();
+  const navigation = useNavigate();
   const dispatch = useDispatch();
-  
+  const [openModal, setOpenModal] = useState(false);
+
   const pillDetail = {
     drugId: params.drugId,
-    name: "타이레놀정500밀리그람(아세트아미노펜)",
-    ingredient: "아세트아미노펜", // 성분,
+    name: "하이크라듀오정500mg Hycraduo Tab. 500mg",
+    ingredient: "아목시실린수화물, 묽은클라불란산칼륨", // 성분,
     color: "하양", // 성상
-    shape: "타원형", // 제형
-    company: "한국존슨앤드존슨판매(유)",
-    image: image,
+    shape: "장방형", // 제형
+    company: "한국휴텍스제약(주)",
+    image: hycraduo,
     avoid: "", // 병용금기
-    effect: // 효능, 효과
-      "아플때 먹으면 바로 행복해집니다. 꼭 물과 함께 복용하십시오 많은 사람들 가운데 당신만이 이 진통제를 먹을 자격이 있습니다.",
+    // 효능, 효과
+    effect:
+      "급·만성 기관지염, 대엽성 및 기관지 폐렴, 농흉, 폐농양, 편도염, 부비동염, 중이염",
+    safety: "이 약의 사용에 있어서 내성균의 발현을 방지하기 위하여 감수성을 확인하고 치료 상 필요한 최소 기간만 투여하는 것이 바람직하다.",
+    usage: "성인의 중증 감염과 호흡기감염에 1회 2정, 1일 2회 12시간마다 경구투여한다. 신부전환자는 신기능의 정도에 따라 용량을 감소할 수 있다.",
   };
 
   // console.log(params.drugId);
   // drugId로 상세정보를 요청하자
 
+  const goBasketDrug = () => {
+    navigation(`/mypage`);
+  };
+
   const pushBasket = () => {
     dispatch(
-      basketActions.pushBasket({
-        drugId: pillDetail.drugId,
-        name: pillDetail.name,
-      },{
-        drugId: 2,
-        name: "asd",
-      })
+      basketActions.pushBasket(
+        {
+          drugId: pillDetail.drugId,
+          name: pillDetail.name,
+        },
+      )
     );
+  };
+
+  const openModalhandler = () => {
+    setOpenModal(true);
+  };
+
+  const closeModalhandler = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -53,6 +70,7 @@ export const DrugDetail = (props) => {
             className="rounded-full shadow-xl w-9 h-9"
             onClick={() => {
               pushBasket();
+              openModalhandler();
             }}
           >
             <FaPlusCircle className="text-4xl text-[#00C192]" />
@@ -73,10 +91,35 @@ export const DrugDetail = (props) => {
         <p className="text-xl font-semibold">효능/효과</p>
         <p>{pillDetail.effect}</p>
         <p className="mt-3 text-xl font-semibold">안전사용</p>
-        <p>{pillDetail.effect}</p>
+        <p>{pillDetail.safety}</p>
         <p className="mt-3 text-xl font-semibold">사용법</p>
-        <p>{pillDetail.effect}</p>
+        <p>{pillDetail.usage}</p>
       </div>
+      {openModal && (
+        <div className="absolute bg-white border-[#00C192] border-4 shadow-xl w-[350px] top-1/3 rounded-xl p-5 left-[31px] z-[99999]">
+          <div className="text-xl">
+            약 바구니에 약을 담았습니다. <br /> 마이페이지로 이동하시겠습니까?
+          </div>
+          <div className="flex mt-5 font-semibold text-center place-content-around">
+            <div
+              className="bg-[#00C192] w-[80px] p-2 rounded-[10px] border shadow-xl border-[#00C192]"
+              onClick={() => {
+                goBasketDrug();
+              }}
+            >
+              확인
+            </div>
+            <div
+              className="w-[80px] border rounded-[10px] shadow-xl p-2 border-[#00C192]"
+              onClick={() => {
+                closeModalhandler();
+              }}
+            >
+              취소
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
