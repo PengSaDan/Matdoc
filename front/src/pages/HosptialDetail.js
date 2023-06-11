@@ -10,7 +10,6 @@ import { LuParkingSquare } from "react-icons/lu";
 import { LuParkingSquareOff } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
 import { useLocation } from "react-router-dom";
-import 충남대 from "assets/images/tmp/충남대.png";
 
 const part = [
   { id: 0, part: "전체" },
