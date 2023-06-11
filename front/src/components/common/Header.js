@@ -21,7 +21,7 @@ export const Header = (props) => {
         </div>
       </div> */}
       <div className="absolute rounded-full -right-5 bottom-3 bg-opacity-80 w-36 h-36">
-        <div className="text-[#CECCCC] leading-[13rem] font-medium text-xl text-center">
+        <div className="text-[#CECCCC] leading-[13rem] font-semibold text-xl text-center">
           로그아웃
         </div>
       </div>
