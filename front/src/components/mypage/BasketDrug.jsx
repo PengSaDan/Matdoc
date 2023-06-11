@@ -6,6 +6,7 @@ import { basketActions } from "store/features/drugBasketSlice";
 export const BasketDrug = (props) => {
   const basket = useSelector((state) => state.drugBasket.basket);
   const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState(false);
 
   const [checkedList, setCheckedList] = useState([]);
   const [checkedPill, setCheckedPill] = useState([]);
@@ -42,9 +43,15 @@ export const BasketDrug = (props) => {
   };
 
   const makeMyDrug = () => {
-    console.log(checkedPill);
-    console.log(title);
-    console.log(text);
+    openModalhandler();
+  };
+
+  const openModalhandler = () => {
+    setOpenModal(true);
+  };
+
+  const closeModalhandler = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -124,6 +131,26 @@ export const BasketDrug = (props) => {
           </div>
         </div>
       </div>
+      {openModal && <div className="absolute bg-white border-[#00C192] border-4 shadow-xl w-[350px] top-1/3 rounded-xl p-5 left-[31px] z-[99999]">
+          <div className="text-xl">
+            나의 약봉지에 저장했습니다. <br /> 나의 약봉지로 이동하시겠습니까?
+          </div>
+          <div className="flex mt-5 font-semibold text-center place-content-around">
+            <div
+              className="bg-[#00C192] w-[80px] p-2 rounded-[10px] border shadow-xl border-[#00C192]"
+              onClick={props.linkMyDrug}
+            >
+              확인
+            </div>
+            <div
+              className="w-[80px] border rounded-[10px] shadow-xl p-2 border-[#00C192]"
+              onClick={closeModalhandler}
+            >
+              취소
+            </div>
+          </div>
+        </div>}
+      
     </div>
   );
 };
