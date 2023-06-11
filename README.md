@@ -46,11 +46,19 @@
 - 복용중인 **약 관리** 및 병원 **즐겨찾기**
 <br>
 
-![Untitled](DOCS/images/%EC%8B%9C%EC%97%B0%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4/Untitled%204.png)
+![Untitled](DOCS/images/screenshots/main_main.png)
 
-![Untitled](DOCS/images/gif/%EB%A7%9E%EB%8B%A5_%EC%95%BD%EA%B2%80%EC%83%89.gif)
+![Untitled](DOCS/images/screenshots/hospital_search.png)
+![Untitled](DOCS/images/screenshots/hospital_list.png)
+![Untitled](DOCS/images/screenshots/hospital_detail.png)
 
-![Untitled](DOCS/images/gif/%EB%A7%9E%EB%8B%A5_%EC%95%BD%EB%B0%94%EA%B5%AC%EB%8B%88.gif)
+![Untitled](DOCS/images/screenshots/drug_search.png)
+![Untitled](DOCS/images/screenshots/drug_list.png)
+![Untitled](DOCS/images/screenshots/drug_detail.png)
+
+![Untitled](DOCS/images/screenshots/mypage_likehospital.png)
+![Untitled](DOCS/images/screenshots/mypage_mydrug.png)
+![Untitled](DOCS/images/screenshots/mypage_drugbasket.png)
 
 ## 기대효과
 
