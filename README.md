@@ -11,23 +11,24 @@
 ### 개발 기간 : 2023.02.27 ~ 2023.04.07
 
 ### 팀원!
+
 - 권지훈 (팀장) - Back-End, Front-End
 - 이승민 - Back-End, ppt
 - 조원희 - Back-End, Docs, presentation
 - 한인환 - Front-End
 - 송기라 - Front-End
 - 안효관 - DevOps, Back-End
-<br>
-<br>
+  <br>
+  <br>
 
 ---
-## 서비스 설명
 
+## 서비스 설명
 
 - 병원을 고를 때 **신뢰성 있는** 병원 및 의약품 정보를 찾기 어려움
 - 내가 원하는 **니즈를 충족**하는 병원을 찾기 힘듦
 - 한 눈에 들어오는 **메디컬 서비스**
-<br>
+  <br>
 
 ![Untitled](DOCS/images/%EC%84%9C%EB%B9%84%EC%8A%A4%EC%86%8C%EA%B0%9C1.png)
 
@@ -38,10 +39,10 @@
 <br>
 
 ## 🎥[시연 영상](https://youtu.be/fO9pPNvh4Jg)
+
 <br>
 
 # ✔ Information
-
 
 ## 메인 기능
 
@@ -49,24 +50,33 @@
 - **증상에 따른** 병원정보 제공
 - 병원 및 의약품의 **자세한** 정보 제공
 - 복용중인 **약 관리** 및 병원 **즐겨찾기**
-<br>
+  <br>
 
-<img src="DOCS/images/screenshots/main_main.png" width="220px" height="488px" />
+<p>
+<img src="DOCS/images/screenshots/main_main.png" width="32%" />
+</p>
 <br/>
 
-<img src="DOCS/images/screenshots/hospital_search.png" width="220px" height="488px" />
-<img src="DOCS/images/screenshots/hospital_list.png" width="220px" height="488px" />
-<img src="DOCS/images/screenshots/hospital_detail.png" width="220px" height="488px" />
+<p align="left">
+<img src="DOCS/images/screenshots/hospital_search.png" width="32%" />
+<img src="DOCS/images/screenshots/hospital_list.png" width="32%" />
+<img src="DOCS/images/screenshots/hospital_detail.png" width="32%"/>
+</p>
 <br/>
 
-<img src="DOCS/images/screenshots/drug_search.png" width="220px" height="488px" />
-<img src="DOCS/images/screenshots/drug_list.png" width="220px" height="488px" />
-<img src="DOCS/images/screenshots/drug_detail.png" width="220px" height="488px" />
+<p align="left">
+<img src="DOCS/images/screenshots/drug_search.png" width="32%"/>
+<img src="DOCS/images/screenshots/drug_list.png" 
+width="32%"/>
+<img src="DOCS/images/screenshots/drug_detail.png" width="32%"/>
+</p>
 <br/>
 
-<img src="DOCS/images/screenshots/mypage_likehospital.png" width="220px" height="488px" />
-<img src="DOCS/images/screenshots/mypage_mydrug.png" width="220px" height="488px" />
-<img src="DOCS/images/screenshots/mypage_drugbasket.png" width="220px" height="488px" />
+<p align="left">
+<img src="DOCS/images/screenshots/mypage_likehospital.png" width="32%"/>
+<img src="DOCS/images/screenshots/mypage_mydrug.png" width="32%"/>
+<img src="DOCS/images/screenshots/mypage_drugbasket.png" width="32%"/>
+</p>
 <br/>
 
 ## 기대효과
@@ -82,14 +92,23 @@
 <br>
 
 # 설계 및 산출물
+
 ## 🏣 [기획서](./DOCS/맞닥_기획서.md)
+
 ## 📜 [기능명세서](./DOCS/기능명세서.md)
-## 💾 [ERD](./DOCS/ERD.md) 
+
+## 💾 [ERD](./DOCS/ERD.md)
+
 ## 🔑 [DB컬럼설명](./DOCS/DB컬럼설명.md)
+
 ## 📡 [API명세서](./DOCS/API명세서.md)
+
 ## 🗺 [아키텍쳐설계도](./DOCS/아키텍쳐.md)
+
 ## 🏹 [포팅메뉴얼](./DOCS/포팅메뉴얼.md)
+
 ## 📺 [시연시나리오](./DOCS/시연시나리오.md)
+
 <br>
 
 ### 배포(CI/CD)
@@ -100,26 +119,25 @@
 - Docker
 - k8s (kubeadm)
 - Nginx
-    - Nginx Ingress controller와 service로 분기처리 및 로드밸런싱
+  - Nginx Ingress controller와 service로 분기처리 및 로드밸런싱
 - Jenkins
-    - Master/Agent로 병렬 처리
-    - pipeline 스크립트 작성으로 CI/CD 적용(GitOps)
+  - Master/Agent로 병렬 처리
+  - pipeline 스크립트 작성으로 CI/CD 적용(GitOps)
 - ArgoCD
 - https
-    - cert-manager + letsencrypte를 통한 인증서 발급
+  - cert-manager + letsencrypte를 통한 인증서 발급
 - Grafana + Prometheus
 
 <br>
 
 # ✔ Cooperation
+
 - Git
-![깃](/DOCS/images/git.png)
+  ![깃](/DOCS/images/git.png)
 - Jira
-![지라](/DOCS/images/jira.png)
+  ![지라](/DOCS/images/jira.png)
 - Notion
-![노션](/DOCS/images/%EB%85%B8%EC%85%98.png)
+  ![노션](/DOCS/images/%EB%85%B8%EC%85%98.png)
 - MatterMost
 - Webex
 - Discord
-
-
