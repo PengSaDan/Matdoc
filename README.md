@@ -22,9 +22,15 @@
 
 ---
 ## 서비스 설명
+
+
 - 병원을 고를 때 **신뢰성 있는** 병원 및 의약품 정보를 찾기 어려움
 - 내가 원하는 **니즈를 충족**하는 병원을 찾기 힘듦
 - 한 눈에 들어오는 **메디컬 서비스**
+<br>
+
+### 🎥[시연 영상](https://youtu.be/fO9pPNvh4Jg)
+<br>
 
 ![Untitled](DOCS/images/%EC%84%9C%EB%B9%84%EC%8A%A4%EC%86%8C%EA%B0%9C1.png)
 
@@ -46,19 +52,23 @@
 - 복용중인 **약 관리** 및 병원 **즐겨찾기**
 <br>
 
-![Untitled](DOCS/images/screenshots/main_main.png)
+<img src="DOCS/images/screenshots/main_main.png" width="412px" height="915px" />
+<br/>
 
-![Untitled](DOCS/images/screenshots/hospital_search.png)
-![Untitled](DOCS/images/screenshots/hospital_list.png)
-![Untitled](DOCS/images/screenshots/hospital_detail.png)
+<img src="DOCS/images/screenshots/hospital_search.png" width="412px" height="915px" />
+<img src="DOCS/images/screenshots/hospital_list.png" width="412px" height="915px" />
+<img src="DOCS/images/screenshots/hospital_detail.png" width="412px" height="915px" />  
+<br/>
 
-![Untitled](DOCS/images/screenshots/drug_search.png)
-![Untitled](DOCS/images/screenshots/drug_list.png)
-![Untitled](DOCS/images/screenshots/drug_detail.png)
+<img src="DOCS/images/screenshots/drug_search.png" width="412px" height="915px" />
+<img src="DOCS/images/screenshots/drug_list.png" width="412px" height="915px" />
+<img src="DOCS/images/screenshots/drug_detail.png" width="412px" height="915px" /> 
+<br/>
 
-![Untitled](DOCS/images/screenshots/mypage_likehospital.png)
-![Untitled](DOCS/images/screenshots/mypage_mydrug.png)
-![Untitled](DOCS/images/screenshots/mypage_drugbasket.png)
+<img src="DOCS/images/screenshots/mypage_likehospital.png" width="412px" height="915px" />
+<img src="DOCS/images/screenshots/mypage_mydrug.png" width="412px" height="915px" />
+<img src="DOCS/images/screenshots/mypage_drugbasket.png" width="412px" height="915px" /> 
+<br/>
 
 ## 기대효과
 
