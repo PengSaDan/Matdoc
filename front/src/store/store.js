@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage/session";
 import drugBasketSlice from "./features/drugBasketSlice";
 import persistReducer from "redux-persist/es/persistReducer";
+import userSlice from "./features/userSlice";
 
 const persistConfig = {
   key: "root",
@@ -10,6 +11,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   drugBasket: drugBasketSlice,
+  user: userSlice,
 });
 
 
