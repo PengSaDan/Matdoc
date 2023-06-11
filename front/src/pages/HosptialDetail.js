@@ -9,9 +9,32 @@ import { RiCheckboxFill } from "react-icons/ri";
 import { LuParkingSquare } from "react-icons/lu";
 import { LuParkingSquareOff } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
+import { useLocation } from "react-router-dom";
+import 충남대 from "assets/images/tmp/충남대.png";
+
+const part = [
+  { id: 0, part: "전체" },
+  { id: 1, part: "내과" },
+  { id: 12, part: "안과" },
+  { id: 4, part: "외과" },
+  { id: 49, part: "치과" },
+  { id: 11, part: "소아과" },
+  { id: 2, part: "신경과" },
+  { id: 14, part: "피부과" },
+  { id: 15, part: "비뇨기과" },
+  { id: 10, part: "산부인과" },
+  { id: 8, part: "성형외과" },
+  { id: 5, part: "정형외과" },
+  { id: 23, part: "가정의학과" },
+  { id: 9, part: "마취통증과" },
+  { id: 13, part: "이비인후과" },
+  { id: 3, part: "정신의학과" },
+  { id: 100, part: "한의원" },
+];
 
 const now = new Date();
 export const HosptialDetail = (props) => {
+  const { state } = useLocation();
   const [parking, setParking] = useState(false);
   const [mark, setMark] = useState(false);
   const days = [
@@ -24,14 +47,17 @@ export const HosptialDetail = (props) => {
     "일요일",
   ];
   // console.log(now.getDay());
-
   //마크 바꿔주기
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
-      <div className=" w-[412px] h-[412px] bg-slate-300"> 지도지도넓은지도</div>
+      <img src={state.hospital.poto} alt="사진"></img>
+      {/* <div className=" w-[412px] h-[412px] bg-slate-300">
+      </div> */}
       <div className="flex col-span-2 mt-10 ml-3 ">
-        <p className="text-3xl font-semibold mr-5 ">봉담삼육오웰의원</p>
+        <p className="text-3xl font-semibold mr-5 ">
+          {state.hospital.hospitalName}
+        </p>
         {!mark && (
           <RiAddBoxLine
             size={40}
@@ -59,13 +85,17 @@ export const HosptialDetail = (props) => {
                 {(idx + 1) % 7 === now.getDay() && (
                   <div className="h-[40px] leading-[40px] flex col-span-2 bg-[#D1F1C9] text-lg">
                     <p className="w-[130px] text-center">{day}</p>
-                    <p className="w-[250px] text-center">09:00~18:00</p>
+                    <p className="w-[250px] text-center">
+                      {state.hospital.hospitalTime[idx]}
+                    </p>
                   </div>
                 )}
                 {(idx + 1) % 7 !== now.getDay() && (
                   <div className="h-[40px] leading-[40px] flex col-span-2 text-lg">
                     <p className="w-[130px] text-center">{day}</p>
-                    <p className="w-[250px] text-center">09:00~18:00</p>
+                    <p className="w-[250px] text-center">
+                      {state.hospital.hospitalTime[idx]}
+                    </p>
                   </div>
                 )}
               </div>
@@ -77,27 +107,24 @@ export const HosptialDetail = (props) => {
             <div className="h-2"></div>
             <div className="mt-4 flex col-span-2">
               <RiMapPin5Line className="absolute" size="25" />
-              <p className="ml-8"> 경기도 화성시 봉담읍 경기도 화성시 봉담읍</p>
+              <p className="ml-8"> {state.hospital.address}</p>
             </div>
             <div className="mt-4 flex col-span-2">
               <LuPhone className="absolute" size="25" />
-              <p className="ml-8"> 031-123-1234</p>
+              <p className="ml-8"> {state.hospital.hospitalTel}</p>
             </div>
             <div className="mt-4 flex col-span-2">
               <RiHospitalLine className="absolute" size="25" />
-              <p className="ml-8">
-                내과, 정형외과, 피부과, 내과, 정형외과, 피부과, 내과, 정형외과,
-                피부과
-              </p>
+              <p className="ml-8">{state.hospital.hospitalPart}</p>
             </div>
             <div>
-              {parking && (
+              {state.hospital.hospitalParking && (
                 <div className="mt-4 flex col-span-2">
                   <LuParkingSquare className="absolute" size="25" />
                   <p className="ml-8"> 주차가능</p>
                 </div>
               )}
-              {!parking && (
+              {!state.hospital.hospitalParking && (
                 <div className="mt-4 flex col-span-2">
                   <LuParkingSquareOff className="absolute" size="25" />
                   <p className="ml-8"> 주차정보없음</p>
@@ -111,8 +138,9 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">전문의</p>
-            <p className="ml-4 mt-3">내과 : 1명</p>
-            <p className="ml-4 mt-3">정형외과 : 10명</p>
+            <p className="ml-4 mt-3 whitespace-pre-line">
+              {state.hospital.hospitalDoc}
+            </p>
             <div className="h-4"></div>
           </div>
         </div>
@@ -120,10 +148,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">의료장비</p>
-            <p className="ml-4 mt-3">
-              CT/체외충격파쇄석기/MRI/양전자단층촬영기
-              (PET)/골밀도검사기/콘빔CT/초음파영상진단기/혈액투석을위한인공신장기/유방촬영장치
-            </p>
+            <p className="ml-4 mt-3">{state.hospital.hospitalDevice}</p>
             <div className="h-4"></div>
           </div>
         </div>
@@ -131,10 +156,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">기타</p>
-            <p className="ml-4 mt-3">
-              제3차 의료급여기관/응급의료병원/성인·소아 중환자실/신생아
-              중환자실/가정간호실시병원/혈액투석/체외충격파쇄석술/인공와우이식술/완화의료전문기관
-            </p>
+            <p className="ml-4 mt-3">{state.hospital.hospitalSpecial}</p>
             <div className="h-4"></div>
           </div>
         </div>

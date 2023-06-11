@@ -22,11 +22,13 @@ export const HospitalList = (props) => {
     }
   }, []);
   const goHospitalDetail = () => {
-    navigation(`/hospitaldetail/1`);
+    navigation(`/hospitaldetail/${props.props.hospitalId}`, {
+      state: { hospital: props.props },
+    });
   };
   return (
     <div
-      className=" w-[412px]  h-[160px] border-t-2"
+      className=" w-[412px]  h-[180px] border-t-2"
       onClick={goHospitalDetail}
     >
       <p className="relative w-[390px] top-3 left-3 mb-2 text-3xl font-semibold">
@@ -35,7 +37,7 @@ export const HospitalList = (props) => {
       <p className="relative w-[390px] top-3 left-4 text-lg">
         {props.props.distance}
       </p>
-      <p className="relative w-[390px] top-3 left-4 text-lg">
+      <p className="relative w-[290px] top-3 left-4 text-lg">
         {props.props.address}
       </p>
       <p className="relative w-[390px] top-3 left-4 text-lg">
