@@ -47,7 +47,7 @@
 <br>
 
 ![Untitled](DOCS/images/%EC%8B%9C%EC%97%B0%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4/Untitled%204.png)
-![Untitled](DOCS/images/%EC%8B%9C%EC%97%B0%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4/Untitled%2020.png)
+![Untitled](DOCS/images/gif/%EB%A7%9E%EB%8B%A5_%EC%95%BD.gif)
 
 ## 기대효과
 
