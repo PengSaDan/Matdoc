@@ -30,7 +30,7 @@
 - 한 눈에 들어오는 **메디컬 서비스**
   <br>
 
-![Untitled](DOCS/images/%EC%84%9C%EB%B9%84%EC%8A%A4%EC%86%8C%EA%B0%9C1.png)
+![Untitled](DOCS/images/%EC%84%9C%EB%B9%84%EC%8A%A4%EC%86%8C%EA%B0%9C.png)
 
 - 증상에 따른 병원을 **필터링**
 - **신뢰성** 있는 병원 및 의약품 정보 제공
@@ -57,6 +57,7 @@
 </p>
 <br/>
 
+### 🏣 병원 검색
 <p align="left">
 <img src="DOCS/images/screenshots/hospital_search.png" width="32%" />
 <img src="DOCS/images/screenshots/hospital_list.png" width="32%" />
@@ -64,6 +65,7 @@
 </p>
 <br/>
 
+### 💊 약 검색
 <p align="left">
 <img src="DOCS/images/screenshots/drug_search.png" width="32%"/>
 <img src="DOCS/images/screenshots/drug_list.png" 
@@ -72,6 +74,7 @@ width="32%"/>
 </p>
 <br/>
 
+### 📑 마이페이지
 <p align="left">
 <img src="DOCS/images/screenshots/mypage_likehospital.png" width="32%"/>
 <img src="DOCS/images/screenshots/mypage_mydrug.png" width="32%"/>
