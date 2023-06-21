@@ -21,11 +21,11 @@ public class HospitalController {
         this.hospitalService = hospitalService;
     }
 
-//    /** 연결 테스트*/
-//    @GetMapping("/test/{word}")
-//    public ResponseEntity test(@PathVariable("word") String word) {
-//        return ResponseEntity.status(HttpStatus.OK).body(word);
-//    }
+    /** 연결 테스트*/
+    @GetMapping("/test/{word}")
+    public ResponseEntity test(@PathVariable("word") String word) {
+        return ResponseEntity.status(HttpStatus.OK).body(word);
+    }
 
     /**
      * 이름으로 병원 검색

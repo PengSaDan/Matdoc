@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    User findByUserEmail(String email);
 
     /**
      * userId로 user 정보 출력

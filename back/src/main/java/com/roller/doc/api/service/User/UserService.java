@@ -10,26 +10,26 @@ public interface UserService {
     /**
      * 즐겨찾기 병원 상태변경
      */
-    ResponseDTO statusHospitalMy(String token, long hospitalId, boolean status);
+    ResponseDTO statusHospitalMy(long hospitalId, boolean status);
 
     /**
      * 즐겨찾기 여부
      */
-    ResponseDTO isHospitalMy(String token, long hospitalId);
+    ResponseDTO isHospitalMy(long hospitalId);
 
     /**
      * 병원 즐겨찾기 리스트
      */
-    ResponseDTO listHospitalMy(String token, HospitalMyListReq hospitalMyListReq);
+    ResponseDTO listHospitalMy(HospitalMyListReq hospitalMyListReq);
 
     /**
      * 나의 약봉지 목록 조회
      */
-    ResponseDTO findList(String token) throws Exception;
+    ResponseDTO findList(Long id) throws Exception;
 
     /**
      * 나의 약봉지 추가
      */
-    DrugMyRes createDrugMy(String token, DrugMyCreateRes drugMyCreateRes) throws Exception;
+    DrugMyRes createDrugMy(DrugMyCreateRes drugMyCreateRes) throws Exception;
 
 }

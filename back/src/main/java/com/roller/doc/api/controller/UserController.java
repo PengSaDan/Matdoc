@@ -7,7 +7,6 @@ import com.roller.doc.api.response.ResponseDTO;
 import com.roller.doc.api.response.drug.DrugMyCreateRes;
 import com.roller.doc.api.response.drug.DrugMyRes;
 import com.roller.doc.api.service.User.UserService;
-import com.roller.doc.util.HeaderUtil;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -29,9 +28,8 @@ public class UserController {
      * 즐겨찾는 병원 상태변경
      */
     @PutMapping("/hospital/statusmark")
-    public ResponseEntity statusHospitalMy(@RequestHeader String Authorization, @RequestBody HospitalMyStatusReq hospitalMyStatusReq) {
-        String token = HeaderUtil.getAccessTokenString(Authorization);
-        ResponseDTO responseDTO = userService.statusHospitalMy(token, hospitalMyStatusReq.getHospitalId(), hospitalMyStatusReq.isStatus());
+    public ResponseEntity statusHospitalMy( @RequestBody HospitalMyStatusReq hospitalMyStatusReq) {
+        ResponseDTO responseDTO = userService.statusHospitalMy(hospitalMyStatusReq.getHospitalId(), hospitalMyStatusReq.isStatus());
         return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
 
@@ -39,9 +37,8 @@ public class UserController {
      * 즐겨찾기 여부
      */
     @PostMapping("/hospital/ismark")
-    public ResponseEntity isHospitalMy(@RequestHeader String Authorization,@RequestBody HospitalMyReq hospitalMyReq) {
-        String token = HeaderUtil.getAccessTokenString(Authorization);
-        ResponseDTO responseDTO = userService.isHospitalMy(token, hospitalMyReq.getHospitalId());
+    public ResponseEntity isHospitalMy(@RequestBody HospitalMyReq hospitalMyReq) {
+        ResponseDTO responseDTO = userService.isHospitalMy(hospitalMyReq.getHospitalId());
         return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
 
@@ -49,9 +46,8 @@ public class UserController {
      * 즐겨찾기 리스트
      */
     @PostMapping("/hospital/marklist")
-    public ResponseEntity listHospitalMy(@RequestHeader String Authorization, @RequestBody HospitalMyListReq hospitalMyListReq) {
-        String token = HeaderUtil.getAccessTokenString(Authorization);
-        ResponseDTO responseDTO = userService.listHospitalMy(token, hospitalMyListReq);
+    public ResponseEntity listHospitalMy( @RequestBody HospitalMyListReq hospitalMyListReq) {
+        ResponseDTO responseDTO = userService.listHospitalMy(hospitalMyListReq);
         return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
 
@@ -59,10 +55,8 @@ public class UserController {
      * 나의 약봉지 목록 조회
      */
     @GetMapping("/drug/my")
-    public ResponseEntity findList(@RequestHeader String Authorization) throws Exception {
-        String token = HeaderUtil.getAccessTokenString(Authorization);
-
-        ResponseDTO result = userService.findList(token);
+    public ResponseEntity findList(Long id) throws Exception {
+        ResponseDTO result = userService.findList(id);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
@@ -70,10 +64,9 @@ public class UserController {
      * 나의 약봉지 추가
      */
     @PostMapping("/drug/plus")
-    private ResponseEntity createDrugMy(@RequestHeader String Authorization, @RequestBody DrugMyCreateRes drugMyCreateRes) throws Exception {
-        String token = HeaderUtil.getAccessTokenString(Authorization);
+    private ResponseEntity createDrugMy(@RequestBody DrugMyCreateRes drugMyCreateRes) throws Exception {
 
-        DrugMyRes result = userService.createDrugMy(token, drugMyCreateRes);
+        DrugMyRes result = userService.createDrugMy(drugMyCreateRes);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 }

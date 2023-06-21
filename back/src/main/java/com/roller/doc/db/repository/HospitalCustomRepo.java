@@ -17,9 +17,8 @@ import java.util.List;
 import static com.roller.doc.db.entity.QHospital.*;
 import static com.roller.doc.db.entity.QHospitalPart.*;
 import static com.roller.doc.db.entity.QHospitalTime.*;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
+
 @Repository
 @RequiredArgsConstructor
 public class HospitalCustomRepo {

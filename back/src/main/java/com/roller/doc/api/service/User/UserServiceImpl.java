@@ -6,7 +6,6 @@ import com.roller.doc.api.response.drug.DrugMyCreateRes;
 import com.roller.doc.api.response.drug.DrugMyPillRes;
 import com.roller.doc.api.response.drug.DrugMyRes;
 import com.roller.doc.api.response.hospital.HospitalRes;
-import com.roller.doc.api.service.auth.TokenService;
 import com.roller.doc.db.entity.Drug;
 import com.roller.doc.db.entity.DrugMy;
 import com.roller.doc.db.entity.DrugMyPill;
@@ -40,20 +39,18 @@ public class UserServiceImpl implements UserService {
     private final DrugMyRepository drugMyRepository;
     private final DrugMyPillRepository drugMyPillRepository;
 
-    private final TokenService tokenService;
 
     private final UserRepository userRepository;
 
     @Autowired
     public UserServiceImpl(HospitalMyRepository hospitalMyRepository, HospitalRepository hospitalRepository,
                            DrugRepository drugRepository, DrugMyRepository drugMyRepository, DrugMyPillRepository drugMyPillRepository,
-                           TokenService tokenService, UserRepository userRepository) {
+                           UserRepository userRepository) {
         this.hospitalMyRepository = hospitalMyRepository;
         this.hospitalRepository = hospitalRepository;
         this.drugRepository = drugRepository;
         this.drugMyRepository = drugMyRepository;
         this.drugMyPillRepository = drugMyPillRepository;
-        this.tokenService = tokenService;
         this.userRepository = userRepository;
     }
 
@@ -62,10 +59,10 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     @Transactional
-    public ResponseDTO statusHospitalMy(String token, long hospitalId, boolean status) {
+    public ResponseDTO statusHospitalMy(long hospitalId, boolean status) {
         ResponseDTO responseDTO = new ResponseDTO();
         try {
-            Long userId = userRepository.findByUserEmail(tokenService.getEmail(token)).getUserId();
+            Long userId = 1L;
             Optional<HospitalMy> isMy = hospitalMyRepository.findHospitalMy(userId, hospitalId);
             if (isMy.isEmpty()) { //등록된적이 없으면 신규등록
                 HospitalMy hospitalMy = HospitalMy.builder()
@@ -101,10 +98,10 @@ public class UserServiceImpl implements UserService {
      * 병원 즐겨찾기 여부
      */
     @Override
-    public ResponseDTO isHospitalMy(String token, long hospitalId) {
+    public ResponseDTO isHospitalMy( long hospitalId) {
         ResponseDTO responseDTO = new ResponseDTO();
         try {
-            Long userId = userRepository.findByUserEmail(tokenService.getEmail(token)).getUserId();
+            Long userId = 1L;
             Optional<HospitalMy> isMy = hospitalMyRepository.isHospitalMy(userId, hospitalId);
             if (isMy.isEmpty()) {
                 responseDTO.setStatus_code(204);
@@ -126,10 +123,10 @@ public class UserServiceImpl implements UserService {
      * 병원 즐겨찾기 리스트
      */
     @Override
-    public ResponseDTO listHospitalMy(String token, HospitalMyListReq Req) {
+    public ResponseDTO listHospitalMy( HospitalMyListReq Req) {
         ResponseDTO responseDTO = new ResponseDTO();
         try {
-            Long userId = userRepository.findByUserEmail(tokenService.getEmail(token)).getUserId();
+            Long userId = 1L;
             List<HospitalMy> myList = hospitalMyRepository.listingHospitalMy(userId);
             if (myList.size() == 0) {
                 responseDTO.setStatus_code(204);
@@ -178,8 +175,8 @@ public class UserServiceImpl implements UserService {
      * 나의 약봉지 목록 조회
      */
     @Override
-    public ResponseDTO findList(String token) throws Exception {
-        Long user_id = userRepository.findByUserEmail(tokenService.getEmail(token)).getUserId();
+    public ResponseDTO findList(Long id) throws Exception {
+        Long user_id = id;
         List<DrugMyRes> result = new ArrayList<>();
         ResponseDTO responseDTO = new ResponseDTO();
 
@@ -214,12 +211,12 @@ public class UserServiceImpl implements UserService {
      * 나의 약봉지 추가
      */
     @Override
-    public DrugMyRes createDrugMy(String token, DrugMyCreateRes drugMyCreateRes) throws Exception {
+    public DrugMyRes createDrugMy( DrugMyCreateRes drugMyCreateRes) throws Exception {
         DrugMy drugMy = new DrugMy();
 
         DrugMyRes result = new DrugMyRes();
         DrugMyPillRes result2 = new DrugMyPillRes();
-        Long user_id = userRepository.findByUserEmail(tokenService.getEmail(token)).getUserId();
+        Long user_id = 1L;
 
         try {
             drugMy.setDrug_my_del(false);
