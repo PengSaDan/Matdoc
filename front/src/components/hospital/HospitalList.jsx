@@ -26,6 +26,7 @@ export const HospitalList = (props) => {
       state: { hospital: props.props },
     });
   };
+
   return (
     <div
       className=" w-[412px]  h-[180px] border-t-2"

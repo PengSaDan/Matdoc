@@ -1,12 +1,14 @@
 import Header from "components/common/Header";
 import MainSearchBar from "components/common/MainSearchBar";
 import HospitalFilter from "components/hospital/HospitalFilter";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import instance from "util/Axios";
 
 export const Hospital = (props) => {
   const navigation = useNavigate();
+  const [data, setData] = useState([]);
 
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-hidden">

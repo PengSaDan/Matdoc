@@ -11,6 +11,7 @@ import { LuParkingSquareOff } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
 import { useLocation } from "react-router-dom";
 import KakaoMap from "components/hospital/KakaoMap";
+import instance from "util/Axios";
 
 const part = [
   { id: 0, part: "전체" },
@@ -31,27 +32,38 @@ const part = [
   { id: 3, part: "정신의학과" },
   { id: 100, part: "한의원" },
 ];
-
+const days = [
+  "월요일",
+  "화요일",
+  "수요일",
+  "목요일",
+  "금요일",
+  "토요일",
+  "일요일",
+];
 const now = new Date();
 export const HosptialDetail = (props) => {
   const { state } = useLocation();
-  const [parking, setParking] = useState(false);
   const [mark, setMark] = useState(false);
-  const days = [
-    "월요일",
-    "화요일",
-    "수요일",
-    "목요일",
-    "금요일",
-    "토요일",
-    "일요일",
-  ];
-  // console.log(now.getDay());
-  //마크 바꿔주기
+  const [data, setData] = useState();
+
+  console.log(state);
+  useEffect(() => {
+    instance
+      .get(`/hospital/desc/${state.hospital.hospitalId}`)
+      .then((response) => {
+        setTimeout(() => {}, 3000);
+        // console.log("병원검색입니다");
+        setData(response);
+      })
+      .catch((error) => {
+        setTimeout(() => {}, 3000);
+      });
+  }, []);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
-      <KakaoMap />
+      <KakaoMap lat={state.hospital.hospitalY} lng={state.hospital.hospitalX} />
       <div className="flex col-span-2 mt-10 ml-3 ">
         <p className="text-3xl font-semibold mr-5 ">
           {state.hospital.hospitalName}
@@ -92,6 +104,7 @@ export const HosptialDetail = (props) => {
                   <div className="h-[40px] leading-[40px] flex col-span-2 text-lg">
                     <p className="w-[130px] text-center">{day}</p>
                     <p className="w-[250px] text-center">
+                      {/* 시간 배열로 주기 */}
                       {state.hospital.hospitalTime[idx]}
                     </p>
                   </div>
