@@ -5,7 +5,6 @@ import HospitalFilter from "components/hospital/HospitalFilter";
 import List from "components/hospital/HospitalList";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import 최경호 from "assets/images/tmp/최경호.png";
 const props = [
   {
     hospitalId: 33525,
@@ -29,7 +28,6 @@ const props = [
       "휴진",
       "휴진",
     ],
-    poto: 최경호,
   },
   {
     hospitalId: 19802,

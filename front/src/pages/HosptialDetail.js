@@ -10,6 +10,7 @@ import { LuParkingSquare } from "react-icons/lu";
 import { LuParkingSquareOff } from "react-icons/lu";
 import { LuPhone } from "react-icons/lu";
 import { useLocation } from "react-router-dom";
+import KakaoMap from "components/hospital/KakaoMap";
 
 const part = [
   { id: 0, part: "전체" },
@@ -50,9 +51,7 @@ export const HosptialDetail = (props) => {
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
-      <img src={state.hospital.poto} alt="사진"></img>
-      {/* <div className=" w-[412px] h-[412px] bg-slate-300">
-      </div> */}
+      <KakaoMap />
       <div className="flex col-span-2 mt-10 ml-3 ">
         <p className="text-3xl font-semibold mr-5 ">
           {state.hospital.hospitalName}
