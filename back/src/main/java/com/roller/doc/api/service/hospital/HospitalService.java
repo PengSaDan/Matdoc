@@ -10,7 +10,7 @@ public interface HospitalService {
     /**
      * 병원이름으로 검색
      */
-    ResponseDTO searchByHospitalName(String word, HospitalSearchReq hospitalSearchReq);
+//    ResponseDTO searchByHospitalName(String word, HospitalSearchReq hospitalSearchReq);
 
     /**
      * 필터로 병원검색

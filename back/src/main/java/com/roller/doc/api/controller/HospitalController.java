@@ -30,11 +30,11 @@ public class HospitalController {
     /**
      * 이름으로 병원 검색
      */
-    @PostMapping("/search/{word}")
-    public ResponseEntity searchByWord(@PathVariable("word") String word, @RequestBody HospitalSearchReq hospitalSearchReq) {
-        ResponseDTO responseDTO = hospitalService.searchByHospitalName(word, hospitalSearchReq);
-        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
-    }
+//    @PostMapping("/search/{word}")
+//    public ResponseEntity searchByWord(@PathVariable("word") String word, @RequestBody HospitalSearchReq hospitalSearchReq) {
+//        ResponseDTO responseDTO = hospitalService.searchByHospitalName(word, hospitalSearchReq);
+//        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
+//    }
 
     /**
      * 병원 상세보기
