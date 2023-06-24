@@ -75,7 +75,7 @@ public class HospitalServiceImpl implements HospitalService {
                 responseDTO.setMessage("이름으로 병원찾기 검색 결과 리스트");
                 responseDTO.setData(result);
             }
-        }catch (Exception exception) {
+        } catch (Exception exception) {
             log.error(exception.getMessage());
             exception.printStackTrace();
         }
@@ -91,7 +91,7 @@ public class HospitalServiceImpl implements HospitalService {
         ResponseDTO responseDTO = new ResponseDTO();
         List<HospitalRes> result = new ArrayList<>();
         try {
-            List<Hospital> hospitalList = hospitalCustomRepo.useFilterHospital(Req.getE(),Req.getW(), Req.getS(), Req.getN(), Req.getPart(), Req.getOpen());
+            List<Hospital> hospitalList = hospitalCustomRepo.useFilterHospital(Req.getWord(), Req.getE(), Req.getW(), Req.getS(), Req.getN(), Req.getPart(), Req.getOpen());
             if (hospitalList.size() == 0) {
                 responseDTO.setStatus_code(400);
                 responseDTO.setMessage("필터로 병원찾기: 일치하는 병원이 없습니다");
@@ -188,7 +188,7 @@ public class HospitalServiceImpl implements HospitalService {
         String[] str;
 
         //일:0 월:1 화:2 수:3 목:4 금:5 토:6
-        if(h.getHospitalTime()==null){
+        if (h.getHospitalTime() == null) {
             return false;
         }
         switch (day) {

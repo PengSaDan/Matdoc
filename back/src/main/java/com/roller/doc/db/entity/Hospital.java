@@ -42,10 +42,10 @@ public class Hospital {
     private String hospital_code;
 
     @Column(name = "hospital_x", columnDefinition = "DOUBLE")
-    private double hospital_x;
+    private Double hospital_x;
 
     @Column(name = "hospital_y", columnDefinition = "DOUBLE")
-    private double hospital_y;
+    private Double hospital_y;
 
     @Column(name = "hospital_tel", columnDefinition = "VARCHAR(50)")
     private String hospital_tel;

@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class HospitalFilterReq {
+    private String word;
     private double e;
     private double w;
     private double s;
