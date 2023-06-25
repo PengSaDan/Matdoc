@@ -29,10 +29,10 @@ public class DrugDesc implements Serializable {
 	@Id
 	private Long drug_id;
 
-	@MapsId
-	@OneToOne
-	@JoinColumn(name = "drug_id")
-	private Drug drug;
+	// @MapsId
+	// @OneToOne
+	// @JoinColumn(name = "drug_id")
+	// private Drug drug;
 
 	@Column(name="drug_desc_cat",columnDefinition = "VARCHAR(100)")
 	private String drug_desc_cat;

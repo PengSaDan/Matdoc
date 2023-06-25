@@ -33,9 +33,9 @@ public class Drug {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long drug_id;
 
-	@JsonIgnore
-	@OneToOne(mappedBy = "drug")
-	private DrugDesc drugDesc;
+	// @JsonIgnore
+	// @OneToOne(mappedBy = "drug")
+	// private DrugDesc drugDesc;
 
 	@Column(name="drug_name",columnDefinition = "VARCHAR(100)")
 	private String drug_name;
