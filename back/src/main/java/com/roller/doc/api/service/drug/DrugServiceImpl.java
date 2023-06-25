@@ -3,6 +3,7 @@ package com.roller.doc.api.service.drug;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.roller.doc.api.request.DrugFilterReq;
 import com.roller.doc.api.response.drug.DrugMyPillRes;
 import com.roller.doc.db.entity.DrugMyPill;
 import com.roller.doc.db.repository.*;
@@ -31,6 +32,8 @@ public class DrugServiceImpl implements DrugService {
 	private final DrugDescRepository drugDescRepository;
 	private final DrugMyPillRepository drugMyPillRepository;
 	private final DrugMyRepository drugMyRepository;
+
+	private final DrugCustomRepo drugCustomRepo;
 
 	/**
 	 * 이름으로 의약품 검색
@@ -304,4 +307,46 @@ public class DrugServiceImpl implements DrugService {
 
 		return responseDTO;
 	}
+
+
+	/**
+	 * 필터를 통한 의약품 검색
+	 */
+	@Override
+	public ResponseDTO filteringDrug(DrugFilterReq d) {
+		ResponseDTO responseDTO = new ResponseDTO();
+		List<DrugRes> result = new ArrayList<>();
+
+		try {
+			List<Drug> drugList = drugCustomRepo.searchDrug(d);
+			if(drugList.isEmpty()) {
+				responseDTO.setStatus_code(400);
+				responseDTO.setMessage("검색 값이 없습니다");
+			}else {
+				for(Drug drug : drugList) {
+					DrugRes drugRes = DrugRes.builder()
+						.drugId(drug.getDrug_id())
+						.drugName(drug.getDrug_name())
+						.drugImg(drug.getDrug_img())
+						.drugMarkf(drug.getDrug_markf())
+						.drugMarkb(drug.getDrug_markb())
+						.drugType(drug.getDrug_type())
+						.drugColorf(drug.getDrug_colorf())
+						.drugColorb(drug.getDrug_colorb())
+						.drugLine(drug.getDrug_line())
+						.drugIngre(drug.getDrug_ingre())
+						.build();
+					result.add(drugRes);
+				}
+				responseDTO.setStatus_code(200);
+				responseDTO.setMessage("약 조건으로 검색 성공");
+				responseDTO.setData(result);
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return responseDTO;
+	}
+
 }

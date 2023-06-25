@@ -5,11 +5,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.roller.doc.api.request.DrugFilterReq;
 import com.roller.doc.api.response.ResponseDTO;
 import com.roller.doc.api.service.drug.DrugService;
 import lombok.RequiredArgsConstructor;
@@ -84,5 +87,14 @@ public class DrugController {
 	public ResponseEntity deleteDrugMy(@PathVariable("drugMyId") Long drugMyId) throws Exception {
 		ResponseDTO result = drugService.deleteDrugMy(drugMyId);
 		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
+
+	/**
+	 * 필터를 통한 의약품 검색
+	 */
+	@PostMapping("/find")
+	public ResponseEntity filteringDrug(@RequestBody DrugFilterReq d) {
+		ResponseDTO responseDTO = drugService.filteringDrug(d);
+		return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
 	}
 }
