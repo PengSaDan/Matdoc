@@ -1,17 +1,19 @@
 import Header from "components/common/Header";
 import DetailSerachBar from "components/common/DetailSearchBar";
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
 import DrugFilter from "components/drug/DrugFilter";
 import SelectModal from "components/drug/SelectModal";
 import DrugCard from "components/drug/DrugCard";
-import tirenol from "assets/images/drug/tirenol.jpg"
-import glucophage from "assets/images/drug/glucophage.jpg"
-import myRept from "assets/images/drug/my-rept.jpg"
-import farlutal from "assets/images/drug/farlutal.jpg"
-import hycraduo from "assets/images/drug/hycraduo.jpg"
-import novamet from "assets/images/drug/novamet.jpg"
-import locol from "assets/images/drug/locol.jpg"
+import tirenol from "assets/images/drug/tirenol.jpg";
+import glucophage from "assets/images/drug/glucophage.jpg";
+import myRept from "assets/images/drug/my-rept.jpg";
+import farlutal from "assets/images/drug/farlutal.jpg";
+import hycraduo from "assets/images/drug/hycraduo.jpg";
+import novamet from "assets/images/drug/novamet.jpg";
+import locol from "assets/images/drug/locol.jpg";
+import instance from "util/Axios";
+import { drugSearchActions } from "store/features/drugSearchSlice";
 
 const pills = [
   {
@@ -66,10 +68,28 @@ const pills = [
 ];
 
 export const DrugList = (props) => {
+  const dispatch = useDispatch();
+  const request = useSelector((state) => state.drugSearch.filter);
+
   const [detail, setDetail] = useState(false);
   const [modal, setModal] = useState("");
   const [shape, setShape] = useState("모양");
   const [line, setLine] = useState("분할선");
+
+  const [nameSearch, setNameSearch] = useState("");
+  const [colorsSearch, setColorsSearch] = useState([]);
+  const [typeSearch, setTypeSearch] = useState("");
+  const [lineSearch, setLineSearch] = useState("");
+  const [markSearch, setMarkSearch] = useState("");
+
+  useEffect(() => {
+    instance
+      .post(`/drug/find`, request)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  }, [request]);
 
   const selectModalOpenHandler = (props) => {
     setModal(props);
@@ -79,21 +99,78 @@ export const DrugList = (props) => {
     setModal("");
   };
 
+  const selectNameHandler = (props) => {
+    setNameSearch(props);
+  };
+
+  const selectColorHandler = (props) => {
+    setColorsSearch(props);
+  };
+
   const selectShapeHandler = (props) => {
     setShape(props);
+
+    if (props === "전체") {
+      setTypeSearch("");
+    } else {
+      setTypeSearch(props);
+    }
+
     setModal("");
   };
 
   const selectLineHandler = (props) => {
     setLine(props);
+
+    // eslint-disable-next-line default-case
+    switch (props) {
+      case "없음":
+        setLineSearch("oxo");
+        break;
+      case "(+)형":
+        setLineSearch("+");
+        break;
+      case "(-)형":
+        setLineSearch("-");
+        break;
+      case "기타":
+        setLineSearch("");
+        break;
+      case "전체":
+        setLineSearch("");
+        break;
+    }
+
     setModal("");
+  };
+
+  const selectMarkHandler = (props) => {
+    setMarkSearch(props);
+  };
+
+  const reSearch = () => {
+    const request = {
+      name: nameSearch,
+      colors: colorsSearch,
+      type: typeSearch,
+      line: lineSearch,
+      mark: markSearch,
+    };
+
+    dispatch(drugSearchActions.setFilter(request));
+
   };
 
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen mx-auto">
       <Header />
       <div>
-        <DetailSerachBar color={"bg-[#D7F1FF]"} />
+        <DetailSerachBar
+          color={"bg-[#D7F1FF]"}
+          type="drug"
+          selectNameHandler={selectNameHandler}
+          reSearch={reSearch}
+        />
         {!detail && (
           <div
             className="absolute top-[170px] bg-[#D7F1FF] left-[14px] h-[43px] w-[380px] leading-[43px] flex row-span-2 justify-between rounded-[10px] "
@@ -118,6 +195,8 @@ export const DrugList = (props) => {
             shape={shape}
             line={line}
             setDetail={setDetail}
+            selectColorHandler={selectColorHandler}
+            selectMarkHandler={selectMarkHandler}
           />
         )}
       </div>

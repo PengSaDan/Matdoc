@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 export const ColorOptions = (props) => {
@@ -102,6 +102,10 @@ export const ColorOptions = (props) => {
         "w-16 h-10 mt-3 overflow-hidden text-center rounded-xl bg-transparent leading-8 text-[#303030] font-bold border-[#96DE83] border-4",
     },
   ];
+
+  useEffect(() => {
+    props.selectColorHandler(colorList);
+  }, [colorList])
 
   const addColorHandler = (props) => {
     if (props.color.name === "전체" || colorList.length === 14) {

@@ -4,7 +4,22 @@ import { connect } from "react-redux";
 
 export const DetailSearchBar = (props) => {
   const [color, setColor] = useState("");
+  const [word, setWord] = useState("");
+
+  useEffect(() => {
+    if (props.type === "drug") {
+      props.selectNameHandler(word);
+    }
+  }, [word]);
+
+  const changeWord = (e) => {
+    setWord(e.target.value);
+  };
+
   const Search = () => {
+    if (props.type === "drug") {
+      props.reSearch();
+    }
     //페이지넘기기
   };
   useEffect(() => {
@@ -20,11 +35,13 @@ export const DetailSearchBar = (props) => {
         type="text"
         className={color}
         placeholder="검색어를 입력해주세요"
+        value={word}
+        onChange={changeWord}
       />
       <div
         className="absolute bg-[#00C192] h-[60px] w-[85px] text-2xl leading-[60px] top-[100px]
           text-[#ffffff] font-bold left-[311px] text-center rounded-[10px]"
-        onClick={() => {}}
+        onClick={() => Search()}
       >
         검색
       </div>
