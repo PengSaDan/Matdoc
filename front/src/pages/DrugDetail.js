@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import hycraduo from "assets/images/drug/hycraduo.jpg";
@@ -6,6 +6,7 @@ import Header from "components/common/Header";
 import { FaPlusCircle } from "react-icons/fa";
 import { basketActions } from "store/features/drugBasketSlice";
 import { useState } from "react";
+import instance from "util/Axios";
 
 export const DrugDetail = (props) => {
   const params = useParams();
@@ -25,12 +26,23 @@ export const DrugDetail = (props) => {
     // 효능, 효과
     effect:
       "급·만성 기관지염, 대엽성 및 기관지 폐렴, 농흉, 폐농양, 편도염, 부비동염, 중이염",
-    safety: "이 약의 사용에 있어서 내성균의 발현을 방지하기 위하여 감수성을 확인하고 치료 상 필요한 최소 기간만 투여하는 것이 바람직하다.",
-    usage: "성인의 중증 감염과 호흡기감염에 1회 2정, 1일 2회 12시간마다 경구투여한다. 신부전환자는 신기능의 정도에 따라 용량을 감소할 수 있다.",
+    safety:
+      "이 약의 사용에 있어서 내성균의 발현을 방지하기 위하여 감수성을 확인하고 치료 상 필요한 최소 기간만 투여하는 것이 바람직하다.",
+    usage:
+      "성인의 중증 감염과 호흡기감염에 1회 2정, 1일 2회 12시간마다 경구투여한다. 신부전환자는 신기능의 정도에 따라 용량을 감소할 수 있다.",
   };
 
-  // console.log(params.drugId);
-  // drugId로 상세정보를 요청하자
+  useEffect(() => {
+    console.log(params.drugId)
+    instance
+      .get(`/drug/detail/${params.drugId}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [params]);
 
   const goBasketDrug = () => {
     navigation(`/mypage`);
@@ -38,12 +50,10 @@ export const DrugDetail = (props) => {
 
   const pushBasket = () => {
     dispatch(
-      basketActions.pushBasket(
-        {
-          drugId: pillDetail.drugId,
-          name: pillDetail.name,
-        },
-      )
+      basketActions.pushBasket({
+        drugId: pillDetail.drugId,
+        name: pillDetail.name,
+      })
     );
   };
 

@@ -14,9 +14,9 @@ export const DrugFilter = (props) => {
   }
   
   return (
-    <div className="absolute bg-[#D7F1FF] h-[35em] w-11/12 top-[11em] left-4 rounded-[10px] p-5 mx-auto">
+    <div className="absolute bg-[#D7F1FF] h-[35em] w-11/12 top-[11em] left-4 rounded-[10px] p-5 mx-auto z-50">
       <div className="text-[#303030] text-2xl font-semibold">색상</div>
-      <ColorOptions selectColorHandler={props.selectColorHandler} />
+      <ColorOptions selectColorHandler={props.selectColorHandler} filterRedux={props.filterRedux} />
       <div className="grid grid-cols-2 mt-8 justify-items-center">
         {props.shape === "모양" && (
           <div

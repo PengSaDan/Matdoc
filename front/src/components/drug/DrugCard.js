@@ -12,7 +12,7 @@ export const DrugCard = (props) => {
   const [openModal, setOpenModal] = useState(false);
 
   const goDetail = () => {
-    navigation(`/drugDetail/${props.pill.drugId}`);
+    navigation(`/drugDetail/${props.drug.drugId}`);
   };
 
   const goBasketDrug = () => {
@@ -22,8 +22,8 @@ export const DrugCard = (props) => {
   const pushBasket = () => {
     dispatch(
       basketActions.pushBasket({
-        drugId: props.pill.drugId,
-        name: props.pill.name,
+        drugId: props.drug.drugId,
+        name: props.drug.drugName,
       })
     );
   };
@@ -39,16 +39,16 @@ export const DrugCard = (props) => {
   return (
     <>
       <div className="w-full p-4 border-t-2" onClick={() => goDetail()}>
-        <div className="text-2xl font-semibold">{props.pill.name}</div>
+        <div className="text-2xl font-semibold">{props.drug.drugName}</div>
         <div className="flex mt-2">
           <img
-            src={props.pill.image}
-            alt={props.pill.name}
+            src={props.drug.drugImg}
+            alt={props.drug.drugName}
             className="rounded-[10px] w-2/5 h-[100px]"
           />
           <div className="relative w-3/5 p-2">
-            <div>성분 : {props.pill.ingredient}</div>
-            <div>모양 : {props.pill.shape}</div>
+            <div>성분 : {props.drug.drugIngre === "null" ? "정보 없음" : props.drug.drugIngre}</div>
+            <div className="mt-1">모양 : {props.drug.drugType}, {props.drug.drugColorf === "-" ? "" : props.drug.drugColorf + " "}{props.drug.drugColorb === "-" ? "" : props.drug.drugColorb}</div>
             <div
               className="absolute z-50 rounded-full shadow-xl right-1 bottom-1"
               onClick={(e) => {

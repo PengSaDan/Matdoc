@@ -102,9 +102,13 @@ export const ColorOptions = (props) => {
         "w-16 h-10 mt-3 overflow-hidden text-center rounded-xl bg-transparent leading-8 text-[#303030] font-bold border-[#96DE83] border-4",
     },
   ];
-
+  
   useEffect(() => {
-    props.selectColorHandler(colorList);
+    if(colorList.includes("전체")) {
+      props.selectColorHandler([""]);
+    }else {
+      props.selectColorHandler(colorList);
+    }
   }, [colorList])
 
   const addColorHandler = (props) => {

@@ -8,7 +8,7 @@ const instance = axios.create({
       ? `http://localhost:8080`
       : `http://localhost:8080`,
 
-  timeout: 2000,
+  timeout: 30000,
 
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
@@ -18,7 +18,9 @@ const instance = axios.create({
 instance.interceptors.request.use(
   // 요청 전
   (config) => {
-    //깡통맨
+    if (config.method === "get") {
+      config.timeout = 12000;
+    }
     return config;
   },
   (error) => {
