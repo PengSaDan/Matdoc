@@ -67,4 +67,22 @@ public interface DrugRepository extends JpaRepository<Drug, Long> {
 	 */
 	@Query(value = "SELECT * FROM drug WHERE drug_id =:drugId", nativeQuery = true)
 	Drug selectDrug(@Param("drugId")Long drug_id);
+
+	/**
+	 * drugId로 의약품 정보 조회
+	 */
+	@Query(value = "select d from Drug d where d.drug_id = :drugId")
+	Drug getDrug(@Param("drugId") long drugId);
+
+	/**
+	 * drugId로 의약품 상세 정보 조회
+	 */
+	@Query(value = "select dd from DrugDesc dd where dd.drug_id = :drugId")
+	DrugDesc getDrugDesc(@Param("drugId") long drugId);
+	
+	/**
+	 * drugId로 의약품 병용금기 정보 조회
+	 */
+	@Query(value = "select da from DrugAvoid da where da.drug_id = :drugId")
+	List<DrugAvoid> getDrugAvoid(@Param("drugId") long drugId);
 }

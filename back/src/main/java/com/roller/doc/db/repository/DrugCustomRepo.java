@@ -26,8 +26,18 @@ public class DrugCustomRepo {
 		JPAQueryFactory query = querydslConfig.jpaQueryFactory();
 		return query
 			.selectFrom(drug)
-			.where(filteringDrug(d))
+			.where(filteringDrug(d), filteringColor(d))
 			.fetch();
+	}
+
+	private BooleanBuilder filteringColor(DrugFilterReq d) {
+		BooleanBuilder builder = new BooleanBuilder();
+
+		for (String color : d.getColors()) {
+			builder.or(colorSearch(color));
+		}
+
+		return builder;
 	}
 
 	private BooleanBuilder filteringDrug(DrugFilterReq d) {
@@ -38,12 +48,6 @@ public class DrugCustomRepo {
 			.and(typeSearch(d.getType()))
 			.and(lineSearch(d.getLine()))
 			.and(markSearch(d.getMark()));
-
-		// 색상 검색
-		// 전체는 null
-		for (String color : d.getColors()) {
-			builder.or(colorSearch(color));
-		}
 
 		return builder;
 	}

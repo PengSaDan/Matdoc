@@ -97,4 +97,13 @@ public class DrugController {
 		ResponseDTO responseDTO = drugService.filteringDrug(d);
 		return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
 	}
+
+	/**
+	 * drugId로 의약품 상세정보 조회
+	 */
+	@GetMapping("/detail/{drugId}")
+	public ResponseEntity getDrugDetail(@PathVariable("drugId") long drugId) {
+		ResponseDTO result = drugService.getDrugDetail(drugId);
+		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
 }

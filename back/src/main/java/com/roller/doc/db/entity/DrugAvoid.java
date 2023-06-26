@@ -31,6 +31,9 @@ public class DrugAvoid {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long drug_avoid_id;
 
+	@Column(name="drug_id", insertable = false, updatable = false)
+	private Long drug_id;
+
 	@Column(name="drug_avoid_b",columnDefinition = "INT")
 	private int drug_avoid_b;
 

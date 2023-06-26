@@ -43,4 +43,9 @@ public interface DrugService {
 	 * 필터를 통한 의약품 검색
 	 */
 	ResponseDTO filteringDrug(DrugFilterReq d);
+
+	/**
+	 * drugId로 의약품 상세정보 조회
+	 */
+	ResponseDTO getDrugDetail(long drugId);
 }
