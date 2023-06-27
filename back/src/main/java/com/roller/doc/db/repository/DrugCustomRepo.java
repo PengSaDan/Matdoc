@@ -11,6 +11,7 @@ import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.roller.doc.api.request.DrugFilterReq;
+import com.roller.doc.api.response.drug.DrugRes;
 import com.roller.doc.config.QuerydslConfig;
 import com.roller.doc.db.entity.Drug;
 
@@ -25,8 +26,8 @@ public class DrugCustomRepo {
 
 	public List<Drug> searchDrug(DrugFilterReq d) {
 		JPAQueryFactory query = querydslConfig.jpaQueryFactory();
-		return query
-			.selectFrom(drug)
+		return query.select(drug)
+			.from(drug)
 			.where(filteringDrug(d), filteringColor(d))
 			.fetch();
 	}
