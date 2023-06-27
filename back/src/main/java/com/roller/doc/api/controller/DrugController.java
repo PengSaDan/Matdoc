@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.roller.doc.api.request.DrugFilterReq;
+import com.roller.doc.api.request.HospitalFilterReq;
 import com.roller.doc.api.response.ResponseDTO;
 import com.roller.doc.api.service.drug.DrugService;
 
@@ -52,17 +53,9 @@ public class DrugController {
 	/**
 	 * 필터를 통한 의약품 검색
 	 */
-	@GetMapping("/find")
-	public ResponseEntity filteringDrug(@RequestParam(value = "name") String name,
-		@RequestParam(value = "colors") String colors, @RequestParam(value = "type") String type,
-		@RequestParam(value = "line") String line, @RequestParam(value = "mark") String mark) {
-		DrugFilterReq d = DrugFilterReq.builder()
-			.name(name)
-			.colors(colors)
-			.type(type)
-			.line(line)
-			.mark(mark)
-			.build();
+	@PostMapping("/find")
+	public ResponseEntity filteringDrug(@RequestBody DrugFilterReq d) {
+		System.out.println(d);
 		ResponseDTO responseDTO = drugService.filteringDrug(d);
 		return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
 	}
