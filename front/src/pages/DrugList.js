@@ -7,6 +7,7 @@ import SelectModal from "components/drug/SelectModal";
 import DrugCard from "components/drug/DrugCard";
 import instance from "util/Axios";
 import { drugSearchActions } from "store/features/drugSearchSlice";
+import qs from "qs";
 
 export const DrugList = (props) => {
   const dispatch = useDispatch();
@@ -25,9 +26,20 @@ export const DrugList = (props) => {
 
   const [drugs, setDrugs] = useState([]);
 
-  useEffect(() => {    
+  useEffect(() => {
     instance
-      .post(`/drug/find`, request)
+      .get(`/drug/find`, {
+        params: {
+          name: request.name,
+          colors: request.colors,
+          type: request.type,
+          line: request.line,
+          mark: request.mark,
+        },
+        paramsSerializer: params => {
+          return qs.stringify(params, {arrayFormat: 'brackets'})
+        }
+      })
       .then((response) => {
         // console.log(response);
         setDrugs(response.data);

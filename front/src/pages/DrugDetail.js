@@ -33,7 +33,6 @@ export const DrugDetail = (props) => {
   };
 
   useEffect(() => {
-    console.log(params.drugId)
     instance
       .get(`/drug/detail/${params.drugId}`)
       .then((response) => {
