@@ -1,5 +1,6 @@
 package com.roller.doc.api.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class DrugController {
 	 */
 	@GetMapping("/find")
 	public ResponseEntity filteringDrug(@RequestParam(value = "name") String name,
-		@RequestParam(value = "colors[]") List<String> colors, @RequestParam(value = "type") String type,
+		@RequestParam(value = "colors") String colors, @RequestParam(value = "type") String type,
 		@RequestParam(value = "line") String line, @RequestParam(value = "mark") String mark) {
 		DrugFilterReq d = DrugFilterReq.builder()
 			.name(name)

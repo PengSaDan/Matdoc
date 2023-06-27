@@ -8,13 +8,13 @@ import lombok.Data;
 @Data
 public class DrugFilterReq {
 	private String name;
-	private List<String> colors;
+	private String colors;
 	private String type;
 	private String line;
 	private String mark;
 
 	@Builder
-	public DrugFilterReq(String name, List<String> colors, String type, String line, String mark) {
+	public DrugFilterReq(String name, String colors, String type, String line, String mark) {
 		this.name = name;
 		this.colors = colors;
 		this.type = type;

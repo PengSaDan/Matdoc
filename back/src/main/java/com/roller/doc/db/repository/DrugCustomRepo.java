@@ -1,5 +1,6 @@
 package com.roller.doc.db.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -33,7 +34,8 @@ public class DrugCustomRepo {
 	private BooleanBuilder filteringColor(DrugFilterReq d) {
 		BooleanBuilder builder = new BooleanBuilder();
 
-		for (String color : d.getColors()) {
+		String[] colors = d.getColors().split(",");
+		for (String color : colors) {
 			builder.or(colorSearch(color));
 		}
 
