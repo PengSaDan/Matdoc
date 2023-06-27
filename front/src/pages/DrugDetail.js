@@ -14,6 +14,8 @@ export const DrugDetail = (props) => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
 
+  console.log(params)
+
   const pillDetail = {
     drugId: params.drugId,
     name: "하이크라듀오정500mg Hycraduo Tab. 500mg",

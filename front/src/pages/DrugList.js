@@ -8,10 +8,17 @@ import DrugCard from "components/drug/DrugCard";
 import instance from "util/Axios";
 import { drugSearchActions } from "store/features/drugSearchSlice";
 import qs from "qs";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import QueryString from "qs";
 
 export const DrugList = (props) => {
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   const request = useSelector((state) => state.drugSearch.filter);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const queryObj = QueryString.parse(searchParams.toString())
 
   const [detail, setDetail] = useState(false);
   const [modal, setModal] = useState("");
@@ -25,24 +32,23 @@ export const DrugList = (props) => {
   const [markSearch, setMarkSearch] = useState("");
 
   const [drugs, setDrugs] = useState([]);
+  const [drugsLength, setDrugsLength] = useState(0);
 
   useEffect(() => {
     instance
       .get(`/drug/find`, {
         params: {
-          name: request.name,
-          colors: request.colors,
-          type: request.type,
-          line: request.line,
-          mark: request.mark,
-        },
-        paramsSerializer: params => {
-          return qs.stringify(params, {arrayFormat: 'brackets'})
+          name: queryObj.name,
+          colors: queryObj.colors,
+          type: queryObj.type,
+          line: queryObj.line,
+          mark: queryObj.mark,
         }
       })
       .then((response) => {
         // console.log(response);
         setDrugs(response.data);
+        setDrugsLength(response.data.length)
       })
       .catch((error) => {
         console.log(error);
@@ -115,8 +121,10 @@ export const DrugList = (props) => {
       mark: markSearch,
     };
 
+    setDetail(false);
+
     dispatch(drugSearchActions.setFilter(request));
-    window.location.reload();
+    navigation(`/druglist?name=${request.name}&colors=${request.colors}&type=${request.type}&line=${request.line}&mark=${request.mark}`);
   };
 
   return (
@@ -137,7 +145,7 @@ export const DrugList = (props) => {
             }}
           >
             <p className="text-[#303030] text-xl ml-3 mt-1 font-semibold">
-              {drugs.length} 건
+              {drugsLength} 건
             </p>
             <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▼</p>
           </div>

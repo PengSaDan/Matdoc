@@ -90,7 +90,9 @@ export const Drug = (props) => {
 
     dispatch(drugSearchActions.setFilter(request));
 
-    navigation("/drugList");
+    navigation(
+      `/druglist?name=${request.name}&colors=${request.colors}&type=${request.type}&line=${request.line}&mark=${request.mark}`
+    );
   };
 
   return (

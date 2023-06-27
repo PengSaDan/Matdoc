@@ -50,7 +50,7 @@ export const DrugCard = (props) => {
             <div>성분 : {props.drug.drugIngre === "null" ? "정보 없음" : props.drug.drugIngre}</div>
             <div className="mt-1">모양 : {props.drug.drugType}, {props.drug.drugColorf === "-" ? "" : props.drug.drugColorf + " "}{props.drug.drugColorb === "-" ? "" : props.drug.drugColorb}</div>
             <div
-              className="absolute z-50 rounded-full shadow-xl right-1 bottom-1"
+              className="absolute rounded-full shadow-xl right-1 bottom-1"
               onClick={(e) => {
                 e.stopPropagation();
                 pushBasket();
@@ -63,7 +63,8 @@ export const DrugCard = (props) => {
         </div>
       </div>
       {openModal && (
-        <div className="absolute bg-white border-[#00C192] border-4 shadow-xl w-[350px] top-1/3 rounded-xl p-5 left-[31px] z-[99999]">
+        <div className="fixed top-0 z-10 w-screen h-screen">
+          <div className="absolute bg-white border-[#00C192] border-4 shadow-xl w-[350px] top-1/3 rounded-xl p-5 left-[31px] z-[99999]">
           <div className="text-xl">
             약 바구니에 약을 담았습니다. <br /> 마이페이지로 이동하시겠습니까?
           </div>
@@ -86,6 +87,8 @@ export const DrugCard = (props) => {
             </div>
           </div>
         </div>
+        </div>
+        
       )}
     </>
   );
