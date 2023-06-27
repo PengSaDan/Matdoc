@@ -1,14 +1,17 @@
 // import PropTypes from 'prop-types'
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { drugSearchActions } from "store/features/drugSearchSlice";
 
 export const DetailSearchBar = (props) => {
+  const dispatch = useDispatch();
+
   const [color, setColor] = useState("");
   const [word, setWord] = useState("");
 
   useEffect(() => {
     if (props.type === "drug") {
-      props.selectNameHandler(word);
+      dispatch(drugSearchActions.setName(word));
     }
   }, [word]);
 

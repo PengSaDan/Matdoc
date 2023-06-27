@@ -22,6 +22,21 @@ export const drugSearchSlice = createSlice({
       state.filter.line = request.line;
       state.filter.mark = request.mark;
     },
+    setName(state, action) {
+      state.filter.name = action.payload;
+    },
+    setColors(state, action) {
+      state.filter.colors = action.payload;
+    },
+    setType(state, action) {
+      state.filter.type = action.payload;
+    },
+    setLine(state, action) {
+      state.filter.line = action.payload;
+    },
+    setMark(state, action) {
+      state.filter.mark = action.payload;
+    }
   },
 });
 

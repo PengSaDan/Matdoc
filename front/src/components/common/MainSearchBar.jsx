@@ -4,12 +4,14 @@ import { connect, useDispatch } from "react-redux";
 import { drugSearchActions } from "store/features/drugSearchSlice";
 
 export const MainSearchBar = (props) => {
+  const dispatch = useDispatch();
+
   const [color, setColor] = useState("");
   const [word, setWord] = useState("");
 
   useEffect(() => {
     if (props.type === "drug") {
-      props.selectNameHandler(word);
+      dispatch(drugSearchActions.setName(word));
     }
   }, [word]);
 
@@ -23,6 +25,7 @@ export const MainSearchBar = (props) => {
         props.color
     );
   }, []);
+  
   return (
     <div>
       <input

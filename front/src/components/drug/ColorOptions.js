@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { drugSearchActions } from "store/features/drugSearchSlice";
 
 export const ColorOptions = (props) => {
+  const dispatch = useDispatch();
   const [colorList, setColorList] = useState(["전체"]);
 
   const colors = [
@@ -105,9 +107,9 @@ export const ColorOptions = (props) => {
   
   useEffect(() => {
     if(colorList.includes("전체")) {
-      props.selectColorHandler([""]);
+      dispatch(drugSearchActions.setColors([""]));
     }else {
-      props.selectColorHandler(colorList);
+      dispatch(drugSearchActions.setColors(colorList));
     }
   }, [colorList])
 

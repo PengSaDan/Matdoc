@@ -15,26 +15,19 @@ export const DrugList = (props) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const request = useSelector((state) => state.drugSearch.filter);
-
+  
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const queryObj = QueryString.parse(searchParams.toString())
 
   const [detail, setDetail] = useState(false);
   const [modal, setModal] = useState("");
   const [shape, setShape] = useState("모양");
   const [line, setLine] = useState("분할선");
 
-  const [nameSearch, setNameSearch] = useState("");
-  const [colorsSearch, setColorsSearch] = useState([]);
-  const [typeSearch, setTypeSearch] = useState("");
-  const [lineSearch, setLineSearch] = useState("");
-  const [markSearch, setMarkSearch] = useState("");
-
   const [drugs, setDrugs] = useState([]);
   const [drugsLength, setDrugsLength] = useState(0);
 
   useEffect(() => {
+    const queryObj = QueryString.parse(searchParams.toString());
     instance
       .get(`/drug/find`, {
         params: {
@@ -43,17 +36,18 @@ export const DrugList = (props) => {
           type: queryObj.type,
           line: queryObj.line,
           mark: queryObj.mark,
-        }
+        },
       })
       .then((response) => {
+        setTimeout(() => {}, 3000);
         // console.log(response);
         setDrugs(response.data);
-        setDrugsLength(response.data.length)
+        setDrugsLength(response.data.length);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [request]);
+  }, [searchParams]);
 
   const selectModalOpenHandler = (props) => {
     setModal(props);
@@ -62,22 +56,14 @@ export const DrugList = (props) => {
   const selectModalCloseHandler = (props) => {
     setModal("");
   };
-
-  const selectNameHandler = (props) => {
-    setNameSearch(props);
-  };
-
-  const selectColorHandler = (props) => {
-    setColorsSearch(props);
-  };
-
+  
   const selectShapeHandler = (props) => {
     setShape(props);
 
     if (props === "전체") {
-      setTypeSearch("");
+      dispatch(drugSearchActions.setType(""));
     } else {
-      setTypeSearch(props);
+      dispatch(drugSearchActions.setType(props));
     }
 
     setModal("");
@@ -89,42 +75,31 @@ export const DrugList = (props) => {
     // eslint-disable-next-line default-case
     switch (props) {
       case "없음":
-        setLineSearch("oxo");
+        dispatch(drugSearchActions.setLine("oxo"));
         break;
       case "(+)형":
-        setLineSearch("+");
+        dispatch(drugSearchActions.setLine("+"));
         break;
       case "(-)형":
-        setLineSearch("-");
+        dispatch(drugSearchActions.setLine("-"));
         break;
       case "기타":
-        setLineSearch("");
+        dispatch(drugSearchActions.setLine(""));
         break;
       case "전체":
-        setLineSearch("");
+        dispatch(drugSearchActions.setLine(""));
         break;
     }
 
     setModal("");
   };
 
-  const selectMarkHandler = (props) => {
-    setMarkSearch(props);
-  };
-
   const reSearch = () => {
-    const request = {
-      name: nameSearch,
-      colors: colorsSearch,
-      type: typeSearch,
-      line: lineSearch,
-      mark: markSearch,
-    };
-
     setDetail(false);
 
-    dispatch(drugSearchActions.setFilter(request));
-    navigation(`/druglist?name=${request.name}&colors=${request.colors}&type=${request.type}&line=${request.line}&mark=${request.mark}`);
+    navigation(
+      `/druglist?name=${request.name}&colors=${request.colors}&type=${request.type}&line=${request.line}&mark=${request.mark}`
+    );
   };
 
   return (
@@ -134,7 +109,6 @@ export const DrugList = (props) => {
         <DetailSerachBar
           color={"bg-[#D7F1FF]"}
           type="drug"
-          selectNameHandler={selectNameHandler}
           reSearch={reSearch}
         />
         {!detail && (
@@ -161,8 +135,6 @@ export const DrugList = (props) => {
             shape={shape}
             line={line}
             setDetail={setDetail}
-            selectColorHandler={selectColorHandler}
-            selectMarkHandler={selectMarkHandler}
           />
         )}
       </div>
