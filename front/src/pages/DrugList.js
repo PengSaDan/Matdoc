@@ -29,14 +29,12 @@ export const DrugList = (props) => {
   useEffect(() => {
     const queryObj = QueryString.parse(searchParams.toString());
     instance
-      .get(`/drug/find`, {
-        params: {
+      .post(`/drug/find`, {
           name: queryObj.name,
           colors: queryObj.colors,
           type: queryObj.type,
           line: queryObj.line,
           mark: queryObj.mark,
-        },
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
@@ -56,15 +54,18 @@ export const DrugList = (props) => {
   const selectModalCloseHandler = (props) => {
     setModal("");
   };
+
+  useEffect(() => {
+    if (shape === "모양") {
+      dispatch(drugSearchActions.setType(""));
+    }
+    if (line === "분할선") {
+      dispatch(drugSearchActions.setLine(""));
+    }
+  }, []);
   
   const selectShapeHandler = (props) => {
     setShape(props);
-
-    if (props === "전체") {
-      dispatch(drugSearchActions.setType(""));
-    } else {
-      dispatch(drugSearchActions.setType(props));
-    }
 
     setModal("");
   };
@@ -96,6 +97,13 @@ export const DrugList = (props) => {
 
   const reSearch = () => {
     setDetail(false);
+
+    if(shape === "모양") {
+      dispatch(drugSearchActions.setType(""));
+    }
+    if(line === "분할선") {
+      dispatch(drugSearchActions.setLine(""));
+    }
 
     navigation(
       `/druglist?name=${request.name}&colors=${request.colors}&type=${request.type}&line=${request.line}&mark=${request.mark}`
