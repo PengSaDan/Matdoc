@@ -5,12 +5,14 @@ import HospitalFilter from "components/hospital/HospitalFilter";
 import List from "components/hospital/HospitalList";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import instance from "util/Axios";
 
 export const HospitalList = (props) => {
+  const select = useSelector((state) => state.hospitalSearch.filter);
   const [isopen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
+  const now = new Date();
   useEffect(() => {
     instance
       .post(`/hospital/find`, {
@@ -19,23 +21,20 @@ export const HospitalList = (props) => {
         w: 126.944,
         s: 37.2154,
         n: 37.2231,
-        hour: 1,
-        min: 30,
-        day: 2,
-        part: [1, 4],
-        open: [0],
+        hour: now.getHours,
+        min: now.getMinutes,
+        day: now.getDay,
+        part: select.part,
+        open: select.time,
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
-        // console.log(response.data);
-        // console.log("병원검색입니다");
         setData(response.data);
       })
       .catch((error) => {
         setTimeout(() => {}, 3000);
       });
   }, []);
-  // console.log(data.data);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen ">
       <Header />

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { drugSearchActions } from "store/features/drugSearchSlice";
+import { hospitalSearchSliceActions } from "store/features/hospitalSearchSlice";
 
 export const MainSearchBar = (props) => {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ export const MainSearchBar = (props) => {
   useEffect(() => {
     if (props.type === "drug") {
       dispatch(drugSearchActions.setName(word));
+    } else {
+      dispatch(hospitalSearchSliceActions.setWord(word));
     }
   }, [word]);
 
@@ -25,7 +28,7 @@ export const MainSearchBar = (props) => {
         props.color
     );
   }, []);
-  
+
   return (
     <div>
       <input

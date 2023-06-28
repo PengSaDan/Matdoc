@@ -36,7 +36,7 @@ export const drugSearchSlice = createSlice({
     },
     setMark(state, action) {
       state.filter.mark = action.payload;
-    }
+    },
   },
 });
 

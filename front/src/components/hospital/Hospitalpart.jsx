@@ -1,6 +1,7 @@
 // import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { hospitalSearchSliceActions } from "store/features/hospitalSearchSlice";
 const part = [
   { id: 0, part: "전체" },
   { id: 1, part: "내과" },
@@ -21,6 +22,7 @@ const part = [
   { id: 100, part: "한의원" },
 ];
 export const Hospitalpart = (props) => {
+  const dispatch = useDispatch();
   const [pick, setPick] = useState([0]);
   const addPick = (props) => {
     if (props === 0 || pick.length === 15) {
@@ -42,6 +44,11 @@ export const Hospitalpart = (props) => {
       setPick(pick.filter((idx) => idx !== props.id));
     }
   };
+
+  useEffect(() => {
+    dispatch(hospitalSearchSliceActions.setPart(pick));
+  }, [pick]);
+
   return (
     <div className="flex flex-wrap row-span-3 col-span-6 ">
       {part.map((items, idx) => (
