@@ -1,6 +1,7 @@
 // import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { hospitalSearchSliceActions } from "store/features/hospitalSearchSlice";
 
 const time = [
   { id: 0, time: "전체" },
@@ -10,6 +11,7 @@ const time = [
   { id: 4, time: "야간" },
 ];
 export const HospitalTime = (props) => {
+  const dispatch = useDispatch();
   const [pick, setPick] = useState([0]);
   const addPick = (props) => {
     if (props === 0 || pick.length === 3) {
@@ -31,6 +33,10 @@ export const HospitalTime = (props) => {
       setPick(pick.filter((idx) => idx !== props.id));
     }
   };
+  useEffect(() => {
+    dispatch(hospitalSearchSliceActions.setTime(pick));
+  }, [pick]);
+
   return (
     <div>
       <div className="flex flex-wrap row-span-3 col-span-6 ">

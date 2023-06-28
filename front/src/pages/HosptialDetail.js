@@ -47,13 +47,11 @@ export const HosptialDetail = (props) => {
   const [mark, setMark] = useState(false);
   const [data, setData] = useState();
 
-  console.log(state);
   useEffect(() => {
     instance
       .get(`/hospital/desc/${state.hospital.hospitalId}`)
       .then((response) => {
         setTimeout(() => {}, 3000);
-        // console.log("병원검색입니다");
         setData(response);
       })
       .catch((error) => {
