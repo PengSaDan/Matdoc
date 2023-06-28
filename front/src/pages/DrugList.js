@@ -15,7 +15,7 @@ export const DrugList = (props) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const request = useSelector((state) => state.drugSearch.filter);
-  
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [detail, setDetail] = useState(false);
@@ -26,21 +26,27 @@ export const DrugList = (props) => {
   const [drugs, setDrugs] = useState([]);
   const [drugsLength, setDrugsLength] = useState(0);
 
+  const [isLoading, setisLoading] = useState(true);
+
   useEffect(() => {
     const queryObj = QueryString.parse(searchParams.toString());
+
+    setisLoading(true);
+
     instance
       .post(`/drug/find`, {
-          name: queryObj.name,
-          colors: queryObj.colors,
-          type: queryObj.type,
-          line: queryObj.line,
-          mark: queryObj.mark,
+        name: queryObj.name,
+        colors: queryObj.colors,
+        type: queryObj.type,
+        line: queryObj.line,
+        mark: queryObj.mark,
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
-        // console.log(response);
+        console.log(response);
         setDrugs(response.data);
         setDrugsLength(response.data.length);
+        setisLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -63,7 +69,7 @@ export const DrugList = (props) => {
       dispatch(drugSearchActions.setLine(""));
     }
   }, []);
-  
+
   const selectShapeHandler = (props) => {
     setShape(props);
 
@@ -98,16 +104,31 @@ export const DrugList = (props) => {
   const reSearch = () => {
     setDetail(false);
 
-    if(shape === "모양") {
+    if (shape === "모양") {
       dispatch(drugSearchActions.setType(""));
     }
-    if(line === "분할선") {
+    if (line === "분할선") {
       dispatch(drugSearchActions.setLine(""));
     }
 
-    navigation(
-      `/druglist?name=${request.name}&colors=${request.colors}&type=${request.type}&line=${request.line}&mark=${request.mark}`
-    );
+    let queryString = "";
+    if (request.name) {
+      queryString += `name=${request.name}&`;
+    }
+    if (request.colors.length !== 0) {
+      queryString += `colors=${request.colors}&`;
+    }
+    if (request.type) {
+      queryString += `type=${request.type}&`;
+    }
+    if (request.line) {
+      queryString += `line=${request.line}&`;
+    }
+    if (request.mark) {
+      queryString += `mark=${request.mark}&`;
+    }
+
+    navigation(`/druglist?${queryString}`);
   };
 
   return (
@@ -119,7 +140,7 @@ export const DrugList = (props) => {
           type="drug"
           reSearch={reSearch}
         />
-        {!detail && (
+        {!detail && !isLoading && (
           <div
             className="absolute top-[170px] bg-[#D7F1FF] left-[14px] h-[43px] w-[380px] leading-[43px] flex row-span-2 justify-between rounded-[10px] "
             onClick={() => {
@@ -132,11 +153,19 @@ export const DrugList = (props) => {
             <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▼</p>
           </div>
         )}
-        <div className="absolute w-full overflow-scroll h-3/4 top-56">
-          {drugs.map((drug) => (
-            <DrugCard key={drug.drugId} drug={drug} />
-          ))}
-        </div>
+        {isLoading && (
+          <div className="absolute w-full overflow-scroll h-3/4 top-56">
+            로딩중
+          </div>
+        )}
+        {!isLoading && (
+          <div className="absolute w-full overflow-scroll h-3/4 top-56">
+            {drugs.slice(0, 300).map((drug) => (
+              <DrugCard key={drug.drugId} drug={drug} />
+            ))}
+          </div>
+        )}
+
         {detail && (
           <DrugFilter
             selectModalOpenHandler={selectModalOpenHandler}

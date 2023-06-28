@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 export const MyPage = (props) => {
-  const [page, setPage] = useState("likeHospital");
+  const [page, setPage] = useState("basketDrug");
 
   const linkLikeHospital = () => {
     setPage("likeHospital");

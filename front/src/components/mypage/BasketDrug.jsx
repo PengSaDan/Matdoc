@@ -1,11 +1,14 @@
 // import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { basketActions } from "store/features/drugBasketSlice";
 
 export const BasketDrug = (props) => {
   const basket = useSelector((state) => state.drugBasket.basket);
   const dispatch = useDispatch();
+  const navigation = useNavigate();
+  
   const [openModal, setOpenModal] = useState(false);
 
   const [checkedList, setCheckedList] = useState([]);
@@ -54,6 +57,10 @@ export const BasketDrug = (props) => {
     setOpenModal(false);
   };
 
+  const goDetail = (props) => {
+    navigation(`/drugDetail/${props}`);
+  };
+
   return (
     <div>
       <div
@@ -93,7 +100,10 @@ export const BasketDrug = (props) => {
                       checkedList.includes(`${pill.drugId}`) ? true : false
                     }
                   />
-                  <span className="inline-block overflow-hidden align-middle w-[300px] whitespace-nowrap text-ellipsis">
+                  <span className="inline-block overflow-hidden align-middle w-[300px] whitespace-nowrap text-ellipsis"
+                  onClick={() => {
+                    goDetail(pill.drugId);
+                  }}>
                     {pill.name}
                   </span>
                 </div>

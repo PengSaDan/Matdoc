@@ -71,8 +71,25 @@ export const Drug = (props) => {
   }, []);
 
   const searchPills = () => {
+    let queryString = "";
+    if(request.name) {
+      queryString += `name=${request.name}&`
+    }
+    if(request.colors.length !== 0) {
+      queryString += `colors=${request.colors}&`
+    }
+    if(request.type) {
+      queryString += `type=${request.type}&`
+    }
+    if(request.line) {
+      queryString += `line=${request.line}&`
+    }
+    if(request.mark) {
+      queryString += `mark=${request.mark}&`
+    }
+    
     navigation(
-      `/druglist?name=${request.name}&colors=${request.colors}&type=${request.type}&line=${request.line}&mark=${request.mark}`
+      `/druglist?${queryString}`
     );
   };
 

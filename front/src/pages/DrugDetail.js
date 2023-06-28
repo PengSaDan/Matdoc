@@ -20,24 +20,6 @@ export const DrugDetail = (props) => {
   const [drugDesc, setDrugDesc] = useState({});
   const [drugAvoid, setDrugAvoid] = useState([]);
 
-  const pillDetail = {
-    drugId: params.drugId,
-    name: "하이크라듀오정500mg Hycraduo Tab. 500mg",
-    ingredient: "아목시실린수화물, 묽은클라불란산칼륨", // 성분,
-    color: "하양", // 성상
-    shape: "장방형", // 제형
-    company: "한국휴텍스제약(주)",
-    image: hycraduo,
-    avoid: "", // 병용금기
-    // 효능, 효과
-    effect:
-      "급·만성 기관지염, 대엽성 및 기관지 폐렴, 농흉, 폐농양, 편도염, 부비동염, 중이염",
-    safety:
-      "이 약의 사용에 있어서 내성균의 발현을 방지하기 위하여 감수성을 확인하고 치료 상 필요한 최소 기간만 투여하는 것이 바람직하다.",
-    usage:
-      "성인의 중증 감염과 호흡기감염에 1회 2정, 1일 2회 12시간마다 경구투여한다. 신부전환자는 신기능의 정도에 따라 용량을 감소할 수 있다.",
-  };
-
   useEffect(() => {
     instance
       .get(`/drug/detail/${params.drugId}`)
@@ -60,8 +42,8 @@ export const DrugDetail = (props) => {
   const pushBasket = () => {
     dispatch(
       basketActions.pushBasket({
-        drugId: pillDetail.drugId,
-        name: pillDetail.name,
+        drugId: drug.drugId,
+        name: drug.drugName,
       })
     );
   };

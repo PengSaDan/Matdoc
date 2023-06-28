@@ -14,14 +14,6 @@ export const drugSearchSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    setFilter(state, action) {
-      const request = action.payload;
-      state.filter.name = request.name;
-      state.filter.colors = request.colors;
-      state.filter.type = request.type;
-      state.filter.line = request.line;
-      state.filter.mark = request.mark;
-    },
     setName(state, action) {
       state.filter.name = action.payload;
     },
