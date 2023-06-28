@@ -3,6 +3,7 @@ package com.roller.doc.db.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,13 +48,17 @@ public class DrugMy {
 	@Column(name="drug_my_del",columnDefinition = "BOOLEAN", nullable = false)
 	private Boolean drug_my_del;
 
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	private User user;
+	// @JsonIgnore
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// @JoinColumn(name="user_id")
+	// private User user;
+
+	@Column(name="user_id")
+	private Long userId;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "drug_my")
+	@Builder.Default
+	@OneToMany(mappedBy = "drug_my", cascade = CascadeType.ALL)
 	List<DrugMyPill> drugMyPills = new ArrayList<DrugMyPill>();
 
 	public void addDrugMyPill(DrugMyPill drugMyPill) {

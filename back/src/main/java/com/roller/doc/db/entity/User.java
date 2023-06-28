@@ -48,13 +48,13 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Role userRole;
 
-	@OneToMany(mappedBy = "user")
-	List<DrugMy> drugMIES = new ArrayList<DrugMy>();
+	// @OneToMany(mappedBy = "user")
+	// List<DrugMy> drugMIES = new ArrayList<DrugMy>();
 
-	public void addDrugMy(DrugMy drugMy) {
-		drugMIES.add(drugMy);
-		drugMy.setUser(this);
-	}
+	// public void addDrugMy(DrugMy drugMy) {
+	// 	drugMIES.add(drugMy);
+	// 	drugMy.setUser(this);
+	// }
 
 //	@OneToMany(mappedBy = "user")
 //	List<HospitalMy> hospitalMies = new ArrayList<HospitalMy>();

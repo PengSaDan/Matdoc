@@ -1,5 +1,6 @@
 package com.roller.doc.api.service.User;
 
+import com.roller.doc.api.request.DrugMyReq;
 import com.roller.doc.api.request.HospitalMyListReq;
 import com.roller.doc.api.response.ResponseDTO;
 import com.roller.doc.api.response.drug.DrugMyCreateRes;
@@ -23,13 +24,17 @@ public interface UserService {
     ResponseDTO listHospitalMy(HospitalMyListReq hospitalMyListReq);
 
     /**
-     * 나의 약봉지 목록 조회
+     * 나의 약봉지 추가 re
      */
-    ResponseDTO findList(Long id) throws Exception;
+    ResponseDTO insertDrugMy(DrugMyReq drugMyReq);
 
     /**
-     * 나의 약봉지 추가
+     * 나의 약봉지 리스트 조회 re
      */
-    DrugMyRes createDrugMy(DrugMyCreateRes drugMyCreateRes) throws Exception;
+    ResponseDTO listDrugMy(Long userId);
 
+    /**
+     * 나의 약봉지 삭제 re
+     */
+    ResponseDTO deleteDrugMy(Long drugMyId);
 }

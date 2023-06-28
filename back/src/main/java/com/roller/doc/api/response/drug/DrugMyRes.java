@@ -18,7 +18,7 @@ public class DrugMyRes {
 	private Long userId;
 
 	public DrugMyRes(DrugMy drugMy) {
-		this.userId = drugMy.getUser().getUserId();
+		this.userId = drugMy.getUserId();
 		this.drugMyId = drugMy.getDrug_my_id();
 		this.drugMyDel = drugMy.getDrug_my_del();
 		this.drugMyMemo = drugMy.getDrug_my_memo();

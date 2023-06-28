@@ -14,15 +14,9 @@ import com.roller.doc.db.entity.DrugMy;
 public interface DrugMyRepository extends JpaRepository<DrugMy, Long> {
 
 	/**
-	 * 나의 약봉지 목록 조회
+	 * 나의 약봉지 리스트 조회 re
 	 */
-	@Query(value = "SELECT * FROM drug_my WHERE user_id =:userId AND drug_my_del = 0", nativeQuery = true)
-	List<DrugMy> findList(@Param("userId")Long user_id);
+	@Query(value = "select dm from DrugMy dm where dm.userId = :userId and dm.drug_my_del = false")
+	List<DrugMy> getMyList(@Param("userId") Long userId);
 
-	/**
-	 * 나의 약봉지 삭제
-	 */
-	@Modifying
-	@Query(value = "UPDATE DrugMy SET drug_my_del = 1 WHERE drug_my_id=:drugMyId")
-	int deleteDrugMyById(@Param("drugMyId")Long drug_my_id);
 }

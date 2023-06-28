@@ -33,25 +33,7 @@ public class DrugController {
 	private final DrugService drugService;
 
 	/**
-	 * 나의 약봉지 속 약 조회
-	 */
-	@GetMapping("/mypill/{drugMyId}")
-	public ResponseEntity findPillList(@PathVariable("drugMyId") Long drugMyId) throws Exception {
-		ResponseDTO result = drugService.findMyPillList(drugMyId);
-		return ResponseEntity.status(HttpStatus.OK).body(result);
-	}
-
-	/**
-	 * 나의 약봉지 삭제
-	 */
-	@PutMapping("/delete/{drugMyId}")
-	public ResponseEntity deleteDrugMy(@PathVariable("drugMyId") Long drugMyId) throws Exception {
-		ResponseDTO result = drugService.deleteDrugMy(drugMyId);
-		return ResponseEntity.status(HttpStatus.OK).body(result);
-	}
-
-	/**
-	 * 필터를 통한 의약품 검색
+	 * 필터를 통한 의약품 검색 re
 	 */
 	@PostMapping("/find")
 	public ResponseEntity filteringDrug(@RequestBody DrugFilterReq d) {
@@ -61,7 +43,7 @@ public class DrugController {
 	}
 
 	/**
-	 * drugId로 의약품 상세정보 조회
+	 * drugId로 의약품 상세정보 조회 re
 	 */
 	@GetMapping("/detail/{drugId}")
 	public ResponseEntity getDrugDetail(@PathVariable("drugId") long drugId) {

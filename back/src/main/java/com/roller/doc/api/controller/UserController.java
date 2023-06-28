@@ -1,5 +1,6 @@
 package com.roller.doc.api.controller;
 
+import com.roller.doc.api.request.DrugMyReq;
 import com.roller.doc.api.request.HospitalMyListReq;
 import com.roller.doc.api.request.HospitalMyReq;
 import com.roller.doc.api.request.HospitalMyStatusReq;
@@ -52,21 +53,32 @@ public class UserController {
     }
 
     /**
-     * 나의 약봉지 목록 조회
+     * 나의 약봉지 추가 re
      */
-    @GetMapping("/drug/my")
-    public ResponseEntity findList(Long id) throws Exception {
-        ResponseDTO result = userService.findList(id);
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+    @PostMapping("/drug/insertmy")
+    private ResponseEntity insertDrugMy(@RequestBody DrugMyReq drugMyReq) {
+        ResponseDTO responseDTO = userService.insertDrugMy(drugMyReq);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
 
     /**
-     * 나의 약봉지 추가
+     * 나의 약봉지 리스트 조회 re
      */
-    @PostMapping("/drug/plus")
-    private ResponseEntity createDrugMy(@RequestBody DrugMyCreateRes drugMyCreateRes) throws Exception {
-
-        DrugMyRes result = userService.createDrugMy(drugMyCreateRes);
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+    @PostMapping("/drug/listmy")
+    private ResponseEntity listDrugMy(@RequestParam Long userId) {
+        // x-www-form-urlencoded
+        ResponseDTO responseDTO = userService.listDrugMy(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
+
+    /**
+     * 나의 약봉지 삭제 re
+     */
+    @PutMapping("/drug/deletemy")
+    private ResponseEntity deleteDrugMy(@RequestParam Long drugMyId) {
+        // x-www-form-urlencoded
+        ResponseDTO responseDTO = userService.deleteDrugMy(drugMyId);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
+    }
+
 }

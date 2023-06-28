@@ -30,8 +30,9 @@ public class DrugDesc implements Serializable {
 	@Id
 	private Long drug_id;
 
-	@MapsId
+	@MapsId("drug_id")
 	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "drug_id", referencedColumnName = "drug_id")
 	private Drug drug;
 
 	@Column(name="drug_desc_cat",columnDefinition = "VARCHAR(100)")
