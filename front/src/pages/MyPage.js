@@ -2,22 +2,30 @@ import Header from "components/common/Header";
 import BasketDrug from "components/mypage/BasketDrug";
 import LikeHospital from "components/mypage/LikeHospital";
 import MyDrug from "components/mypage/MyDrug";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const MyPage = (props) => {
-  const [page, setPage] = useState("basketDrug");
+  const navigation = useNavigate();
+  const params = useParams();
+  
+  const [page, setPage] = useState("myDrug");
+
+  useEffect(() => {
+    setPage(params.type);
+  }, [params])
 
   const linkLikeHospital = () => {
-    setPage("likeHospital");
+    navigation(`/mypage/likeHospital`);
   };
 
   const linkMyDrug = () => {
-    setPage("myDrug");
+    navigation(`/mypage/myDrug`);
   };
 
   const linkBasketDrug = () => {
-    setPage("basketDrug");
+    navigation(`/mypage/basketDrug`);
   };
 
   return (

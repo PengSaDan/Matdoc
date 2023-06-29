@@ -18,7 +18,7 @@ export const DrugCard = (props) => {
   };
 
   const goBasketDrug = () => {
-    navigation(`/mypage`);
+    navigation(`/mypage/basketDrug`);
   };
 
   const pushBasket = () => {
@@ -78,7 +78,7 @@ export const DrugCard = (props) => {
       {openModal && (
         <div className="fixed top-0 z-10 w-screen h-screen">
           <div className="absolute bg-white border-[#00C192] border-4 shadow-xl w-[350px] top-1/3 rounded-xl p-5 left-[31px] z-[99999]">
-            <div className="text-xl">
+            <div className="text-xl text-center">
               약 바구니에 약을 담았습니다. <br /> 마이페이지로 이동하시겠습니까?
             </div>
             <div className="flex mt-5 font-semibold text-center place-content-around">

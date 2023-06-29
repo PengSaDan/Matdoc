@@ -14,6 +14,7 @@ export const Header = (props) => {
 
   const doLogout = () => {
     dispatch(userActions.logout());
+    navigation("/");
   };
 
   return (
