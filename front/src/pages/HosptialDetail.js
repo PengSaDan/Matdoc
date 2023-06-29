@@ -52,16 +52,49 @@ export const HosptialDetail = (props) => {
       .get(`/hospital/desc/${state.hospital.hospitalId}`)
       .then((response) => {
         setTimeout(() => {}, 3000);
-        console.log(response)
-        if(response.data !== null) {
+        if (response.data !== null) {
           setData(response.data);
         }
       })
       .catch((error) => {
         setTimeout(() => {}, 3000);
       });
+    instance
+      .post(`/user/hospital/ismark/`, {
+        hospitalId: state.hospital.hospitalId,
+      })
+      .then((response) => {
+        setTimeout(() => {}, 3000);
+        setMark(response.data);
+      })
+      .catch((error) => {
+        setTimeout(() => {}, 3000);
+      });
   }, []);
-  console.log(data);
+  const markClickHandler = () => {
+    if (mark) {
+      instance
+        .put(`/user/hospital/statusmark`, {
+          hospitalId: state.hospital.hospitalId,
+          status: false,
+        })
+        .catch((error) => {
+          setTimeout(() => {}, 3000);
+        });
+      setMark(false);
+    } else {
+      instance
+        .put(`/user/hospital/statusmark`, {
+          hospitalId: state.hospital.hospitalId,
+          status: true,
+        })
+        .catch((error) => {
+          setTimeout(() => {}, 3000);
+        });
+      setMark(true);
+    }
+  };
+  // console.log(mark);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
@@ -75,7 +108,7 @@ export const HosptialDetail = (props) => {
             size={40}
             color="00C192"
             onClick={() => {
-              setMark(true);
+              markClickHandler();
             }}
           />
         )}
@@ -84,7 +117,7 @@ export const HosptialDetail = (props) => {
             size={40}
             color="00C192"
             onClick={() => {
-              setMark(false);
+              markClickHandler();
             }}
           />
         )}

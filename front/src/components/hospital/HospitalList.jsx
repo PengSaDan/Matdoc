@@ -24,20 +24,8 @@ export const HospitalList = (props) => {
     }
   }, []);
   const goHospitalDetail = () => {
-    // instance
-    //   .get(`/hospital/desc/${props.props.hospitalId}`)
-    //   .then((response) => {
-    //     setTimeout(() => {}, 3000);
-    //     setData(response.data);
-    //     setTimeout(() => {}, 3000);
-    //   })
-    //   .catch((error) => {
-    //     setTimeout(() => {}, 3000);
-    //   });
-    console.log(data);
     navigation(`/hospitaldetail/${props.props.hospitalId}`, {
       state: { hospital: props.props },
-      // data: { data },
     });
   };
 

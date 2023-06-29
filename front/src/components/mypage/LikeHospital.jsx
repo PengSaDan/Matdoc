@@ -1,8 +1,26 @@
 import HospitalList from "components/hospital/HospitalList";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import instance from "util/Axios";
 
 export const LikeHospital = (props) => {
+  const [data, setData] = useState([]);
+  const now = new Date();
+  useEffect(() => {
+    instance
+      .post(`/user/hospital/marklist`, {
+        hour: now.getHours(),
+        min: now.getMinutes(),
+        day: now.getDay(),
+      })
+      .then((response) => {
+        setTimeout(() => {}, 3000);
+        setData(response.data);
+      })
+      .catch((error) => {
+        setTimeout(() => {}, 3000);
+      });
+  }, []);
   return (
     <div>
       <div
@@ -27,7 +45,7 @@ export const LikeHospital = (props) => {
       </div>
       <div className=" absolute top-[160px] w-full h-auto bg-[#FFE194]">
         <div className="relative overflow-x-scroll">
-          {props.map((items) => (
+          {data.map((items) => (
             <HospitalList props={items} />
           ))}
         </div>
