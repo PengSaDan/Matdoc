@@ -30,7 +30,7 @@ public class HospitalCustomRepo {
     public List<Hospital> useFilterHospital(String word, double e, double w, double s, double n, List<Integer> part, List<Integer> open) {
         JPAQueryFactory query = querydslConfig.jpaQueryFactory();
         BooleanBuilder builder = new BooleanBuilder();
-        if (!word.equals("null")) {
+        if (!word.equals("")) {
             builder.and(keywordSearch(word));
         }
         //명령어 매핑

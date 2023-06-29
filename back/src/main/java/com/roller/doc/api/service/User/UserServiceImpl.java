@@ -149,6 +149,20 @@ public class UserServiceImpl implements UserService {
 					}
 					//영업중 여부 판단하기
 					boolean hospitalOpen = isOpen(hospital.get(), Req.getHour(), Req.getMin(), Req.getDay());
+					String[]time=new String[8];
+					time[0]=hospital.get().getHospitalTime().getHospitalTimeMon();
+					time[1]=hospital.get().getHospitalTime().getHospitalTimeTue();
+					time[2]=hospital.get().getHospitalTime().getHospitalTimeWed();
+					time[3]=hospital.get().getHospitalTime().getHospitalTimeThu();
+					time[4]=hospital.get().getHospitalTime().getHospitalTimeFri();
+					time[5]=hospital.get().getHospitalTime().getHospitalTimeSat();
+					time[6]=hospital.get().getHospitalTime().getHospitalTimeSun();
+					time[7]=hospital.get().getHospitalTime().getHospitalTimeEtc();
+					for(int i=0; i<8; i++){
+						if(time[i]=="null"){
+							time[i]="휴진";
+						}
+					}
 					HospitalRes hospitalRes = HospitalRes.builder()
 						.hospitalId(hospital.get().getHospital_id())
 						.hospitalName(hospital.get().getHospital_name())
@@ -157,7 +171,7 @@ public class UserServiceImpl implements UserService {
 						.hospitalX(hospital.get().getHospital_x())
 						.hospitalY(hospital.get().getHospital_y())
 						.hospitalTel(hospital.get().getHospital_tel())
-						.hospitalTime(hospital.get().getHospitalTime())
+						.hospitalTime(time)
 						.hospitalPart(partResult)
 						.build();
 					result.add(hospitalRes);

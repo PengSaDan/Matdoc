@@ -110,6 +110,20 @@ public class HospitalServiceImpl implements HospitalService {
                     }
                     //영업중 여부 판단하기
                     boolean hospitalOpen = isOpen(hospital, Req.getHour(), Req.getMin(), Req.getDay());
+                    String[]time=new String[8];
+                    time[0]=hospital.getHospitalTime().getHospitalTimeMon();
+                    time[1]=hospital.getHospitalTime().getHospitalTimeTue();
+                    time[2]=hospital.getHospitalTime().getHospitalTimeWed();
+                    time[3]=hospital.getHospitalTime().getHospitalTimeThu();
+                    time[4]=hospital.getHospitalTime().getHospitalTimeFri();
+                    time[5]=hospital.getHospitalTime().getHospitalTimeSat();
+                    time[6]=hospital.getHospitalTime().getHospitalTimeSun();
+                    time[7]=hospital.getHospitalTime().getHospitalTimeEtc();
+                    for(int i=0; i<8; i++){
+                        if(time[i].equals("null")){
+                            time[i]="휴진";
+                        }
+                    }
                     HospitalRes hospitalRes = HospitalRes.builder()
                             .hospitalId(hospital.getHospital_id())
                             .hospitalName(hospital.getHospital_name())
@@ -118,7 +132,7 @@ public class HospitalServiceImpl implements HospitalService {
                             .hospitalX(hospital.getHospital_x())
                             .hospitalY(hospital.getHospital_y())
                             .hospitalTel(hospital.getHospital_tel())
-                            .hospitalTime(hospital.getHospitalTime())
+                            .hospitalTime(time)
                             .hospitalPart(partResult)
                             .build();
                     result.add(hospitalRes);
