@@ -43,7 +43,7 @@ const route = createBrowserRouter([
         element: <DrugDetail />,
       },
       {
-        path: `mypage`,
+        path: `mypage/:type`,
         element: <MyPage />,
       },
     ],

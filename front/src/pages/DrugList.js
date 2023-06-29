@@ -7,7 +7,6 @@ import SelectModal from "components/drug/SelectModal";
 import DrugCard from "components/drug/DrugCard";
 import instance from "util/Axios";
 import { drugSearchActions } from "store/features/drugSearchSlice";
-import qs from "qs";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import QueryString from "qs";
 
@@ -43,10 +42,12 @@ export const DrugList = (props) => {
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
-        console.log(response);
-        setDrugs(response.data);
-        setDrugsLength(response.data.length);
-        setisLoading(false);
+        // console.log(response);
+        if (response.data !== null) {
+          setDrugs(response.data);
+          setDrugsLength(response.data.length);
+          setisLoading(false);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -154,9 +155,7 @@ export const DrugList = (props) => {
           </div>
         )}
         {isLoading && (
-          <div className="absolute w-full overflow-scroll h-3/4 top-56">
-            로딩중
-          </div>
+          <div className="absolute w-full overflow-scroll h-3/4 top-56"></div>
         )}
         {!isLoading && (
           <div className="absolute w-full overflow-scroll h-3/4 top-56">

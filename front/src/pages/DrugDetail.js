@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import hycraduo from "assets/images/drug/hycraduo.jpg";
 import Header from "components/common/Header";
 import { FaPlusCircle } from "react-icons/fa";
 import { basketActions } from "store/features/drugBasketSlice";
@@ -36,7 +35,7 @@ export const DrugDetail = (props) => {
   }, [params]);
 
   const goBasketDrug = () => {
-    navigation(`/mypage`);
+    navigation(`/mypage/basketDrug`);
   };
 
   const pushBasket = () => {
@@ -102,6 +101,7 @@ export const DrugDetail = (props) => {
           <div className="ml-4">
             {drugAvoid.map((avoid) => (
               <span
+                key={avoid.drugAvoidB}
                 onClick={() => {
                   goDetail(avoid.drugAvoidB);
                 }}
@@ -115,11 +115,21 @@ export const DrugDetail = (props) => {
 
       <div className="w-[380px] p-5 bg-[#D7F1FF] rounded-[10px] mt-5 ml-4 mb-5">
         <p className="text-xl font-semibold">효능/효과</p>
-        <p>{drugDesc.drugDescEffect !== "null" ? drugDesc.drugDescEffect : "정보 없음"}</p>
+        <p>
+          {drugDesc.drugDescEffect !== "null"
+            ? drugDesc.drugDescEffect
+            : "정보 없음"}
+        </p>
         <p className="mt-3 text-xl font-semibold">안전사용</p>
-        <p>{drugDesc.drugDescSafety !== "null" ? drugDesc.drugDescSafety : "정보 없음"}</p>
+        <p>
+          {drugDesc.drugDescSafety !== "null"
+            ? drugDesc.drugDescSafety
+            : "정보 없음"}
+        </p>
         <p className="mt-3 text-xl font-semibold">사용법</p>
-        <p>{drugDesc.drugDescUse !== "null" ? drugDesc.drugDescUse : "정보 없음"}</p>
+        <p>
+          {drugDesc.drugDescUse !== "null" ? drugDesc.drugDescUse : "정보 없음"}
+        </p>
       </div>
       {openModal && (
         <div className="absolute bg-white border-[#00C192] border-4 shadow-xl w-[350px] top-1/3 rounded-xl p-5 left-[31px] z-[99999]">

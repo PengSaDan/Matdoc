@@ -1,14 +1,14 @@
 // import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { basketActions } from "store/features/drugBasketSlice";
+import instance from "util/Axios";
 
 export const BasketDrug = (props) => {
   const basket = useSelector((state) => state.drugBasket.basket);
   const dispatch = useDispatch();
-  const navigation = useNavigate();
-  
+  const userId = useSelector((state) => state.user.userId);
+
   const [openModal, setOpenModal] = useState(false);
 
   const [checkedList, setCheckedList] = useState([]);
@@ -28,11 +28,9 @@ export const BasketDrug = (props) => {
 
   const deleteCheckedHandler = () => {
     checkedList.forEach((id) => {
-      dispatch(
-        basketActions.popBasket(Number(id))
-      );
-    })
-    
+      dispatch(basketActions.popBasket(Number(id)));
+    });
+
     setCheckedList([]);
     setCheckedPill([]);
   };
@@ -46,7 +44,25 @@ export const BasketDrug = (props) => {
   };
 
   const makeMyDrug = () => {
-    openModalhandler();
+    if (checkedList.length > 0) {
+      instance
+        .post(`/user/drug/insertmy`, {
+          userId: userId,
+          drugMyTitle: title,
+          drugMyMemo: text,
+          drugId: checkedList,
+        })
+        .then((response) => {
+          // console.log(response);
+          deleteCheckedHandler();
+          setTitle("");
+          setText("");
+          openModalhandler();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const openModalhandler = () => {
@@ -58,7 +74,7 @@ export const BasketDrug = (props) => {
   };
 
   const goDetail = (props) => {
-    navigation(`/drugDetail/${props}`);
+    props.linkMyDrug();
   };
 
   return (
@@ -100,10 +116,12 @@ export const BasketDrug = (props) => {
                       checkedList.includes(`${pill.drugId}`) ? true : false
                     }
                   />
-                  <span className="inline-block overflow-hidden align-middle w-[300px] whitespace-nowrap text-ellipsis"
-                  onClick={() => {
-                    goDetail(pill.drugId);
-                  }}>
+                  <span
+                    className="inline-block overflow-hidden align-middle w-[300px] whitespace-nowrap text-ellipsis"
+                    onClick={() => {
+                      goDetail(pill.drugId);
+                    }}
+                  >
                     {pill.name}
                   </span>
                 </div>
@@ -141,7 +159,8 @@ export const BasketDrug = (props) => {
           </div>
         </div>
       </div>
-      {openModal && <div className="absolute bg-white border-[#00C192] border-4 shadow-xl w-[350px] top-1/3 rounded-xl p-5 left-[31px] z-[99999]">
+      {openModal && (
+        <div className="absolute bg-white border-[#00C192] border-4 shadow-xl w-[350px] top-1/3 rounded-xl p-5 left-[31px] z-[99999]">
           <div className="text-xl">
             나의 약봉지에 저장했습니다. <br /> 나의 약봉지로 이동하시겠습니까?
           </div>
@@ -159,8 +178,8 @@ export const BasketDrug = (props) => {
               취소
             </div>
           </div>
-        </div>}
-      
+        </div>
+      )}
     </div>
   );
 };
