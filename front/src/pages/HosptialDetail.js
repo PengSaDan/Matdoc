@@ -45,14 +45,17 @@ const now = new Date();
 export const HosptialDetail = (props) => {
   const { state } = useLocation();
   const [mark, setMark] = useState(false);
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     instance
       .get(`/hospital/desc/${state.hospital.hospitalId}`)
       .then((response) => {
         setTimeout(() => {}, 3000);
-        setData(response.data);
+        console.log(response)
+        if(response.data !== null) {
+          setData(response.data);
+        }
       })
       .catch((error) => {
         setTimeout(() => {}, 3000);
@@ -64,7 +67,7 @@ export const HosptialDetail = (props) => {
       <Header />
       <KakaoMap lat={state.hospital.hospitalY} lng={state.hospital.hospitalX} />
       <div className="flex col-span-2 mt-10 ml-3 ">
-        <p className="text-3xl font-semibold mr-5 ">
+        <p className="mr-5 text-3xl font-semibold ">
           {state.hospital.hospitalName}
         </p>
         {!mark && (
@@ -114,27 +117,27 @@ export const HosptialDetail = (props) => {
         <div className=" w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7 text-xl font-semibold">
           <div className="relative w-[340px] ml-4 ">
             <div className="h-2"></div>
-            <div className="mt-4 flex col-span-2">
+            <div className="flex col-span-2 mt-4">
               <RiMapPin5Line className="absolute" size="25" />
-              {/* <p className="ml-8"> {data.hospitalAdd}</p> */}
+              <p className="ml-8"> {data.hospitalAdd}</p>
             </div>
-            <div className="mt-4 flex col-span-2">
+            <div className="flex col-span-2 mt-4">
               <LuPhone className="absolute" size="25" />
               <p className="ml-8"> {state.hospital.hospitalTel}</p>
             </div>
-            <div className="mt-4 flex col-span-2">
+            <div className="flex col-span-2 mt-4">
               <RiHospitalLine className="absolute" size="25" />
               <p className="ml-8">{state.hospital.hospitalPart}</p>
             </div>
             <div>
               {/* {data.hospitalParking >= 0 && (
-                <div className="mt-4 flex col-span-2">
+                <div className="flex col-span-2 mt-4">
                   <LuParkingSquare className="absolute" size="25" />
                   <p className="ml-8"> 주차가능</p>
                 </div>
               )}
               {data.hospitalParking < 0 && (
-                <div className="mt-4 flex col-span-2">
+                <div className="flex col-span-2 mt-4">
                   <LuParkingSquareOff className="absolute" size="25" />
                   <p className="ml-8"> 주차정보없음</p>
                 </div>
@@ -147,7 +150,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">전문의</p>
-            <p className="ml-4 mt-3 whitespace-pre-line">
+            <p className="mt-3 ml-4 whitespace-pre-line">
               {state.hospital.hospitalDoc}
             </p>
             <div className="h-4"></div>
@@ -157,7 +160,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">의료장비</p>
-            {/* <p className="ml-4 mt-3">{data.hospitalDevice}</p> */}
+            {/* <p className="mt-3 ml-4">{data.hospitalDevice}</p> */}
             <div className="h-4"></div>
           </div>
         </div>
@@ -165,7 +168,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">기타</p>
-            {/* <p className="ml-4 mt-3">{data.hospitalSpecial}</p> */}
+            {/* <p className="mt-3 ml-4">{data.hospitalSpecial}</p> */}
             <div className="h-4"></div>
           </div>
         </div>
