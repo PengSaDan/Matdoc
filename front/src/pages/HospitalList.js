@@ -16,14 +16,14 @@ export const HospitalList = (props) => {
   useEffect(() => {
     instance
       .post(`/hospital/find`, {
-        word: "성모",
+        word: select.word,
         e: 126.9622,
         w: 126.944,
         s: 37.2154,
         n: 37.2231,
-        hour: now.getHours,
-        min: now.getMinutes,
-        day: now.getDay,
+        hour: now.getHours(),
+        min: now.getMinutes(),
+        day: now.getDay(),
         part: select.part,
         open: select.time,
       })
@@ -46,7 +46,7 @@ export const HospitalList = (props) => {
         }}
       >
         <p className="text-[#303030] text-xl ml-3 mt-1 font-semibold">
-          {props.length} 건
+          {data.length} 건
         </p>
         {!isopen && (
           <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▼</p>

@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
+import instance from "util/Axios";
 
 export const HospitalList = (props) => {
   const navigation = useNavigate();
   const [status, setStatus] = useState("");
   const [color, setColor] = useState("");
+  const [data, setData] = useState([]);
   //props로 받은 영업중 여부가
   useEffect(() => {
     if (props.props.hospitalOpen) {
@@ -22,8 +24,20 @@ export const HospitalList = (props) => {
     }
   }, []);
   const goHospitalDetail = () => {
+    // instance
+    //   .get(`/hospital/desc/${props.props.hospitalId}`)
+    //   .then((response) => {
+    //     setTimeout(() => {}, 3000);
+    //     setData(response.data);
+    //     setTimeout(() => {}, 3000);
+    //   })
+    //   .catch((error) => {
+    //     setTimeout(() => {}, 3000);
+    //   });
+    console.log(data);
     navigation(`/hospitaldetail/${props.props.hospitalId}`, {
       state: { hospital: props.props },
+      // data: { data },
     });
   };
 

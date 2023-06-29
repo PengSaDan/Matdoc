@@ -1,20 +1,16 @@
 // import PropTypes from 'prop-types'
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { CustomOverlayMap, Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 
 export const KakaoMap = (props) => {
-  console.log(props.lat);
-  console.log(props.lng);
   return (
     <div>
       <Map
         center={{ lat: props.lat, lng: props.lng }}
         style={{ width: "412px", height: "412px" }}
       >
-        <MapMarker position={{ lat: props.lat, lng: props.lng }}>
-          <div style={{ color: "#000" }}>Hello World!</div>
-        </MapMarker>
+        <MapMarker position={{ lat: props.lat, lng: props.lng }}></MapMarker>
       </Map>
     </div>
   );

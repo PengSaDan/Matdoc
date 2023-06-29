@@ -1,12 +1,13 @@
 // import PropTypes from 'prop-types'
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { drugSearchActions } from "store/features/drugSearchSlice";
 import { hospitalSearchSliceActions } from "store/features/hospitalSearchSlice";
 
 export const DetailSearchBar = (props) => {
   const dispatch = useDispatch();
-
+  const navigation = useNavigate();
   const [color, setColor] = useState("");
   const [word, setWord] = useState("");
 
@@ -25,6 +26,8 @@ export const DetailSearchBar = (props) => {
   const Search = () => {
     if (props.type === "drug") {
       props.reSearch();
+    } else {
+      navigation("/hospitalList");
     }
     //페이지넘기기
   };

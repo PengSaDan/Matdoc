@@ -13,7 +13,7 @@ export const hospitalSearchSlice = createSlice({
   initialState,
   reducers: {
     setWord(state, action) {
-      state.filter.name = action.payload;
+      state.filter.word = action.payload;
     },
     setPart(state, action) {
       state.filter.part = action.payload;

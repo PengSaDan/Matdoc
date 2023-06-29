@@ -52,12 +52,13 @@ export const HosptialDetail = (props) => {
       .get(`/hospital/desc/${state.hospital.hospitalId}`)
       .then((response) => {
         setTimeout(() => {}, 3000);
-        setData(response);
+        setData(response.data);
       })
       .catch((error) => {
         setTimeout(() => {}, 3000);
       });
   }, []);
+  console.log(data);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
@@ -102,7 +103,6 @@ export const HosptialDetail = (props) => {
                   <div className="h-[40px] leading-[40px] flex col-span-2 text-lg">
                     <p className="w-[130px] text-center">{day}</p>
                     <p className="w-[250px] text-center">
-                      {/* 시간 배열로 주기 */}
                       {state.hospital.hospitalTime[idx]}
                     </p>
                   </div>
@@ -116,7 +116,7 @@ export const HosptialDetail = (props) => {
             <div className="h-2"></div>
             <div className="mt-4 flex col-span-2">
               <RiMapPin5Line className="absolute" size="25" />
-              <p className="ml-8"> {state.hospital.address}</p>
+              {/* <p className="ml-8"> {data.hospitalAdd}</p> */}
             </div>
             <div className="mt-4 flex col-span-2">
               <LuPhone className="absolute" size="25" />
@@ -127,18 +127,18 @@ export const HosptialDetail = (props) => {
               <p className="ml-8">{state.hospital.hospitalPart}</p>
             </div>
             <div>
-              {state.hospital.hospitalParking && (
+              {/* {data.hospitalParking >= 0 && (
                 <div className="mt-4 flex col-span-2">
                   <LuParkingSquare className="absolute" size="25" />
                   <p className="ml-8"> 주차가능</p>
                 </div>
               )}
-              {!state.hospital.hospitalParking && (
+              {data.hospitalParking < 0 && (
                 <div className="mt-4 flex col-span-2">
                   <LuParkingSquareOff className="absolute" size="25" />
                   <p className="ml-8"> 주차정보없음</p>
                 </div>
-              )}
+              )} */}
             </div>
             <div className="h-4"></div>
           </div>
@@ -157,7 +157,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">의료장비</p>
-            <p className="ml-4 mt-3">{state.hospital.hospitalDevice}</p>
+            {/* <p className="ml-4 mt-3">{data.hospitalDevice}</p> */}
             <div className="h-4"></div>
           </div>
         </div>
@@ -165,7 +165,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">기타</p>
-            <p className="ml-4 mt-3">{state.hospital.hospitalSpecial}</p>
+            {/* <p className="ml-4 mt-3">{data.hospitalSpecial}</p> */}
             <div className="h-4"></div>
           </div>
         </div>
