@@ -15,7 +15,9 @@ export const LikeHospital = (props) => {
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
-        setData(response.data);
+        if(response.data !== "null") {
+          setData(response.data);
+        }
       })
       .catch((error) => {
         setTimeout(() => {}, 3000);

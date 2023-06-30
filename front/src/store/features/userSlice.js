@@ -11,7 +11,7 @@ export const userSlice = createSlice({
   reducers: {
     login(state, action) {
       state.login = true;
-      state.userId = 8673;
+      state.userId = 1;
     },
     logout(state, action) {
       state.login = false;

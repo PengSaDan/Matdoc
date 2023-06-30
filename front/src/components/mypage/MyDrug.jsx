@@ -2,33 +2,32 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import instance from "util/Axios";
-import { useNavigate } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
+import DrugImg from "components/drug/DrugImg";
 
 export const MyDrug = (props) => {
   const userId = useSelector((state) => state.user.userId);
-  const navigation = useNavigate();
 
   const [myDrugs, setMyDrugs] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [deleteDrugMyId, setDeleteDrugMyId] = useState();
-  
+
   const config = {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
   };
-  
+
   useEffect(() => {
     const params = new URLSearchParams();
     params.append("userId", userId);
-    
+
     instance
       .post(`/user/drug/listmy`, params, config)
       .then((response) => {
         setTimeout(() => {}, 3000);
         // console.log(response);
-        if(response.data !== null) {
+        if (response.data !== null) {
           setMyDrugs(response.data);
         }
       })
@@ -37,12 +36,8 @@ export const MyDrug = (props) => {
       });
   }, []);
 
-  const goDetail = (props) => {
-    navigation(`/drugDetail/${props}`);
-  };
-
   const openModalhandler = (drugMyId) => {
-    setDeleteDrugMyId(drugMyId)
+    setDeleteDrugMyId(drugMyId);
     setOpenModal(true);
   };
 
@@ -53,7 +48,7 @@ export const MyDrug = (props) => {
   const deleteDrugMy = () => {
     const params = new URLSearchParams();
     params.append("drugMyId", deleteDrugMyId);
-    
+
     instance
       .put(`/user/drug/deletemy`, params, config)
       .then((response) => {
@@ -66,7 +61,7 @@ export const MyDrug = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   return (
     <div>
@@ -92,28 +87,26 @@ export const MyDrug = (props) => {
       </div>
       <div className=" absolute top-[160px] w-full bg-[#D4F0FF] p-5 h-[755px]">
         {myDrugs.map((myDrug) => (
-          <div className="relative w-[370px] bg-[#FFFFFF] rounded-[10px] p-5 mb-4" key={myDrug.drugMyId}>
+          <div
+            className="relative w-[370px] bg-[#FFFFFF] rounded-[10px] p-5 mb-4"
+            key={myDrug.drugMyId}
+          >
             <div className="text-2xl font-bold">{myDrug.drugMyTitle}</div>
             <div className="mt-5">{myDrug.drugMyMemo}</div>
-            
+
             <div className="grid grid-cols-3 mt-5">
               {myDrug.drugMyDrugs.map((drug) => (
-                <img
-                  key={drug.drugId}
-                  src={drug.drugImg}
-                  alt={drug.drugName}
-                  className="rounded-[10px] border"
-                  onClick={() => {
-                    goDetail(drug.drugId);
-                  }}
-                />
+                <DrugImg key={drug.drugId} drug={drug} />
               ))}
             </div>
-            
-            <div className="absolute shadow-xl right-5 top-5" onClick={(e) => {
-              e.stopPropagation();
-              openModalhandler(myDrug.drugMyId);
-            }}>
+
+            <div
+              className="absolute shadow-xl right-5 top-5"
+              onClick={(e) => {
+                e.stopPropagation();
+                openModalhandler(myDrug.drugMyId);
+              }}
+            >
               <FaTrashAlt className="text-2xl text-[#F97474]" />
             </div>
           </div>
