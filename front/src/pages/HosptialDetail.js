@@ -46,6 +46,7 @@ export const HosptialDetail = (props) => {
   const { state } = useLocation();
   const [mark, setMark] = useState(false);
   const [data, setData] = useState([]);
+  const [addr, setAddr] = useState("");
 
   useEffect(() => {
     instance
@@ -70,7 +71,13 @@ export const HosptialDetail = (props) => {
       .catch((error) => {
         setTimeout(() => {}, 3000);
       });
+
+      let lat = state.hospital.hospitalY;
+      let lng = state.hospital.hospitalX;
+      getAddr(lat, lng);
+      
   }, []);
+  
   const markClickHandler = () => {
     if (mark) {
       instance
@@ -92,6 +99,19 @@ export const HosptialDetail = (props) => {
       setMark(true);
     }
   };
+
+  const getAddr = (lat, lng) => {
+    let geocoder = new window.kakao.maps.services.Geocoder();
+
+    let coord = new window.kakao.maps.LatLng(lat, lng);
+    let callback = function(result, status) {
+      if(status === window.kakao.maps.services.Status.OK) {
+        setAddr(result[0].address.address_name);
+      }
+    }
+    geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+  };
+
   console.log(state.hospital.hospitalPart);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
@@ -158,7 +178,7 @@ export const HosptialDetail = (props) => {
             <div className="h-2"></div>
             <div className="flex col-span-2 mt-4">
               <RiMapPin5Line className="absolute" size="25" />
-              <p className="ml-8"> {data.hospitalAdd}</p>
+              <p className="ml-8"> {addr}</p>
             </div>
             <div className="flex col-span-2 mt-4">
               <LuPhone className="absolute" size="25" />

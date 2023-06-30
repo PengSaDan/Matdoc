@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "store/features/userSlice";
@@ -16,6 +16,17 @@ export const Header = (props) => {
     dispatch(userActions.logout());
     navigation("/");
   };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      dispatch(
+        userActions.getMyLocation({
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+        })
+      );
+    });
+  }, []);
 
   return (
     <div className="relative w-screen p-3 overflow-hidden">

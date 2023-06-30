@@ -159,7 +159,7 @@ export const DrugList = (props) => {
         )}
         {!isLoading && (
           <div className="absolute w-full overflow-scroll h-3/4 top-56">
-            {drugs.slice(0, 300).map((drug) => (
+            {drugs.slice(0, 1000).map((drug) => (
               <DrugCard key={drug.drugId} drug={drug} />
             ))}
           </div>

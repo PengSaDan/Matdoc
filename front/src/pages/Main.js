@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "store/features/userSlice";
@@ -22,11 +22,22 @@ export const Main = (props) => {
   const doLogin = () => {
     dispatch(userActions.login());
     navigation("/mypage/likeHospital");
-  }
+  };
 
   const closeModalhandler = () => {
     setOpenModal(false);
-  }
+  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      dispatch(
+        userActions.getMyLocation({
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+        })
+      );
+    });
+  }, []);
 
   return (
     <div className="bg-[#00C192] w-screen h-screen overflow-hidden relative">
