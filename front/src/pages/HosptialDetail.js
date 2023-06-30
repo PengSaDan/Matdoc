@@ -76,7 +76,6 @@ export const HosptialDetail = (props) => {
       instance
         .put(`/user/hospital/statusmark`, {
           hospitalId: state.hospital.hospitalId,
-          status: false,
         })
         .catch((error) => {
           setTimeout(() => {}, 3000);
@@ -86,7 +85,6 @@ export const HosptialDetail = (props) => {
       instance
         .put(`/user/hospital/statusmark`, {
           hospitalId: state.hospital.hospitalId,
-          status: true,
         })
         .catch((error) => {
           setTimeout(() => {}, 3000);
@@ -94,7 +92,7 @@ export const HosptialDetail = (props) => {
       setMark(true);
     }
   };
-  // console.log(mark);
+  console.log(state.hospital.hospitalPart);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
@@ -123,7 +121,7 @@ export const HosptialDetail = (props) => {
         )}
       </div>
       <div className=" h-full w-[412px] ">
-        <div className="h-[280px] w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7">
+        <div className="h-auto w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7">
           {days.map((day, idx) => {
             return (
               <div>
@@ -146,6 +144,14 @@ export const HosptialDetail = (props) => {
               </div>
             );
           })}
+          {state.hospital.hospitalTime[7] !== "휴진" && (
+            <div className="h-[40px] leading-[40px] flex col-span-2 text-lg">
+              <p className="w-[130px] text-center">기타</p>
+              <p className="w-[250px] text-center">
+                {state.hospital.hospitalTime[7]}
+              </p>
+            </div>
+          )}
         </div>
         <div className=" w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7 text-xl font-semibold">
           <div className="relative w-[340px] ml-4 ">
@@ -163,7 +169,7 @@ export const HosptialDetail = (props) => {
               <p className="ml-8">{state.hospital.hospitalPart}</p>
             </div>
             <div>
-              {/* {data.hospitalParking >= 0 && (
+              {data.hospitalParking >= 0 && (
                 <div className="flex col-span-2 mt-4">
                   <LuParkingSquare className="absolute" size="25" />
                   <p className="ml-8"> 주차가능</p>
@@ -174,7 +180,7 @@ export const HosptialDetail = (props) => {
                   <LuParkingSquareOff className="absolute" size="25" />
                   <p className="ml-8"> 주차정보없음</p>
                 </div>
-              )} */}
+              )}
             </div>
             <div className="h-4"></div>
           </div>
@@ -193,7 +199,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">의료장비</p>
-            {/* <p className="mt-3 ml-4">{data.hospitalDevice}</p> */}
+            <p className="mt-3 ml-4">{data.hospitalDevice}</p>
             <div className="h-4"></div>
           </div>
         </div>
@@ -201,7 +207,7 @@ export const HosptialDetail = (props) => {
           <div className="relative h-auto w-[340px] ml-4 ">
             <div className="h-4"></div>
             <p className="text-xl">기타</p>
-            {/* <p className="mt-3 ml-4">{data.hospitalSpecial}</p> */}
+            <p className="mt-3 ml-4">{data.hospitalSpecial}</p>
             <div className="h-4"></div>
           </div>
         </div>
