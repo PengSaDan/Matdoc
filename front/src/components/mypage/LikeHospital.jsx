@@ -15,7 +15,9 @@ export const LikeHospital = (props) => {
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
-        setData(response.data);
+        if (response.data !== "null") {
+          setData(response.data);
+        }
       })
       .catch((error) => {
         setTimeout(() => {}, 3000);
@@ -43,7 +45,7 @@ export const LikeHospital = (props) => {
       >
         <p className="text-center leading-[60px] text-xl ">약 바구니</p>
       </div>
-      <div className=" absolute top-[160px] w-full h-auto bg-[#FFE194]">
+      <div className=" absolute top-[160px] w-full h-full bg-[#FFE194]">
         <div className="relative overflow-x-scroll">
           {data.map((items) => (
             <HospitalList props={items} />
