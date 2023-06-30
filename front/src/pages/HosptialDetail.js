@@ -92,6 +92,7 @@ export const HosptialDetail = (props) => {
       setMark(true);
     }
   };
+  console.log(state.hospital.hospitalPart);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
@@ -120,7 +121,7 @@ export const HosptialDetail = (props) => {
         )}
       </div>
       <div className=" h-full w-[412px] ">
-        <div className="h-[280px] w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7">
+        <div className="h-auto w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7">
           {days.map((day, idx) => {
             return (
               <div>
@@ -143,6 +144,14 @@ export const HosptialDetail = (props) => {
               </div>
             );
           })}
+          {state.hospital.hospitalTime[7] !== "휴진" && (
+            <div className="h-[40px] leading-[40px] flex col-span-2 text-lg">
+              <p className="w-[130px] text-center">기타</p>
+              <p className="w-[250px] text-center">
+                {state.hospital.hospitalTime[7]}
+              </p>
+            </div>
+          )}
         </div>
         <div className=" w-[380px] bg-[#FFF5DA] rounded-[10px] ml-[16px] mt-7 text-xl font-semibold">
           <div className="relative w-[340px] ml-4 ">
