@@ -30,7 +30,7 @@ public class UserController {
      */
     @PutMapping("/hospital/statusmark")
     public ResponseEntity statusHospitalMy( @RequestBody HospitalMyStatusReq hospitalMyStatusReq) {
-        ResponseDTO responseDTO = userService.statusHospitalMy(hospitalMyStatusReq.getHospitalId(), hospitalMyStatusReq.isStatus());
+        ResponseDTO responseDTO = userService.statusHospitalMy(hospitalMyStatusReq.getHospitalId());
         return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
     }
 

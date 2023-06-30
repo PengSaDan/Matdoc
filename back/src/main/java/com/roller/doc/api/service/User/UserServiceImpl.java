@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Transactional
-	public ResponseDTO statusHospitalMy(long hospitalId, boolean status) {
+	public ResponseDTO statusHospitalMy(long hospitalId) {
 		ResponseDTO responseDTO = new ResponseDTO();
 		try {
 			Long userId = 1L;
@@ -76,13 +76,14 @@ public class UserServiceImpl implements UserService {
 				responseDTO.setMessage("병원 즐겨찾기 신규 등록 완료");
 				responseDTO.setData(true);
 			} else { //이미 등록이 되어있는 경우
-				if (status) { //즐겨찾기 되어있는것 삭제
-					hospitalMyRepository.statusHospitalMy(userId, hospitalId, status);
+				if (isMy.get().getHospital_my_del()) { //즐겨찾기 되어있는것 삭제
+					System.out.println("삭제"+isMy.get().getHospital_my_del());
+					hospitalMyRepository.statusHospitalMy(userId, hospitalId, !isMy.get().getHospital_my_del());
 					responseDTO.setStatus_code(200);
 					responseDTO.setMessage("병원 즐겨찾기 삭제 완료");
 					responseDTO.setData(false);
 				} else { //다시 즐겨찾기 만들기
-					hospitalMyRepository.statusHospitalMy(userId, hospitalId, status);
+					hospitalMyRepository.statusHospitalMy(userId, hospitalId, !isMy.get().getHospital_my_del());
 					responseDTO.setStatus_code(200);
 					responseDTO.setMessage("병원 즐겨찾기 등록 완료");
 					responseDTO.setData(true);

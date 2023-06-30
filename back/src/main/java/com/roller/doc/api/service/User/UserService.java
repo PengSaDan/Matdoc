@@ -11,7 +11,7 @@ public interface UserService {
     /**
      * 즐겨찾기 병원 상태변경
      */
-    ResponseDTO statusHospitalMy(long hospitalId, boolean status);
+    ResponseDTO statusHospitalMy(long hospitalId);
 
     /**
      * 즐겨찾기 여부

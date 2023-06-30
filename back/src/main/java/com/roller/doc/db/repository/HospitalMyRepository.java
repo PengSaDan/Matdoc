@@ -26,12 +26,12 @@ public interface HospitalMyRepository extends JpaRepository<HospitalMy, Long> {
     /**
      * 즐겨찾기 여부
      */
-    @Query(value = "select my from HospitalMy my where :hospitalId=my.hospital_id and :userId=my.user_id and my.hospital_my_del=false")
+    @Query(value = "select my from HospitalMy my where :hospitalId=my.hospital_id and :userId=my.user_id and my.hospital_my_del=0")
     Optional<HospitalMy> isHospitalMy(@Param("userId") long userId, @Param("hospitalId") long hospitalId);
 
     /**
      * 병원 즐겨찾기 리스트
      */
-    @Query(value = "select my from HospitalMy  my where :userId=my.user_id and my.hospital_my_del=false")
+    @Query(value = "select my from HospitalMy  my where :userId=my.user_id and my.hospital_my_del=0")
     List<HospitalMy> listingHospitalMy(@Param("userId") long userId);
 }
