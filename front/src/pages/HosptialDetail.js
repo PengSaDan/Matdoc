@@ -112,7 +112,7 @@ export const HosptialDetail = (props) => {
     geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
   };
 
-  console.log(state.hospital.hospitalPart);
+  // console.log(state.hospital.hospitalPart);
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen overflow-scroll ">
       <Header />
