@@ -1,6 +1,7 @@
 // import PropTypes from "prop-types";
 import DetailSerachBar from "components/common/DetailSearchBar";
 import Header from "components/common/Header";
+import NoResult from "components/common/NoResult";
 import HospitalFilter from "components/hospital/HospitalFilter";
 import List from "components/hospital/HospitalList";
 import React, { useState } from "react";
@@ -21,6 +22,10 @@ export const HospitalList = (props) => {
 
   const [showDistance, setShowDistance] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
+
+  const [isLoading, setisLoading] = useState(true);
+  const [haveResult, setHaveResult] = useState(false);
+
   const navigation = useNavigate();
   const now = new Date();
 
@@ -87,6 +92,8 @@ export const HospitalList = (props) => {
   };
 
   useEffect(() => {
+    setisLoading(true);
+
     instance
       .post(`/hospital/find`, {
         word: select.word,
@@ -102,16 +109,19 @@ export const HospitalList = (props) => {
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
-
-        if (response.data != null) {
+        // console.log(response);
+        if (response.data !== "null") {
           setDataLength(response.data.length);
           makeHospitalList(response.data);
           makeHospitalDistanceList(response.data);
+          setHaveResult(true);
         } else {
           setDataLength(0);
           setData([]);
           setDataDistance([]);
+          setHaveResult(false);
         }
+        setisLoading(false);
       })
       .catch((error) => {
         setTimeout(() => {}, 3000);
@@ -135,67 +145,77 @@ export const HospitalList = (props) => {
     <div className="bg-[#ECF9F6] w-screen h-screen ">
       <Header />
       <DetailSerachBar color={"bg-[#FFF5DA]"} reSearch={ReSearch} />
-      <div
-        className=" absolute top-[170px] bg-[#FFF5DA] left-[14px] h-[43px] w-[380px] leading-[43px] flex row-span-2 justify-between"
-        onClick={() => {
-          setIsOpen((e) => !e);
-        }}
-      >
-        <p className="text-[#303030] text-xl ml-3 mt-1 font-semibold">
-          {dataLength} 건
-        </p>
-        {!isopen && (
-          <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▼</p>
-        )}
-      </div>
-      <div className=" absolute top-[225px] left-[10px] h-[43px] w-[380px] leading-[43px] flex row-span-2 justify-end">
-        {showDistance ? (
-          <div
-            className="w-24 text-lg text-right text-[#00C192] font-black"
-            onClick={changeDistance}
-          >
-            ✔ 거리순
-          </div>
-        ) : (
-          <div
-            className="w-24 text-lg text-right text-[#303030]"
-            onClick={changeDistance}
-          >
-            거리순
-          </div>
-        )}
+      {!isLoading && (
+        <div
+          className=" absolute top-[170px] bg-[#FFF5DA] left-[14px] h-[43px] w-[380px] leading-[43px] flex row-span-2 justify-between"
+          onClick={() => {
+            setIsOpen((e) => !e);
+          }}
+        >
+          <p className="text-[#303030] text-xl ml-3 mt-1 font-semibold">
+            {dataLength} 건
+          </p>
+          {!isopen && (
+            <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▼</p>
+          )}
+        </div>
+      )}
 
-        {showOpen ? (
-          <div
-            className="w-24 text-lg text-right text-[#00C192] font-black"
-            onClick={changeOpen}
-          >
-            ✔ 진료중
-          </div>
-        ) : (
-          <div
-            className="w-24 text-lg text-right text-[#303030]"
-            onClick={changeOpen}
-          >
-            진료중
-          </div>
-        )}
-      </div>
-      {!showDistance && !showOpen && (
+      {!isLoading && haveResult && (
+        <div className=" absolute top-[225px] left-[10px] h-[43px] w-[380px] leading-[43px] flex row-span-2 justify-end">
+          {showDistance ? (
+            <div
+              className="w-24 text-lg text-right text-[#00C192] font-black"
+              onClick={changeDistance}
+            >
+              ✔ 거리순
+            </div>
+          ) : (
+            <div
+              className="w-24 text-lg text-right text-[#303030]"
+              onClick={changeDistance}
+            >
+              거리순
+            </div>
+          )}
+
+          {showOpen ? (
+            <div
+              className="w-24 text-lg text-right text-[#00C192] font-black"
+              onClick={changeOpen}
+            >
+              ✔ 진료중
+            </div>
+          ) : (
+            <div
+              className="w-24 text-lg text-right text-[#303030]"
+              onClick={changeOpen}
+            >
+              진료중
+            </div>
+          )}
+        </div>
+      )}
+
+      {isLoading && (
+        <div className="absolute w-full overflow-scroll top-[260px] h-[70%]"></div>
+      )}
+
+      {!isLoading && haveResult && !showDistance && !showOpen && (
         <div className="absolute w-full overflow-scroll top-[260px] h-[70%]">
           {data.map((items, idx) => {
             return <List key={items.hospitalId} props={items} />;
           })}
         </div>
       )}
-      {showDistance && !showOpen && (
+      {!isLoading &&haveResult && showDistance && !showOpen && (
         <div className="absolute w-full overflow-scroll top-[260px] h-[70%]">
           {dataDistance.map((items, idx) => {
             return <List key={items.hospitalId} props={items} />;
           })}
         </div>
       )}
-      {!showDistance && showOpen && (
+      {!isLoading &&haveResult && !showDistance && showOpen && (
         <div className="absolute w-full overflow-scroll top-[260px] h-[70%]">
           {data
             .filter((h) => h.hospitalOpen)
@@ -204,13 +224,18 @@ export const HospitalList = (props) => {
             })}
         </div>
       )}
-      {showDistance && showOpen && (
+      {!isLoading &&haveResult && showDistance && showOpen && (
         <div className="absolute w-full overflow-scroll top-[260px] h-[70%]">
           {dataDistance
             .filter((h) => h.hospitalOpen)
             .map((items, idx) => {
               return <List key={items.hospitalId} props={items} />;
             })}
+        </div>
+      )}
+      {!isLoading &&!haveResult && (
+        <div className="absolute w-full overflow-scroll top-[260px] h-[70%]">
+          <NoResult />
         </div>
       )}
 
