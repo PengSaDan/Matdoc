@@ -6,7 +6,6 @@ import List from "components/hospital/HospitalList";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import instance from "util/Axios";
 
 export const HospitalList = (props) => {
@@ -21,7 +20,6 @@ export const HospitalList = (props) => {
 
   const [showDistance, setShowDistance] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
-  const navigation = useNavigate();
   const now = new Date();
 
   const getDistanceFromLatLonInKm = (loc) => {
@@ -119,8 +117,9 @@ export const HospitalList = (props) => {
   }, [search]);
 
   const ReSearch = () => {
+    console.log(search);
+    console.log(select.word);
     setSearch(!search);
-    // navigation("/hospitalList");
     window.location.href = `http://localhost:3000/hospitalList`;
   };
   const changeDistance = () => {
