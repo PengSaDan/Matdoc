@@ -1,6 +1,6 @@
 import axios from "axios";
 
-console.log("now status : ", process.env.NODE_ENV);
+// console.log("now status : ", process.env.NODE_ENV);
 
 const instance = axios.create({
   baseURL:

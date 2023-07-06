@@ -87,7 +87,6 @@ export const HospitalList = (props) => {
   };
 
   useEffect(() => {
-    console.log("되나?");
     instance
       .post(`/hospital/find`, {
         word: select.word,
@@ -103,8 +102,6 @@ export const HospitalList = (props) => {
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
-        console.log(response.data);
-        console.log(response.data.length);
 
         if (response.data != null) {
           setDataLength(response.data.length);
@@ -122,8 +119,6 @@ export const HospitalList = (props) => {
   }, [search]);
 
   const ReSearch = () => {
-    console.log(search);
-    console.log(select.word);
     setSearch(!search);
     // navigation("/hospitalList");
     window.location.href = `http://localhost:3000/hospitalList`;
