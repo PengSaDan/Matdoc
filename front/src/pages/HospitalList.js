@@ -13,8 +13,11 @@ export const HospitalList = (props) => {
   const location = useSelector((state) => state.user.location);
 
   const [isopen, setIsOpen] = useState(false);
+
+  const [dataLength, setDataLength] = useState(0);
   const [data, setData] = useState([]);
   const [dataDistance, setDataDistance] = useState([]);
+
   const [showDistance, setShowDistance] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
 
@@ -98,11 +101,17 @@ export const HospitalList = (props) => {
       })
       .then((response) => {
         setTimeout(() => {}, 3000);
-        // console.log(response.data);
+        console.log(response.data);
+        console.log(response.data.length);
 
         if (response.data != null) {
+          setDataLength(response.data.length);
           makeHospitalList(response.data);
           makeHospitalDistanceList(response.data);
+        } else {
+          setDataLength(0);
+          setData([]);
+          setDataDistance([]);
         }
       })
       .catch((error) => {
@@ -129,7 +138,7 @@ export const HospitalList = (props) => {
         }}
       >
         <p className="text-[#303030] text-xl ml-3 mt-1 font-semibold">
-          {data.length} 건
+          {dataLength} 건
         </p>
         {!isopen && (
           <p className="text-[#A1AFA9] text-xl mr-3 mt-2">상세검색 ▼</p>
