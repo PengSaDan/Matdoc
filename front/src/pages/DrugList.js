@@ -9,6 +9,7 @@ import instance from "util/Axios";
 import { drugSearchActions } from "store/features/drugSearchSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import QueryString from "qs";
+import NoResult from "components/common/NoResult";
 
 export const DrugList = (props) => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export const DrugList = (props) => {
   const [drugsLength, setDrugsLength] = useState(0);
 
   const [isLoading, setisLoading] = useState(true);
+  const [haveResult, setHaveResult] = useState(false);
 
   useEffect(() => {
     const queryObj = QueryString.parse(searchParams.toString());
@@ -46,8 +48,13 @@ export const DrugList = (props) => {
         if (response.data !== null) {
           setDrugs(response.data);
           setDrugsLength(response.data.length);
-          setisLoading(false);
+          setHaveResult(true);
+        } else {
+          setDrugs([]);
+          setDrugsLength(0);
+          setHaveResult(false);
         }
+        setisLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -157,11 +164,17 @@ export const DrugList = (props) => {
         {isLoading && (
           <div className="absolute w-full overflow-scroll h-3/4 top-56"></div>
         )}
-        {!isLoading && (
+        {!isLoading && haveResult && (
           <div className="absolute w-full overflow-scroll h-3/4 top-56">
             {drugs.slice(0, 100).map((drug) => (
               <DrugCard key={drug.drugId} drug={drug} />
             ))}
+          </div>
+        )}
+
+        {!isLoading && !haveResult && (
+          <div className="absolute w-full overflow-scroll h-3/4 top-56">
+            <NoResult />
           </div>
         )}
 
