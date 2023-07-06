@@ -6,18 +6,19 @@ import List from "components/hospital/HospitalList";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import instance from "util/Axios";
 
 export const HospitalList = (props) => {
   const select = useSelector((state) => state.hospitalSearch.filter);
   const location = useSelector((state) => state.user.location);
-
+  const [search, setSearch] = useState(false);
   const [isopen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
   const [dataDistance, setDataDistance] = useState([]);
   const [showDistance, setShowDistance] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
-
+  const navigation = useNavigate();
   const now = new Date();
 
   const getDistanceFromLatLonInKm = (loc) => {
@@ -83,6 +84,7 @@ export const HospitalList = (props) => {
   };
 
   useEffect(() => {
+    console.log("되나?");
     instance
       .post(`/hospital/find`, {
         word: select.word,
@@ -108,8 +110,15 @@ export const HospitalList = (props) => {
       .catch((error) => {
         setTimeout(() => {}, 3000);
       });
-  }, []);
+  }, [search]);
 
+  const ReSearch = () => {
+    console.log(search);
+    console.log(select.word);
+    setSearch(!search);
+    // navigation("/hospitalList");
+    window.location.href = `http://localhost:3000/hospitalList`;
+  };
   const changeDistance = () => {
     setShowDistance(!showDistance);
   };
@@ -121,7 +130,7 @@ export const HospitalList = (props) => {
   return (
     <div className="bg-[#ECF9F6] w-screen h-screen ">
       <Header />
-      <DetailSerachBar color={"bg-[#FFF5DA]"} />
+      <DetailSerachBar color={"bg-[#FFF5DA]"} reSearch={ReSearch} />
       <div
         className=" absolute top-[170px] bg-[#FFF5DA] left-[14px] h-[43px] w-[380px] leading-[43px] flex row-span-2 justify-between"
         onClick={() => {

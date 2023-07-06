@@ -27,7 +27,8 @@ export const DetailSearchBar = (props) => {
     if (props.type === "drug") {
       props.reSearch();
     } else {
-      navigation("/hospitalList");
+      props.reSearch();
+      // navigation("/hospitalList");
     }
     //페이지넘기기
   };
