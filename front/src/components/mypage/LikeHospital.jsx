@@ -51,8 +51,10 @@ export const LikeHospital = (props) => {
   useEffect(() => {
     instance
       .post(`/user/hospital/marklist`, {
-        hour: now.getHours(),
-        min: now.getMinutes(),
+        // hour: now.getHours(),
+        // min: now.getMinutes(),
+        hour: 19,
+        min: 30,
         day: now.getDay(),
       })
       .then((response) => {
