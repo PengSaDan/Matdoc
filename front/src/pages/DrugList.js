@@ -81,6 +81,12 @@ export const DrugList = (props) => {
   const selectShapeHandler = (props) => {
     setShape(props);
 
+    if (props === "전체") {
+      dispatch(drugSearchActions.setType(""));
+    } else {
+      dispatch(drugSearchActions.setType(props));
+    }
+    
     setModal("");
   };
 
@@ -111,7 +117,7 @@ export const DrugList = (props) => {
 
   const reSearch = () => {
     setDetail(false);
-
+    
     if (shape === "모양") {
       dispatch(drugSearchActions.setType(""));
     }
