@@ -35,7 +35,7 @@
 
 어떤 것을했나요?
 
-## 🎥[시연 영상](https://youtu.be/fO9pPNvh4Jg)
+## 🎥[시연 영상](https://youtu.be/y8pSuRFYZq8)
 
 <br>
 
