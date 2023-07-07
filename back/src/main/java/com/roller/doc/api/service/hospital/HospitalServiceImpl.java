@@ -121,7 +121,7 @@ public class HospitalServiceImpl implements HospitalService {
                     time[6]=hospital.getHospitalTime().getHospitalTimeSun();
                     time[7]=hospital.getHospitalTime().getHospitalTimeEtc();
                     for(int i=0; i<8; i++){
-                        if(time[i].equals("null")){
+                        if(time[i]=="null"){
                             time[i]="휴진";
                         }
                     }
