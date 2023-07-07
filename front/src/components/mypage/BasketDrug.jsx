@@ -1,12 +1,15 @@
 // import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { basketActions } from "store/features/drugBasketSlice";
 import instance from "util/Axios";
 
 export const BasketDrug = (props) => {
   const basket = useSelector((state) => state.drugBasket.basket);
   const dispatch = useDispatch();
+  const navigation = useNavigate();
+  
   const userId = useSelector((state) => state.user.userId);
 
   const [openModal, setOpenModal] = useState(false);
@@ -74,7 +77,7 @@ export const BasketDrug = (props) => {
   };
 
   const goDetail = (props) => {
-    props.linkMyDrug();
+    navigation(`/drugDetail/${props}`);
   };
 
   return (

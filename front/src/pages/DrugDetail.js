@@ -120,6 +120,17 @@ export const DrugDetail = (props) => {
             color = "white";
         }
         setImagePath([require(`../assets/images/drug/${shape}_${color}.jpg`)]);
+
+        if(response.data.drug.drugName === '레벡스캡슐(운지다당체)') {
+          setImagePath([require(`../assets/images/drug/레벡스캡슐(운지다당체).jpg`)]);
+        }else if(response.data.drug.drugName === '유한이브펜연질캡슐') {
+          setImagePath([require(`../assets/images/drug/유한이브펜연질캡슐.jpg`)]);
+        }else if(response.data.drug.drugName === '이지엔6이브연질캡슐') {
+          setImagePath([require(`../assets/images/drug/이지엔6이브연질캡슐.jpg`)]);
+        }else if(response.data.drug.drugName === '탁센이브연질캡슐') {
+          setImagePath([require(`../assets/images/drug/탁센이브연질캡슐.jpg`)]);
+        }
+        
       })
       .catch((error) => {
         console.log(error);
