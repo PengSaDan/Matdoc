@@ -125,8 +125,6 @@ export const HospitalList = (props) => {
   }, [search]);
 
   const ReSearch = () => {
-    console.log(search);
-    console.log(select.word);
     setSearch(!search);
     window.location.href = `http://localhost:3000/hospitalList`;
   };
