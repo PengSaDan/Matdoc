@@ -369,28 +369,28 @@ public class UserServiceImpl implements UserService {
 				if (h.getHospitalTime().getHospitalTimeWed().equals("null")) {
 					return false;
 				} else {
-					str = h.getHospitalTime().getHospitalTimeTue().split("~");
+					str = h.getHospitalTime().getHospitalTimeWed().split("~");
 					return check(str, now);
 				}
 			case 4:
 				if (h.getHospitalTime().getHospitalTimeThu().equals("null")) {
 					return false;
 				} else {
-					str = h.getHospitalTime().getHospitalTimeTue().split("~");
+					str = h.getHospitalTime().getHospitalTimeThu().split("~");
 					return check(str, now);
 				}
 			case 5:
 				if (h.getHospitalTime().getHospitalTimeFri().equals("null")) {
 					return false;
 				} else {
-					str = h.getHospitalTime().getHospitalTimeTue().split("~");
+					str = h.getHospitalTime().getHospitalTimeFri().split("~");
 					return check(str, now);
 				}
 			case 6:
 				if (h.getHospitalTime().getHospitalTimeSat().equals("null")) {
 					return false;
 				} else {
-					str = h.getHospitalTime().getHospitalTimeTue().split("~");
+					str = h.getHospitalTime().getHospitalTimeSat().split("~");
 					return check(str, now);
 				}
 			default:
