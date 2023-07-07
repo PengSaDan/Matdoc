@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -159,9 +160,9 @@ public class UserServiceImpl implements UserService {
 					time[5]=hospital.get().getHospitalTime().getHospitalTimeSat();
 					time[6]=hospital.get().getHospitalTime().getHospitalTimeSun();
 					time[7]=hospital.get().getHospitalTime().getHospitalTimeEtc();
-					for(int i=0; i<8; i++){
-						if(time[i]=="null"){
-							time[i]="휴진";
+					for(int k=0; k<8; k++){
+						if(time[k].equals("null")){
+							time[k]="휴진";
 						}
 					}
 					HospitalRes hospitalRes = HospitalRes.builder()
@@ -368,28 +369,28 @@ public class UserServiceImpl implements UserService {
 				if (h.getHospitalTime().getHospitalTimeWed().equals("null")) {
 					return false;
 				} else {
-					str = h.getHospitalTime().getHospitalTimeTue().split("~");
+					str = h.getHospitalTime().getHospitalTimeWed().split("~");
 					return check(str, now);
 				}
 			case 4:
 				if (h.getHospitalTime().getHospitalTimeThu().equals("null")) {
 					return false;
 				} else {
-					str = h.getHospitalTime().getHospitalTimeTue().split("~");
+					str = h.getHospitalTime().getHospitalTimeThu().split("~");
 					return check(str, now);
 				}
 			case 5:
 				if (h.getHospitalTime().getHospitalTimeFri().equals("null")) {
 					return false;
 				} else {
-					str = h.getHospitalTime().getHospitalTimeTue().split("~");
+					str = h.getHospitalTime().getHospitalTimeFri().split("~");
 					return check(str, now);
 				}
 			case 6:
 				if (h.getHospitalTime().getHospitalTimeSat().equals("null")) {
 					return false;
 				} else {
-					str = h.getHospitalTime().getHospitalTimeTue().split("~");
+					str = h.getHospitalTime().getHospitalTimeSat().split("~");
 					return check(str, now);
 				}
 			default:
