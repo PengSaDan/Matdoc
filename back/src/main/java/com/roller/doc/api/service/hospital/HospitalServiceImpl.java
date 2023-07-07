@@ -91,7 +91,8 @@ public class HospitalServiceImpl implements HospitalService {
         ResponseDTO responseDTO = new ResponseDTO();
         List<HospitalRes> result = new ArrayList<>();
         try {
-            List<Hospital> hospitalList = hospitalCustomRepo.useFilterHospital(Req.getWord(), Req.getE(), Req.getW(), Req.getS(), Req.getN(), Req.getPart(), Req.getOpen());
+            List<Hospital> hospitalList =
+                hospitalCustomRepo.useFilterHospital(Req.getWord(), Req.getE(), Req.getW(), Req.getS(), Req.getN(), Req.getPart(), Req.getOpen());
             if (hospitalList.size() == 0) {
                 responseDTO.setStatus_code(400);
                 responseDTO.setMessage("필터로 병원찾기: 일치하는 병원이 없습니다");
