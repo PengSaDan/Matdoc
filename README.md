@@ -10,7 +10,7 @@
 
 ### 👩‍💻개발 기간 : 2023.02.27 ~ 2023.04.07
 
-[🔗 ver1 Repository](https://github.com/pingu2017/matdoc)
+[🔗 ver1 Repository](https://github.com/PengSaDan/Matdoc/tree/master-old)
 
 <details>
 <summary>팀원</summary>
@@ -52,12 +52,12 @@
 
 ### 🏣 병원 검색
 
-- <p align="left">
-  <img src="DOCS/images/gif/맞닥_병원검색.gif" width="32%" />
-  <img src="DOCS/images/screenshots/hospital_list.png" width="32%" />
-  <img src="DOCS/images/screenshots/hospital_detail.png" width="32%"/>
-  </p>
-  <br/>
+<p align="left">
+<img src="DOCS/images/gif/맞닥_병원검색.gif" width="32%" />
+<img src="DOCS/images/screenshots/hospital_list.png" width="32%" />
+<img src="DOCS/images/screenshots/hospital_detail.png" width="32%"/>
+</p>
+<br/>
 
 ### 💊 약 검색
 
