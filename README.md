@@ -14,11 +14,14 @@
   - [기대효과](#기대효과)
 - [설계 및 산출물](#설계-및-산출물)
 
-## : 한 눈에 들어오는 메디컬 서비스
+<br>
+<br>
 
+<p align="left">
 <img src="DOCS/images/screenshots/main_main.png" width="32%" />
 <img src="DOCS/images/screenshots/hospital_search.png" width="32%" />
 <img src="DOCS/images/screenshots/drug_search.png" width="32%"/>
+<p>
 
 <br>
 
@@ -112,14 +115,12 @@ width="32%"/>
 
 ### 💾 [ERD](./DOCS/ERD.md)
 
-### 🔑 [DB컬럼설명](./DOCS/DB컬럼설명.md)
-
 ### 📡 [API명세서](./DOCS/API명세서.md)
+
+### 🔑 [DB컬럼설명](./DOCS/DB컬럼설명.md)
 
 ### 🗺 [아키텍쳐설계도](./DOCS/아키텍쳐.md)
 
 ### 🏹 [포팅메뉴얼](./DOCS/포팅메뉴얼.md)
-
-### 📺 [시연시나리오](./DOCS/시연시나리오.md)
 
 <br>
