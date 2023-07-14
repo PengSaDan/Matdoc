@@ -31,11 +31,9 @@
 - 권지훈 : 약 관련 부분 Back-End, Front-End
 - 조원희 : 병원 관련 부분 Back-End, Front-End
 
-## 리팩토링
+## 🔗 [🛠️ 리팩토링](/DOCS/리팩토링.md)
 
-어떤 것을했나요?
-
-## 🎥[시연 영상](https://youtu.be/y8pSuRFYZq8)
+## 🔗 🎥[시연 영상](https://youtu.be/y8pSuRFYZq8)
 
 <br>
 
