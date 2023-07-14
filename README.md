@@ -1,8 +1,24 @@
 # SSAFY 8기 특화프로젝트 B108 '맞닥'\_ver2
 
+- SSAFY 8기 특화프로젝트 B108 '맞닥'\_ver2
+- [✔ Project Summary](#--project-summary)
+  - 👩‍💻개발 기간 : 2023.02.27 ~ 2023.04.07
+  - 🛠️리팩토링 기간 : 2023.06.05 ~ 2023.07.07
+  * 🔗 [🛠️ 리팩토링](#🔗-🛠️-리팩토링)
+  * 🔗 🎥[시연 영상](#🔗-🎥시연-영상)
+- [✔ Information](#--information)
+  - [메인 기능](#메인-기능)
+    - [🏣 병원 검색](#🏣-병원-검색)
+    - [💊 약 검색](#💊-약-검색)
+    - [📑 마이페이지](#📑-마이페이지)
+  - [기대효과](#기대효과)
+- [설계 및 산출물](#설계-및-산출물)
+
 ## : 한 눈에 들어오는 메디컬 서비스
 
-![타이틀](DOCS/images/%ED%83%80%EC%9D%B4%ED%8B%80.png)
+<img src="DOCS/images/screenshots/main_main.png" width="32%" />
+<img src="DOCS/images/screenshots/hospital_search.png" width="32%" />
+<img src="DOCS/images/screenshots/drug_search.png" width="32%"/>
 
 <br>
 
