@@ -69,6 +69,9 @@
 
 ### 🏣 병원 검색
 
+- 단어를 이용한 검색과, 버튼을 이용한 진료과목, 운영시간 다중선택을 중복적으로 이용해 병원을 검색할 수 있습니다.
+- 결과 리스트를 거리순, 진료중 여부로 재정렬할 수 있습니다.
+
 <p align="left">
 <img src="DOCS/images/gif/맞닥_병원검색.gif" width="32%" />
 <img src="DOCS/images/screenshots/hospital_list.png" width="32%" />
@@ -78,21 +81,30 @@
 
 ### 💊 약 검색
 
+- 약 이름, 색상, 모양, 분할선, 식별문자를 중복적으로 이용해 약을 검색할 수 있습니다.
+
 <p align="left">
 <img src="DOCS/images/gif/맞닥_약검색.gif" 
 width="32%"/>
 <img src="DOCS/images/screenshots/drug_search.png" width="32%"/>
 <img src="DOCS/images/screenshots/drug_detail.png" width="32%"/>
 </p>
+
 <br/>
 
 ### 📑 마이페이지
+
+- 로그인한 유저는 찜한 병원, 약바구니, 나의 약봉지 서비스를 이용할 수 있습니다. 카카오로그인을 지원합니다.
+- 병원명 옆 `+` 버튼을 눌러 병원을 즐겨찾기 할 수 있습니다. `✓` 버튼을 한 번 더 누르면 즐겨찾기가 해제됩니다.
+- 약 이름 옆 `+` 버튼을 눌러 약 바구니에 약을 추가할 수 있습니다. 약 바구니에 추가된 약은 마이페이지에서 확인할 수 있습니다.
+- 약 바구니에서 약들을 선택해 나의 약봉지로 만들 수 있습니다. 나의 약봉지는 약 관리를 위한 기능으로 제목과, 간단한 설명을 추가할 수 있습니다.
 
 <p align="left">
 <img src="DOCS/images/gif/맞닥_병원즐겨찾기.gif" width="32%"/>
 <img src="DOCS/images/screenshots/main_main.png" width="32%" />
 <img src="DOCS/images/gif/맞닥_약바구니.gif" width="32%"/>
 </p>
+
 <br/>
 
 ## 기대효과
