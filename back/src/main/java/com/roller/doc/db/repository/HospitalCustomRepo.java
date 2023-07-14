@@ -54,26 +54,6 @@ public class HospitalCustomRepo {
                     break;
             }
         }
-        if (open.get(0) == 0 && part.get(0) == 0) { //필터가 없는데 검색누른경우
-            return query.select(hospital)
-                    .from(hospital)
-                    .where(locationBetween(e, w, s, n),builder)
-                    .distinct().fetch();
-        }
-        if (part.get(0) == 0 && open.get(0) != 0) { //진료과목 필터가 없고 시간필터가 있는 경우
-            return query.select(hospital)
-                    .from(hospital)
-                    .innerJoin(hospitalTime).on(hospital.hospital_id.eq(hospitalTime.hospital.hospital_id))
-                    .where(locationBetween(e, w, s, n), builder)
-                    .distinct().fetch();
-        }
-        if (open.get(0) == 0 && part.get(0) != 0) { //시간 필터 없고 과목필터가 있는 경우
-            return query.select(hospital)
-                    .from(hospital)
-                    .innerJoin(hospitalPart).fetchJoin().on(partEq(hospital.hospital_id, partTmp[0]).or(partEq(hospital.hospital_id, partTmp[1])).or(partEq(hospital.hospital_id, partTmp[2])).or(partEq(hospital.hospital_id, partTmp[3])).or(partEq(hospital.hospital_id, partTmp[4])))
-                    .where(locationBetween(e, w, s, n),builder)
-                    .distinct().fetch();
-        }
         return query.select(hospital)
                 .from(hospital)
                 .innerJoin(hospitalPart).fetchJoin().on(partEq(hospital.hospital_id, partTmp[0]).or(partEq(hospital.hospital_id, partTmp[1])).or(partEq(hospital.hospital_id, partTmp[2])).or(partEq(hospital.hospital_id, partTmp[3])).or(partEq(hospital.hospital_id, partTmp[4])))
@@ -105,7 +85,6 @@ public class HospitalCustomRepo {
         if (word == null) {
             return null;
         } else {
-//            return hospital.hospital_name.contains(word);
             NumberTemplate booleanTemplate = Expressions.numberTemplate(Double.class,
                     "function('match',{0},{1})", hospital.hospital_name, word);
             return booleanTemplate.gt(0);
